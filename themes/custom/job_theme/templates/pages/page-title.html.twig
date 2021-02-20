@@ -1,0 +1,57 @@
+{#
+/**
+ * @file
+ * Theme override for page titles.
+ *
+ * Available variables:
+ * - title_attributes: HTML attributes for the page title element.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title: The page title, for use in the actual content.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ *
+ * @see template_preprocess_page_title()
+ */
+#}
+{{ title_prefix }}
+{% if title %}
+  <div class="node-title text-center d-flex flex-column justify-content-center py-5 px-4">
+    {% if page_profile_edit or page_job_edit %}
+      <h2{{ title_attributes.addClass('title') }}>
+        {{ page_title }}
+      </h2>
+      <a class="btn c-light-blue white-text mx-auto" style="width: 150px" href="{{ path('entity.user.canonical', {'user': user_id}) }}">
+          {{ 'Retour'|t }}
+      </a>
+    {% elseif node_job_full and user_role == 'candidat' %}
+      <h2{{ title_attributes.addClass('title') }}>
+        <i class="fas fa-caret-square-left js-back cursor-pointer"></i> {{ title }}
+      </h2>
+      {% if not submitted %}
+        <div class="d-flex justify-content-center mt-4">
+          <a class="btn-deep-orange btn btn-lg mr-3" href="#edit-candidature">
+            {{ 'Postuler'|t }}
+          </a>
+        </div>
+      {% endif %}
+    {% elseif node_job_full and user_role == 'recruteur' and not node_job_delete and not node_job_submission %}
+      <h2{{ title_attributes.addClass('title') }}>
+        <i class="fas fa-caret-square-left js-back cursor-pointer"></i> {{ title }}
+      </h2>
+      <div class="d-flex justify-content-center mt-4">
+        <a class="text-success mr-3" href="{{ path('entity.node.edit_form', {'node': node_id}) }}">
+          <i class="fas fa-pen-square fa-2x"></i>
+        </a>
+        <a class="text-danger ml-3" href="{{ path('entity.node.delete_form', {'node': node_id}) }}">
+          <i class="fas fa-window-close fa-2x"></i>
+        </a>
+      </div>
+    {% else %}
+      <h2{{ title_attributes.addClass('title') }}>
+        {{ title }}
+      </h2>
+    {% endif %}
+  </div>
+{% endif %}
+{{ title_suffix }}

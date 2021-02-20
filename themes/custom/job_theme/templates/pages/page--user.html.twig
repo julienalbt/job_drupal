@@ -1,0 +1,309 @@
+{#
+/**
+ * @file
+ * Bootstrap Barrio's theme implementation to display a single page.
+ *
+ * The doctype, html, head and body tags are not in this template. Instead they
+ * can be found in the html.html.twig template normally located in the
+ * core/modules/system directory.
+ *
+ * Available variables:
+ *
+ * General utility variables:
+ * - base_path: The base URL path of the Drupal installation. Will usually be
+ *   "/" unless you have installed Drupal in a sub-directory.
+ * - is_front: A flag indicating if the current page is the front page.
+ * - logged_in: A flag indicating if the user is registered and signed in.
+ * - is_admin: A flag indicating if the user has permission to access
+ *   administration pages.
+ *
+ * Site identity:
+ * - front_page: The URL of the front page. Use this instead of base_path when
+ *   linking to the front page. This includes the language domain or prefix.
+ * - logo: The url of the logo image, as defined in theme settings.
+ * - site_name: The name of the site. This is empty when displaying the site
+ *   name has been disabled in the theme settings.
+ * - site_slogan: The slogan of the site. This is empty when displaying the site
+ *   slogan has been disabled in theme settings.
+
+ * Page content (in order of occurrence in the default page.html.twig):
+ * - node: Fully loaded node, if there is an automatically-loaded node
+ *   associated with the page and the node ID is the second argument in the
+ *   page's path (e.g. node/12345 and node/12345/revisions, but not
+ *   comment/reply/12345).
+ *
+ * Regions:
+ * - page.top_header: Items for the top header region.
+ * - page.top_header_form: Items for the top header form region.
+ * - page.header: Items for the header region.
+ * - page.header_form: Items for the header form region.
+ * - page.highlighted: Items for the highlighted region.
+ * - page.primary_menu: Items for the primary menu region.
+ * - page.secondary_menu: Items for the secondary menu region.
+ * - page.featured_top: Items for the featured top region.
+ * - page.content: The main content of the current page.
+ * - page.sidebar_first: Items for the first sidebar.
+ * - page.sidebar_second: Items for the second sidebar.
+ * - page.featured_bottom_first: Items for the first featured bottom region.
+ * - page.featured_bottom_second: Items for the second featured bottom region.
+ * - page.featured_bottom_third: Items for the third featured bottom region.
+ * - page.footer_first: Items for the first footer column.
+ * - page.footer_second: Items for the second footer column.
+ * - page.footer_third: Items for the third footer column.
+ * - page.footer_fourth: Items for the fourth footer column.
+ * - page.footer_fifth: Items for the fifth footer column.
+ * - page.breadcrumb: Items for the breadcrumb region.
+ *
+ * Theme variables:
+ * - navbar_top_attributes: Items for the header region.
+ * - navbar_attributes: Items for the header region.
+ * - content_attributes: Items for the header region.
+ * - sidebar_first_attributes: Items for the highlighted region.
+ * - sidebar_second_attributes: Items for the primary menu region.
+ * - sidebar_collapse: If the sidebar_first will collapse.
+ *
+ * @see template_preprocess_page()
+ * @see bootstrap_barrio_preprocess_page()
+ * @see html.html.twig
+ */
+#}
+<div id="page-wrapper">
+  <div id="page">
+    {% if page.featured_top %}
+      {% block featured %}
+        <div class="featured-top">
+          <aside class="featured-top__inner section {{ container }} clearfix" role="complementary">
+            {{ page.featured_top }}
+          </aside>
+        </div>
+      {% endblock %}
+    {% endif %}
+    <div id="main-wrapper" class="layout-main-wrapper clearfix">
+      {% block content %}
+        <div id="main" class="{{ container }}">
+          {{ page.breadcrumb }}
+          <div class="row row-offcanvas row-offcanvas-left clearfix">
+            <main{{ content_attributes.addClass('px-0') }}>
+              <section class="section section-user">
+                <a id="main-content" tabindex="-1"></a>
+
+                {% if recrut %}
+
+                  <div class="d-flex align-items-center justify-content-center profile-container">
+
+                    <div class="card user-card animated" id="mainContent">
+                      <div class="view overlay p-4">
+                        {% if image %}
+                          <img src="{{ image }}" class="card-img-top" alt="profile-img"/>
+                        {% else %}
+                          <img src="{{ base_path ~ directory }}/images/default-image.png" class="card-img-top"
+                               alt="profile-img"/>
+                        {% endif %}
+                      </div>
+
+                      <div class="card-body">
+                        <h4 class="card-title text-center">{{ society }}</h4>
+                        <div class="action-button d-flex flex-wrap">
+
+                          <button type="button"
+                                  class="btn c-dark-green white-text"
+                                  data-toggle="modal" data-target="#jobsModal">
+                            {{ 'Gérer mes jobs'|t }}
+                          </button>
+                          <a href="/liste-candidatures" type="button"
+                             class="btn c-green white-text">
+                            {{ 'Voir toutes les candidatures'|t }}
+                          </a>
+                        </div>
+                      </div>
+
+                      <div class="card-footer d-flex justify-content-center flex-wrap">
+                        <a id="editProfile" class="btn c-light-green white-text edit-profile"
+                           href="{{ path('entity.user.edit_form', {'user': user_id}) }}">
+                          {{ 'Modifier le profil'|t }}
+                        </a>
+                        <a href="/user/logout" type="button"
+                           class="btn c-lighten-green white-text logout">
+                          {{ 'Déconnexion'|t }}
+                        </a>
+                      </div>
+                    </div>
+
+                    <div class="modal fade" id="jobsModal" tabindex="-1" role="dialog" aria-labelledby="jobsModalLabel">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header text-center c-dark-blue">
+                            <h4 class="w-100 font-weight-light white-text">{{ 'Gérer les jobs'|t }}</h4>
+                          </div>
+                          <div class="modal-body px-1">
+                            {{ drupal_view('recuteur_jobs_list', 'block_1') }}
+                          </div>
+                          <div class="modal-footer align-center">
+                            <a href="{{ path('node.add', {'node_type' : 'jobs'}) }}"
+                               type="button"
+                               class="btn c-light-blue white-text">
+                              {{ 'Ajouter un job'|t }}
+                            </a>
+                            <button type="button" class="btn c-dark-blue white-text" data-dismiss="modal" aria-label="Close">
+                              {{ 'Retour'|t }}
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                {% else %}
+
+                  <div class="d-flex align-items-center justify-content-center profile-container">
+
+                    <div class="card user-card animated" id="mainContent">
+                      <div class="view overlay">
+                        {% if image %}
+                          <img src="{{ image }}" class="card-img-top" alt="profile-img"/>
+                        {% else %}
+                          <img src="{{ base_path ~ directory }}/images/default-image.png" class="card-img-top"
+                               alt="profile-img"/>
+                        {% endif %}
+                      </div>
+
+                      <div class="card-body">
+                        <h4 class="card-title text-center">{{ username }}</h4>
+                        <div class="action-button d-flex flex-wrap">
+                          <button type="button"
+                                  class="btn c-dark-green white-text"
+                                  data-toggle="modal" data-target="#cvModal">
+                            {{ 'Géres tes CVs'|t }}
+                          </button>
+                          <button type="button"
+                                  class="btn c-green white-text"
+                                  data-toggle="modal" data-target="#searchModal">
+                            {{ 'Trouve ton job'|t }}
+                          </button>
+                          <a href="/vos-candidatures" type="button" class="btn c-light-green white-text">
+                            {{ 'Suis tes candidatures'|t }}
+                          </a>
+                        </div>
+                      </div>
+
+                      <div class="card-footer d-flex justify-content-center flex-wrap">
+                        <a id="editProfile" class="btn c-lighten-green white-text edit-profile"
+                           href="{{ path('entity.user.edit_form', {'user': user_id}) }}">
+                          {{ 'Modifier le profil'|t }}
+                        </a>
+                        <a href="/user/logout" type="button"
+                           class="btn c-lightest-green white-text logout">
+                          {{ 'Déconnexion'|t }}
+                        </a>
+                      </div>
+                    </div>
+
+                    <div class="modal fade" id="cvModal" tabindex="-1" role="dialog"
+                         aria-labelledby="cvModalLabel">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header text-center c-dark-blue">
+                            <h4 class="w-100 font-weight-light white-text">{{ 'Gères tes CVs'|t }}</h4>
+                          </div>
+                          <div class="modal-body px-1">
+                            <div class="add-file-webform mb-4">
+                              {{ drupal_entity('webform', 'add_file') }}
+                            </div>
+                            <div class="liste-cv">
+                              {{ drupal_view('liste_cv_candidat', 'block_1') }}
+                            </div>
+                          </div>
+                          <div class="modal-footer align-center">
+                            <button type="button" class="btn c-dark-blue white-text" data-dismiss="modal" aria-label="Close">
+                              {{ 'Retour'|t }}
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="modal fade" id="searchModal" tabindex="-1" role="dialog"
+                         aria-labelledby="searchModalLabel">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header text-center c-dark-blue">
+                            <h4 class="w-100 font-weight-light white-text">{{ 'Trouve ton job'|t }}</h4>
+                          </div>
+                          <div class="modal-body">
+                            <div class="skills p-3">
+                              {% if skills %}
+                                {% for key, skill in skills %}
+                                  <a href="/jobs?text={{ skill }}"
+                                     class="btn btn-elegant"
+                                     role="button">{{ skill }}</a>
+                                {% endfor %}
+                              {% else %}
+                                <p>{{ "Vous n'avez renseigné aucun skills dans votre profil" }}</p>
+                                <small>
+                                  <a href="{{ path('entity.user.edit_form', {'user': user_id}) }}#edit-field-skills"
+                                     class="white-text">
+                                    {{ 'Cliquez ici pour en ajouter'|t }}
+                                  </a>
+                                </small>
+                              {% endif %}
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center">
+                              <a class="btn c-blue white-text" href="/jobs">{{ 'Page de recherche'|t }}</a>
+                              <button type="button" class="btn c-dark-blue white-text" data-dismiss="modal"
+                                      aria-label="Close">
+                                {{ 'Retour'|t }}
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                  </div>
+
+                {% endif %}
+
+
+                <div class="welcome-slide d-none d-sm-block">
+                  <ul class="slideshow">
+                    <li><span>Slide One</span></li>
+                    <li><span>Slide Two</span></li>
+                    <li><span>Slide Three</span></li>
+                    <li><span>Slide Four</span></li>
+                    <li><span>Slide Five</span></li>
+                  </ul>
+                </div>
+
+              </section>
+            </main>
+            {% if page.sidebar_first %}
+              <div{{ sidebar_first_attributes }}>
+                <aside class="section" role="complementary">
+                  {{ page.sidebar_first }}
+                </aside>
+              </div>
+            {% endif %}
+            {% if page.sidebar_second %}
+              <div{{ sidebar_second_attributes }}>
+                <aside class="section" role="complementary">
+                  {{ page.sidebar_second }}
+                </aside>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endblock %}
+    </div>
+    {% if page.featured_bottom_first or page.featured_bottom_second or page.featured_bottom_third %}
+      <div class="featured-bottom">
+        <aside class="{{ container }} clearfix" role="complementary">
+          {{ page.featured_bottom_first }}
+          {{ page.featured_bottom_second }}
+          {{ page.featured_bottom_third }}
+        </aside>
+      </div>
+    {% endif %}
+  </div>
+</div>

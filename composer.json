@@ -16,10 +16,43 @@
     ],
     "require": {
         "composer/installers": "^1.9",
+        "cweagans/composer-patches": "^1.7",
+        "drupal/address": "^1.9",
+        "drupal/adminimal_admin_toolbar": "^1.11",
+        "drupal/autologout": "^1.3",
+        "drupal/back_to_top": "^1.1",
+        "drupal/bootstrap_barrio": "^5.1",
+        "drupal/bootstrap_sass": "^5.0",
+        "drupal/captcha": "^1.1",
+        "drupal/console": "~1.0",
         "drupal/core-composer-scaffold": "^9.1",
         "drupal/core-project-message": "^9.1",
         "drupal/core-recommended": "^9.1",
-        "drupal/core-vendor-hardening": "^9.1"
+        "drupal/core-vendor-hardening": "^9.1",
+        "drupal/devel": "^4.0",
+        "drupal/email_registration": "^1.1",
+        "drupal/facets": "^1.5",
+        "drupal/facets_block": "^1.3",
+        "drupal/field_permissions": "^1.1",
+        "drupal/file_delete": "^1.0",
+        "drupal/geocoder": "^3.11",
+        "drupal/geofield_map": "^2.67",
+        "drupal/jquery_ui_checkboxradio": "^1.2",
+        "drupal/paragraphs": "^1.12",
+        "drupal/pathauto": "^1.8",
+        "drupal/search_api": "^1.17",
+        "drupal/search_api_autocomplete": "^1.4",
+        "drupal/seckit": "^2.0",
+        "drupal/select2": "^1.9",
+        "drupal/simple_gmap": "^3.0",
+        "drupal/token": "^1.7",
+        "drupal/twig_tweak": "^2.6",
+        "drupal/views_bulk_operations": "^3.9",
+        "drupal/views_infinite_scroll": "^1.7",
+        "drupal/webform": "^6.0",
+        "drush/drush": "^10.4",
+        "geocoder-php/google-maps-provider": "^4.5",
+        "oomphinc/composer-installers-extender": "^2.0"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -30,6 +63,14 @@
         "sort-packages": true
     },
     "extra": {
+        "patches": {
+            "drupal/password_policy": {
+                "Field field_last_password_reset is unknown": "https://www.drupal.org/files/issues/2020-07-03/2771129-114.patch"
+            },
+            "drupal/facets": {
+                "multiple facet and one apply": "https://www.drupal.org/files/issues/2020-09-09/facets-3013702-34.patch"
+            }
+        },
         "drupal-scaffold": {
             "locations": {
                 "web-root": "./"

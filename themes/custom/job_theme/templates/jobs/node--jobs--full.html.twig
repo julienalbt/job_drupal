@@ -1,0 +1,202 @@
+{#
+/**
+ * @file
+ * Bootstrap Barrio's theme implementation to display a node.
+ *
+ * Available variables:
+ * - node: The node entity with limited access to object properties and methods.
+     Only "getter" methods (method names starting with "get", "has", or "is")
+     and a few common methods such as "id" and "label" are available. Calling
+     other methods (such as node.delete) will result in an exception.
+ * - label: The title of the node.
+ * - content: All node items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}. Use
+ *   {{ content|without('field_example') }} to temporarily suppress the printing
+ *   of a given child element.
+ * - author_picture: The node author user entity, rendered using the "compact"
+ *   view mode.
+ * - metadata: Metadata for this node.
+ * - date: Themed creation date field.
+ * - author_name: Themed author name field.
+ * - url: Direct URL of the current node.
+ * - display_submitted: Whether submission information should be displayed.
+ * - attributes: HTML attributes for the containing element.
+ *   The attributes.class element may contain one or more of the following
+ *   classes:
+ *   - node: The current template type (also known as a "theming hook").
+ *   - node--type-[type]: The current node type. For example, if the node is an
+ *     "Article" it would result in "node--type-article". Note that the machine
+ *     name will often be in a short form of the human readable label.
+ *   - node--view-mode-[view_mode]: The View Mode of the node; for example, a
+ *     teaser would result in: "node--view-mode-teaser", and
+ *     full: "node--view-mode-full".
+ *   The following are controlled through the node publishing options.
+ *   - node--promoted: Appears on nodes promoted to the front page.
+ *   - node--sticky: Appears on nodes ordered above other non-sticky nodes in
+ *     teaser listings.
+ *   - node--unpublished: Appears on unpublished nodes visible only to site
+ *     admins.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - content_attributes: Same as attributes, except applied to the main
+ *   content tag that appears in the template.
+ * - author_attributes: Same as attributes, except applied to the author of
+ *   the node tag that appears in the template.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ * - view_mode: View mode; for example, "teaser" or "full".
+ * - teaser: Flag for the teaser state. Will be true if view_mode is 'teaser'.
+ * - page: Flag for the full page state. Will be true if view_mode is 'full'.
+ * - readmore: Flag for more state. Will be true if the teaser content of the
+ *   node cannot hold the main body content.
+ * - logged_in: Flag for authenticated user status. Will be true when the
+ *   current user is a logged-in member.
+ * - is_admin: Flag for admin user status. Will be true when the current user
+ *   is an administrator.
+ *
+ * @see template_preprocess_node()
+ */
+#}
+{{ attach_library('bootstrap_barrio/node') }}
+
+{% set classes = [
+  'node',
+  'node--type-' ~ node.bundle|clean_class,
+  node.isPromoted() ? 'node--promoted',
+  node.isSticky() ? 'node--sticky',
+  not node.isPublished() ? 'node--unpublished',
+  view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  'clearfix',
+] %}
+<article{{ attributes.addClass(classes) }}>
+  <header>
+    <div class="job-bool c-dark-blue text-white text-center">
+      {% if node.field_junior.value %}
+        <div class="job-junior col-12 col-sm-6">
+          <h2 class="h4">{{ 'Junior'|t }} <i class="fas fa-check deep-orange-text"></i></h2>
+        </div>
+      {% endif %}
+      {% if node.field_teletravail.value %}
+        <div class="job-tt col-12 col-sm-6">
+          <h2 class="h4">{{ 'Télétravail'|t }} <i class="fas fa-check deep-orange-text"></i></h2>
+        </div>
+      {% endif %}
+    </div>
+    {{ content.field_adresse }}
+  </header>
+
+  <div class="container">
+    <div class="node__meta text-center">
+      {{ author_picture }}
+      {% block submitted %}
+        <em{{ author_attributes }}>
+          {% trans %}Soumis par {{ owner }} le {{ date }}{% endtrans %}
+        </em>
+      {% endblock %}
+      {{ metadata }}
+    </div>
+
+    <div{{ content_attributes.addClass('node__content', 'clearfix') }}>
+
+      <div class="row text-center my-5 mx-0">
+
+        <div class="col-12 col-sm-6 col-lg-3 mb-3">
+          <div class="icon deep-orange-text"><i class="fas fa-suitcase fa-2x"></i></div>
+          <h2 class="h4">{{ 'Expériences'|t }}</h2>
+          {% set tid = node.field_experience.target_id %}
+          {% if tid %}
+            <p>
+              {% for item in node.field_experience %}
+                <span>{{- item.entity.name.value -}}</span>
+                {{- not loop.last ? ',' -}}
+              {% endfor %}
+            </p>
+          {% endif %}
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3 mb-3">
+          <div class="icon deep-orange-text"><i class="fas fa-building fa-2x"></i></div>
+          <h2 class="h4">{{ 'Entreprise'|t }}</h2>
+          <p>{{ owner }}</p>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3 mb-3">
+          <div class="icon deep-orange-text"><i class="fas fa-file-signature fa-2x"></i></div>
+          <h2 class="h4">{{ 'Type de contrat'|t }}</h2>
+          {% set tid = node.field_type_de_contrat.target_id %}
+          {% if tid %}
+            <p>
+              {% for item in node.field_type_de_contrat %}
+                <span>{{- item.entity.name.value -}}</span>
+                {{- not loop.last ? ',' -}}
+              {% endfor %}
+            </p>
+          {% endif %}
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3 mb-3">
+          <div class="icon deep-orange-text"><i class="fas fa-dollar-sign fa-2x"></i></div>
+          <h2 class="h4">{{ 'Salaire'|t }}</h2>
+          {% if node.field_salaire.value %}
+            <p>{{ content.field_salaire }}</p>
+          {% else %}
+            <p>{{ 'Non renseigné'|t }}</p>
+          {% endif %}
+        </div>
+      </div>
+
+      {% if description %}
+        <div class="row">
+          <div class="card col-12 mb-3 px-1 border-0 shadow">
+            <div class="card-header bg-blue text-white text-center pb-0">
+              <i class="fas fa-building fa-2x white-text"></i>
+              <h2 class="h4">{{ "L'entreprise"|t }}</h2>
+            </div>
+            <div class="card-body">
+              <p class="card-text">{{ description | raw }}</p>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
+      <div class="row">
+        <div class="card col-md-12 col-lg-4 mb-3 px-1 border-0 shadow">
+          <div class="card-header bg-blue text-white text-center pb-0">
+            <i class="fas fa-file-alt fa-2x mr-3 white-text"></i>
+            <h2 class="h4">{{ 'Description du poste'|t }}</h2>
+          </div>
+          <div class="card-body">
+            <p class="card-text">{{ content.field_description_job }}</p>
+          </div>
+        </div>
+        <div class="card col-md-12 col-lg-4 mb-3 px-1 border-0 shadow">
+          <div class="card-header bg-blue text-white text-center pb-0">
+            <i class="fas fa-user fa-2x mr-3 white-text"></i>
+            <h2 class="h4">{{ 'Profil recherché'|t }}</h2>
+          </div>
+          <div class="card-body">
+            <p class="card-text">{{ content.field_profil_recherche }}</p>
+          </div>
+        </div>
+        <div class="card col-md-12 col-lg-4 mb-3 px-1 border-0 shadow">
+          <div class="card-header bg-blue text-white text-center pb-0">
+            <i class="fas fa-star fa-2x mr-3 white-text"></i>
+            <h2 class="h4">{{ 'Avantages'|t }}</h2>
+          </div>
+          <div class="card-body">
+            <p class="card-text">{{ content.field_avantages }}</p>
+          </div>
+        </div>
+      </div>
+
+      {{ content|without('field_junior', 'field_teletravail', 'field_skills', 'field_description_job',
+        'field_categories', 'field_profil_recherche', 'title', 'field_type_de_contrat',
+        'field_experience', 'field_avantages', 'field_salaire', 'field_adresse', 'field_candidature') }}
+    </div>
+  </div>
+  {{ content.field_candidature }}
+
+
+</article>

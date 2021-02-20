@@ -1,0 +1,432 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the SASS Starterkit subtheme.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+use Drupal\file\Entity\File;
+use Drupal\node\Entity\Node;
+use Drupal\node\NodeInterface;
+use Drupal\user\Entity\User;
+use Drupal\views\Views;
+
+/**
+ * Implements hook_form_system_theme_settings_alter() for settings form.
+ *
+ * Replace Barrio setting options with subtheme ones.
+ */
+function job_theme_form_system_theme_settings_alter(&$form, FormStateInterface $form_state) {
+  $form['components']['navbar']['bootstrap_barrio_navbar_top_background']['#options'] = array(
+    'bg-primary' => t('Primary'),
+    'bg-secondary' => t('Secondary'),
+    'bg-light' => t('Light'),
+    'bg-dark' => t('Dark'),
+    'bg-white' => t('White'),
+    'bg-transparent' => t('Transparent'),
+  );
+  $form['components']['navbar']['bootstrap_barrio_navbar_background']['#options'] = array(
+    'bg-primary' => t('Primary'),
+    'bg-secondary' => t('Secondary'),
+    'bg-light' => t('Light'),
+    'bg-dark' => t('Dark'),
+    'bg-white' => t('White'),
+    'bg-transparent' => t('Transparent'),
+  );
+}
+
+/**
+ * Implements hook_theme_suggestions_alter().
+ */
+function job_custom_theme_theme_suggestions_alter(array &$suggestions, array $variables, $hook) {
+  if ($hook == 'form' & !empty($variables['element']['#id'])) {
+    $suggestions[] = 'form__' . str_replace('-', '_', $variables['element']['#id']);
+  }
+
+  /*  if ($hook == 'form' & !empty($variables['element'])) {
+      if (array_key_exists('#theme', $variables['element'])) {
+        $suggestions[] = 'form__' . str_replace(
+            '-', '_',
+            $variables['element']['#theme'][1]
+          );
+      }
+    }*/
+
+  if ($hook == 'views_view') {
+    /** @var \Drupal\views\ViewExecutable $view */
+    $view = $variables['view'];
+    $suggestions[] = 'views_view__' . str_replace('-', '_', $view->id());
+  }
+
+  if ($hook == 'views_view_field') {
+    /** @var \Drupal\views\Plugin\views\field\EntityField $field */
+    $field = $variables['field'];
+    if ($field->field === 'filename') {
+      $suggestions[] = 'views_view_field__' . $field->field;
+    }
+  }
+
+  if ($hook == 'node_edit_form') {
+    if ($node = \Drupal::routeMatch()->getParameter('node')) {
+      $content_type = $node->bundle();
+    }
+    else {
+      $current_path = \Drupal::service('path.current')->getPath();
+      $path_args = explode('/', $current_path);
+      $content_type = $path_args[3];
+    }
+    $suggestions[] = 'node_edit_form__' . $content_type;
+  }
+}
+
+/**
+ * Implements hook_preprocess().
+ */
+function job_custom_theme_preprocess_views_view_field__filename(&$variables, $hook) {
+  $fid = $variables['row']->fid;
+  /** @var \Drupal\file\Entity\File $file */
+  $file = File::load($fid);
+  $fileName = str_replace('_', '-', $file->getFilename());;
+  $fileUrl = file_create_url($file->getFileUri());
+  $variables['file_name'] = $fileName;
+  $variables['file_url'] = $fileUrl;
+}
+
+/**
+ * Implements hook_preprocess().
+ */
+function job_custom_theme_preprocess_webform__add_file(&$variables, $hook) {
+  $view = Views::getView('liste_cv_candidat');
+  $view->get_total_rows = TRUE;
+  $view->execute('block_1');
+  $rows = $view->total_rows;
+
+  $variables['view_rows'] = $rows;
+}
+
+/**
+ * Implements hook_preprocess().
+ */
+function job_custom_theme_preprocess_node__jobs__teaser(&$variables, $hook) {
+  /** @var \Drupal\node\Entity\Node $node */
+  $node = $variables['elements']['#node'];
+  /** @var \Drupal\user\Entity\User $owner */
+  $owner = $node->getOwner();
+
+  $variables['author'] = $owner->get('field_societe')->value;
+
+  /** @var \Drupal\file\Plugin\Field\FieldType\FileFieldItemList $logo */
+  $logo = $owner->get('field_image');
+  /** @var \Drupal\file\Entity\File $file */
+  $file = $logo->entity;
+  if ($logo->getValue()) {
+    $variables['logo'] = file_create_url($file->getFileUri());
+  }
+}
+
+/**
+ * Implements hook_preprocess().
+ */
+function job_custom_theme_preprocess_page__user(&$variables, $hook) {
+
+  $uid = \Drupal::currentUser()->id();
+  /** @var \Drupal\user\Entity\User $user */
+  $user = User::load($uid);
+
+  $image = $user->get('field_image');
+  /** @var \Drupal\file\Entity\File $file */
+  $file = $image->entity;
+  if ($image->getValue()) {
+    $variables['image'] = file_create_url($file->getFileUri());
+  }
+
+  $skills = $user->get('field_skills');
+  $skillsList = [];
+  if ($skills->getValue()) {
+    foreach ($skills as $key => $skill) {
+      $skillsList[$skill->entity->id()] = $skill->entity->getName();
+    }
+  }
+  $variables['skills'] = $skillsList;
+  $variables['user_id'] = $uid;
+
+  $firstName = $user->get('field_prenom')->value;
+  $lastName = $user->get('field_nom')->value;
+  if (!empty($firstName) or !empty($lastName)) {
+    $variables['username'] = $firstName . ' ' . $lastName;
+  }
+  else {
+    $variables['username'] = $user->getEmail();
+  }
+
+  if (in_array("recruteur", $user->getRoles())) {
+    $variables['recrut'] = TRUE;
+    $society = $user->get('field_societe');
+    $variables['society'] = $society->value ? $society->value : $user->getEmail() ;
+  }
+
+  // get user edit form.
+  /** @var \Drupal\Core\Form\FormBuilder $formBuilder */
+  $formBuilder = \Drupal::service('form_builder');
+  $formObject = \Drupal::entityTypeManager()
+    ->getFormObject('user', 'default')
+    ->setEntity($user);
+  $form = $formBuilder->getForm($formObject);
+
+  $variables['user_form'] = $form;
+}
+
+
+/**
+ * Implements hook_preprocess().
+ */
+function job_custom_theme_preprocess_node__jobs__recruiter_list(&$variables, $hook) {
+  $curentUser = \Drupal::currentUser();
+  if (in_array("recruteur", $curentUser->getRoles())) {
+    $nid = $variables['node']->nid->value;
+    if ($nid) {
+      $urlEdit = Url::fromRoute('entity.node.edit_form', ['node' => $nid]);
+      $variables['edit_link'] = $urlEdit;
+
+      $urlDelete = Url::fromRoute('entity.node.delete_form', ['node' => $nid]);
+      $variables['delete_link'] = $urlDelete;
+
+      $variables['node_id'] = $nid;
+
+      $storage = \Drupal::entityTypeManager()->getStorage('webform_submission');
+      $webform_submission = $storage->loadByProperties([
+        'entity_type' => 'node',
+        'entity_id' => $nid,
+      ]);
+      $variables['sub_count'] = count($webform_submission);
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess().
+ */
+function job_custom_theme_preprocess_page(&$variables, $hook) {
+  $variables['login_form'] = FALSE;
+  if (!\Drupal::currentUser()->id()) {
+    $form = Drupal::formBuilder()
+      ->getForm(Drupal\user\Form\UserLoginForm::class);
+    $render = Drupal::service('renderer');
+    $variables['login_form'] = $render->renderPlain($form);
+  }
+
+  $entity = \Drupal::entityTypeManager()->getStorage('user')->create([]);
+  $formObject = \Drupal::entityTypeManager()
+    ->getFormObject('user', 'register')
+    ->setEntity($entity);
+  $form = \Drupal::formBuilder()->getForm($formObject);
+  $variables['register_form'] = \Drupal::service('renderer')->render($form);
+}
+
+/**
+ * Implements hook_preprocess().
+ */
+function job_custom_theme_preprocess_page__accueil(&$variables, $hook) {
+  $userId = \Drupal::currentUser()->id();
+  $variables['user_id'] = $userId;
+}
+
+/**
+ * Implements hook_preprocess().
+ */
+function job_custom_theme_preprocess_page_title(&$variables, $hook) {
+  $user = \Drupal::currentUser();
+  $userId = $user->id();
+  $userRole = $user->getRoles();
+  $url = \Drupal::request()->getPathInfo();
+  $arrayUrl = explode('/', $url);
+
+  /** @var \Drupal\user\Entity\User $userLoaded */
+  $userLoaded = User::load($userId);
+
+  // if PAGE = PROFILE.
+  if (end($arrayUrl) === "profile") {
+    $variables['page_profile'] = TRUE;
+    $variables['user_id'] = $userId;
+  }
+  // if PAGE = EDIT PROFILE.
+  elseif ($url === "/user/" . $userId . "/edit") {
+    $variables['user_id'] = $userId;
+    $variables['page_profile_edit'] = TRUE;
+  }
+
+  if (end($arrayUrl) === "jobs") {
+    $variables['page_job_edit'] = TRUE;
+    $variables['user_id'] = $userId;
+  }
+
+  // if ROLE = RECRUTEUR.
+  if (in_array("recruteur", $userRole)) {
+    $variables['user_role'] = 'recruteur';
+    $society = $userLoaded->get('field_societe')->value;
+    if (!empty($society)) {
+      $variables['page_title'] = $society;
+    }
+    else {
+      $variables['page_title'] = $user->getEmail();
+    }
+  }
+  // if ROLE = CANDIDAT.
+  elseif (in_array("candidat", $userRole)) {
+    $firstName = $userLoaded->get('field_prenom')->value;
+    $lastName = $userLoaded->get('field_nom')->value;
+    if (!empty($firstName) or !empty($lastName)) {
+      $variables['page_title'] = $firstName . ' ' . $lastName;
+    }
+    else {
+      $variables['page_title'] = $user->getEmail();
+    }
+    $variables['user_role'] = 'candidat';
+  }
+
+
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node instanceof NodeInterface) {
+    $nodeType = $node->getType();
+    $nid = $node->id();
+    $storage = \Drupal::entityTypeManager()->getStorage('webform_submission');
+    $webform_submission = $storage->loadByProperties([
+      'entity_type' => 'node',
+      'entity_id' => $nid,
+      'uid' => $userId,
+    ]);
+
+    if ($nodeType === "jobs") {
+      $variables['node_job_full'] = TRUE;
+      $variables['node_id'] = $nid;
+      // If user already submit the candidure webform.
+      if (!empty($webform_submission)) {
+        $variables['submitted'] = TRUE;
+      }
+    }
+    if ($nodeType === "jobs" && end($arrayUrl) === "delete") {
+      $variables['node_job_delete'] = TRUE;
+    }
+    if ($nodeType === "jobs" && end($arrayUrl) === "submissions") {
+      $variables['node_job_submission'] = TRUE;
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess().
+ */
+function job_custom_theme_preprocess_webform_submission_data__candidature(&$variables, $hook) {
+
+  /** @var \Drupal\webform\Entity\WebformSubmission $submission */
+  $submission = $variables['webform_submission'];
+  $sid = $submission->get('sid')->getValue()[0]['value'];
+  $uid = $submission->get('uid')->target_id;
+  $entityId = $submission->get('entity_id')->getValue()[0]['value'];
+
+  /** @var \Drupal\user\Entity\User $userSubmit */
+  $userSubmit = User::load($uid);
+
+  /** @var \Drupal\node\Entity\Node $node */
+  $node = Node::load($entityId);
+
+  $userConnectedRole = \Drupal::currentUser()->getRoles();
+
+  // Get submission data field by field.
+  $submission_msg = $variables['elements']['data']['container']['#value']['message_container']['#value']['#children']['message']['#value'];
+
+  $submission_mail = $variables['elements']['data']['email']['#value'];
+
+  /** @var \Drupal\Core\Url $submission_cv_url */
+  $submission_cv_value = $variables['elements']['data']['container']['#value']['cv']['#value'];
+  $submission_cv_url = array_key_exists('#url', $submission_cv_value);
+
+  // Create variable for template.
+  if (gettype($submission_msg) !== 'array') {
+    /**  @var \Drupal\Core\Render\Markup $submission_msg */
+    $variables['sub_msg'] = $submission_msg;
+  }
+  $variables['sub_mail'] = $submission_mail;
+  if ($submission_cv_url) {
+    $variables['sub_cv'] = $submission_cv_value['#url']->toString();
+  }
+  $variables['sub_node_title'] = $node ? $node->getTitle() : '';
+  $variables['sub_id'] = $sid;
+  $variables['sub_date'] = date('d/m/Y', $submission->getCompletedTime());
+
+  $firstName = $userSubmit->get('field_prenom')->value;
+  $lastName = $userSubmit->get('field_nom')->value;
+  if (!empty($firstName) or !empty($lastName)) {
+    $variables['sub_user'] = $firstName . ' ' . $lastName;
+  }
+  else {
+    $variables['sub_user'] = $submission_mail;
+  }
+
+  if (in_array("candidat", $userConnectedRole)) {
+    $variables['user_role'] = 'candidat';
+    $variables['node_id'] = $entityId;
+  }
+  elseif (in_array("recruteur", $userConnectedRole)) {
+    $variables['user_role'] = 'recruteur';
+  }
+}
+
+/**
+ * Implements hook_preprocess().
+ */
+function job_custom_theme_preprocess_node_edit_form__jobs(&$variables, $hook) {
+  $variables['form']['actions']['submit']['#attributes'] = [
+    'class' => ["btn-success btn-block"],
+  ];
+}
+
+/**
+ * Implements hook_preprocess().
+ */
+function job_custom_theme_preprocess_user_form(&$variables, $hook) {
+  $variables['form']['field_image']['widget'][0]['remove_button']['#attributes']['class'] = [
+    'btn',
+    'btn-danger',
+  ];
+  $variables['form_id'] = $variables['form']['#form_id'];
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function job_custom_theme_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $formId = $form['#form_id'];
+
+  if ($formId === 'user_login_form') {
+    $form['actions']['submit']['#attributes']['class'] = [
+      'btn',
+      'btn-dark-green',
+      'btn-block',
+    ];
+  }
+
+  if ($formId === 'user_register_form') {
+    $form['actions']['submit']['#attributes']['class'] = [
+      'btn',
+      'btn-dark-green',
+      'btn-block',
+    ];
+  }
+}
+
+/**
+ * Implements hook_preprocess().
+ */
+function job_custom_theme_preprocess_node__jobs__full(&$variables, $hook) {
+  /** @var \Drupal\node\Entity\Node $node */
+  $node = $variables['node'];
+  /** @var \Drupal\user\Entity\User $user */
+  $user = $node->getOwner();
+  $society = $user->get('field_societe')->value;
+  $variables['owner'] = $society ? $society : t('Non renseigné');
+  $desc = $user->get('field_description')->value;
+  $variables['description'] = $desc;
+}

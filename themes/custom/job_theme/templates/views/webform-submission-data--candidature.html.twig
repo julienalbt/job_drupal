@@ -1,0 +1,71 @@
+{#
+/**
+ * @file
+ * Default theme implementation for webform submission data.
+ *
+ * Available variables:
+ * - webform_submission: The webform submission.
+ * - webform: The webform.
+ *
+ * @see template_preprocess_webform_submission_data()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set classes = [
+  'webform-submission-data',
+  'webform-submission-data--webform-' ~ webform.id()|clean_class,
+  view_mode ? 'webform-submission-data--view-mode-' ~ view_mode|clean_class,
+] %}
+{% if user_role == 'recruteur' %}
+  <div class="card">
+    <div class="card-header text-white border-0"
+         data-toggle="collapse"
+         data-target="#collapse_{{ sub_id }}"
+         aria-expanded="false"
+         aria-controls="collapse_{{ sub_id }}">
+      <h2>{{ sub_user }}</h2>
+      <p class="mb-0">{{ 'Offre'|t }} : {{ sub_node_title }}</p>
+      <p class="mb-0">{{ 'A postulé le'|t }} : {{ sub_date }}</p>
+    </div>
+
+    <div id="collapse_{{ sub_id }}" class="collapse card-body jobs-card pt-0">
+      <p>{{ sub_msg }}</p>
+      {% if sub_cv %}
+        <a class="showCv btn btn-lg" target="_blank" href="{{ sub_cv }}">{{ 'Afficher le CV'|t }}</a>
+      {% else %}
+        <button class="showCv btn btn-lg">{{ 'Le candidat a supprimé son CV'|t }}</button>
+      {% endif %}
+    </div>
+    <div class="card-footer">
+      <p class="mb-0">{{ 'Répondre par email à'|t }} : <a href="mailto:{{ sub_mail }}">{{ sub_mail }}</a></p>
+    </div>
+  </div>
+
+{% else %}
+
+  <div class="card my-5">
+    <div class="card-header text-white border-0"
+         data-toggle="collapse"
+         data-target="#collapse_{{ sub_id }}"
+         aria-expanded="false"
+         aria-controls="collapse_{{ sub_id }}">
+      {% if sub_node_title != '' %}
+        <h2 class="h4">{{ 'Offre'|t }} : {{ sub_node_title }}</h2>
+      {% else %}
+        <h2 class="h4">{{ 'Offre supprimée'|t }}</h2>
+      {% endif %}
+      <p class="mb-0">{{ 'Date'|t }} : {{ sub_date }}</p>
+    </div>
+
+    <div id="collapse_{{ sub_id }}" class="collapse card-body jobs-card pt-0">
+      <p>{{ sub_msg }}</p>
+      {% if sub_cv %}
+        <a class="showCv btn btn-lg" target="_blank" href="{{ sub_cv }}">{{ 'Afficher le CV'|t }}</a>
+      {% else %}
+        <button class="showCv btn btn-lg">{{ 'CV supprimé'|t }}</button>
+      {% endif %}
+    </div>
+  </div>
+
+{% endif %}
