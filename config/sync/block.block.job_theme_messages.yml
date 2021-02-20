@@ -1,0 +1,22 @@
+uuid: 9609e82c-a15b-4b58-b56f-b3ba42998a16
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - job_theme
+_core:
+  default_config_hash: KHQIJ7Vfl25lTjzIc7qIvnuistt-Mw2O0kG4jCofmkI
+id: job_theme_messages
+theme: job_theme
+region: highlighted
+weight: 0
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }
