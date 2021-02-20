@@ -118,10 +118,12 @@
                       </div>
 
                       <div class="card-footer d-flex justify-content-center flex-wrap">
-                        <a id="editProfile" class="btn c-light-green white-text edit-profile"
-                           href="{{ path('entity.user.edit_form', {'user': user_id}) }}">
-                          {{ 'Modifier le profil'|t }}
-                        </a>
+                        {% if user_id %}
+                          <a id="editProfile" class="btn c-light-green white-text edit-profile"
+                             href="{{ path('entity.user.edit_form', {'user': user_id}) }}">
+                            {{ 'Modifier le profil'|t }}
+                          </a>
+                        {% endif %}
                         <a href="/user/logout" type="button"
                            class="btn c-lighten-green white-text logout">
                           {{ 'Déconnexion'|t }}
@@ -144,7 +146,8 @@
                                class="btn c-light-blue white-text">
                               {{ 'Ajouter un job'|t }}
                             </a>
-                            <button type="button" class="btn c-dark-blue white-text" data-dismiss="modal" aria-label="Close">
+                            <button type="button" class="btn c-dark-blue white-text" data-dismiss="modal"
+                                    aria-label="Close">
                               {{ 'Retour'|t }}
                             </button>
                           </div>
@@ -188,10 +191,12 @@
                       </div>
 
                       <div class="card-footer d-flex justify-content-center flex-wrap">
-                        <a id="editProfile" class="btn c-lighten-green white-text edit-profile"
-                           href="{{ path('entity.user.edit_form', {'user': user_id}) }}">
-                          {{ 'Modifier le profil'|t }}
-                        </a>
+                        {% if user_id %}
+                          <a id="editProfile" class="btn c-lighten-green white-text edit-profile"
+                             href="{{ path('entity.user.edit_form', {'user': user_id}) }}">
+                            {{ 'Modifier le profil'|t }}
+                          </a>
+                        {% endif %}
                         <a href="/user/logout" type="button"
                            class="btn c-lightest-green white-text logout">
                           {{ 'Déconnexion'|t }}
@@ -215,7 +220,8 @@
                             </div>
                           </div>
                           <div class="modal-footer align-center">
-                            <button type="button" class="btn c-dark-blue white-text" data-dismiss="modal" aria-label="Close">
+                            <button type="button" class="btn c-dark-blue white-text" data-dismiss="modal"
+                                    aria-label="Close">
                               {{ 'Retour'|t }}
                             </button>
                           </div>
@@ -240,12 +246,14 @@
                                 {% endfor %}
                               {% else %}
                                 <p>{{ "Vous n'avez renseigné aucun skills dans votre profil" }}</p>
-                                <small>
-                                  <a href="{{ path('entity.user.edit_form', {'user': user_id}) }}#edit-field-skills"
-                                     class="white-text">
-                                    {{ 'Cliquez ici pour en ajouter'|t }}
-                                  </a>
-                                </small>
+                                {% if user_id %}
+                                  <small>
+                                    <a href="{{ path('entity.user.edit_form', {'user': user_id}) }}#edit-field-skills"
+                                       class="white-text">
+                                      {{ 'Cliquez ici pour en ajouter'|t }}
+                                    </a>
+                                  </small>
+                                {% endif %}
                               {% endif %}
                             </div>
                             <div class="modal-footer d-flex justify-content-center">
