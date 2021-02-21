@@ -1,15 +1,15 @@
-uuid: d283d66e-aa57-404d-885d-1bf70cb5cdba
+uuid: aea70165-b374-4075-80f3-ca5d16321807
 langcode: en
 status: true
 dependencies:
   module:
     - system
   theme:
-    - job_theme
+    - adminimal_theme
 _core:
-  default_config_hash: oXUb3JZR2WW5VOdw4HrhRicCsq51mCgLfRyvheG68ck
-id: job_theme_breadcrumbs
-theme: job_theme
+  default_config_hash: 8by5KRsb7ZpmjHj0ms1d7xAG_xH54AWsOX6spDLJ59U
+id: adminimal_theme_breadcrumbs
+theme: adminimal_theme
 region: breadcrumb
 weight: 0
 provider: null

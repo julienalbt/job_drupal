@@ -1,15 +1,15 @@
-uuid: 0434efba-b9c4-4475-8c9d-035e0229af69
+uuid: 3972d0a9-4f45-4516-9480-2d5da246a519
 langcode: en
 status: true
 dependencies:
   theme:
-    - job_theme
+    - adminimal_theme
 _core:
-  default_config_hash: 13GQpeITIJsp1kyPniXtWZfyFH87vb1xxJCHifL4UeE
-id: job_theme_local_actions
-theme: job_theme
+  default_config_hash: ik4PTMlBD0MWansnSMpSXq5SUlWRJ1IVVt6C7AIbQmc
+id: adminimal_theme_local_actions
+theme: adminimal_theme
 region: content
-weight: -4
+weight: -10
 provider: null
 plugin: local_actions_block
 settings:

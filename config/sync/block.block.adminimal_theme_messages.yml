@@ -1,17 +1,17 @@
-uuid: 9609e82c-a15b-4b58-b56f-b3ba42998a16
+uuid: 92448662-d126-4447-847f-3d7278059095
 langcode: en
 status: true
 dependencies:
   module:
     - system
   theme:
-    - job_theme
+    - adminimal_theme
 _core:
-  default_config_hash: KHQIJ7Vfl25lTjzIc7qIvnuistt-Mw2O0kG4jCofmkI
-id: job_theme_messages
-theme: job_theme
+  default_config_hash: YqKTtloWJ8FjLtfVNfrHaK6kVgxT67lC1cJ3j6i6WLo
+id: adminimal_theme_messages
+theme: adminimal_theme
 region: highlighted
-weight: -5
+weight: 0
 provider: null
 plugin: system_messages_block
 settings:
