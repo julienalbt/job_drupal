@@ -1,0 +1,31 @@
+uuid: b2a60ab9-e9f0-4025-8e0d-cf6561c12f54
+langcode: en
+status: true
+dependencies:
+  config:
+    - search_api.index.jobs
+    - views.view.jobs_index
+  module:
+    - views
+    - search_api_autocomplete
+id: jobs_index
+label: 'Jobs index'
+index_id: jobs
+suggester_settings:
+  server:
+    fields: {  }
+suggester_weights:
+  server: 0
+suggester_limits: {  }
+search_settings:
+  'views:jobs_index':
+    displays:
+      default: true
+      selected: {  }
+options:
+  limit: 10
+  min_length: 1
+  show_count: true
+  autosubmit: false
+  submit_button_selector: ':submit'
+  delay: null

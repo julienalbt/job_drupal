@@ -6,7 +6,6 @@
 /themes/contrib/
 /themes/custom/job_theme/node_modules/
 /profiles/contrib/
-/libraries/
 
 # Ignore sensitive information
 /sites/*/settings.php

@@ -118,10 +118,10 @@ content:
     weight: 5
     region: content
     settings:
+      width: 100%
+      autocomplete: true
       match_operator: CONTAINS
       match_limit: 10
-      autocomplete: false
-      width: 100%
     third_party_settings: {  }
   field_societe:
     type: string_textfield

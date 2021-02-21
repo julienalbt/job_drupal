@@ -10,8 +10,16 @@
   Drupal.behaviors.job_theme = {
     attach: function(context, settings) {
 
-      // Custom code here
 
+    }
+  };
+
+  Drupal.behaviors.backButton = {
+    attach: function (context, settings) {
+      $('.js-back').bind('click', function () {
+        parent.history.back();
+        return false;
+      });
     }
   };
 

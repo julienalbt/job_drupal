@@ -11,7 +11,7 @@ _core:
 id: job_theme_messages
 theme: job_theme
 region: highlighted
-weight: -5
+weight: -4
 provider: null
 plugin: system_messages_block
 settings:

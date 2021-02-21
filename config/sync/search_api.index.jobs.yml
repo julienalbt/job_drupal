@@ -1,0 +1,92 @@
+uuid: ee1cb00c-17cd-45aa-8ec1-7d8d5be7f72c
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - search_api
+  config:
+    - search_api.server.default
+id: jobs
+name: Jobs
+description: ''
+read_only: false
+field_settings:
+  rendered_item:
+    label: 'Rendered HTML output'
+    property_path: rendered_item
+    type: text
+    configuration:
+      roles:
+        administrator: administrator
+        anonymous: anonymous
+        authenticated: authenticated
+        candidat: candidat
+        recruteur: recruteur
+      view_mode:
+        'entity:node':
+          jobs: default
+  title:
+    label: Title
+    datasource_id: 'entity:node'
+    property_path: title
+    type: text
+    boost: !!float 8
+    dependencies:
+      module:
+        - node
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: false
+      selected:
+        - jobs
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  html_filter:
+    all_fields: true
+    fields:
+      - rendered_item
+      - title
+    title: true
+    alt: true
+    tags:
+      b: 2
+      em: 1
+      h1: 5
+      h2: 3
+      h3: 2
+      strong: 2
+      u: 1
+    weights:
+      preprocess_index: -15
+      preprocess_query: -15
+  ignorecase:
+    all_fields: true
+    fields:
+      - rendered_item
+      - title
+    weights:
+      preprocess_index: -20
+      preprocess_query: -20
+  language_with_fallback: {  }
+  rendered_item: {  }
+  transliteration:
+    all_fields: true
+    fields:
+      - rendered_item
+      - title
+    weights:
+      preprocess_index: -20
+      preprocess_query: -20
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  index_directly: true
+  cron_limit: 50
+server: default

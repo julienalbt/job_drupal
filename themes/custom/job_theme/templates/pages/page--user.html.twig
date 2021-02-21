@@ -240,7 +240,7 @@
                             <div class="skills p-3">
                               {% if skills %}
                                 {% for key, skill in skills %}
-                                  <a href="/jobs?text={{ skill }}"
+                                  <a href="{{ path('view.jobs_index.page_1') }}?text={{ skill }}"
                                      class="btn btn-elegant"
                                      role="button">{{ skill }}</a>
                                 {% endfor %}
@@ -257,7 +257,7 @@
                               {% endif %}
                             </div>
                             <div class="modal-footer d-flex justify-content-center">
-                              <a class="btn c-blue white-text" href="/jobs">{{ 'Page de recherche'|t }}</a>
+                              <a class="btn c-blue white-text" href="{{ path('view.jobs_index.page_1') }}">{{ 'Page de recherche'|t }}</a>
                               <button type="button" class="btn c-dark-blue white-text" data-dismiss="modal"
                                       aria-label="Close">
                                 {{ 'Retour'|t }}
@@ -274,7 +274,7 @@
                 {% endif %}
 
 
-                <div class="welcome-slide d-none d-sm-block">
+                <div class="welcome-slide">
                   <ul class="slideshow">
                     <li><span>Slide One</span></li>
                     <li><span>Slide Two</span></li>
