@@ -1,0 +1,22 @@
+uuid: 44a83095-9272-4510-9880-ee17f0071e27
+langcode: fr
+status: true
+dependencies:
+  module:
+    - node
+id: path_job
+label: Job
+type: 'canonical_entities:node'
+pattern: '/job/[node:title]'
+selection_criteria:
+  38fb872a-4e7e-4711-90dd-7d50ed2f0882:
+    id: node_type
+    bundles:
+      jobs: jobs
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 38fb872a-4e7e-4711-90dd-7d50ed2f0882
+selection_logic: and
+weight: -5
+relationships: {  }

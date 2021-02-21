@@ -1,0 +1,11 @@
+uuid: 09f2f4ca-3810-4da3-be84-330baefb03c9
+langcode: fr
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.type_de_contrat
+id: taxonomy_term.type_de_contrat
+target_entity_type_id: taxonomy_term
+target_bundle: type_de_contrat
+default_langcode: site_default
+language_alterable: false

@@ -1,0 +1,30 @@
+uuid: 3a6dbf66-2481-4d7f-afc0-5c6c0dc6bfeb
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_skills
+    - taxonomy.vocabulary.skills
+  module:
+    - user
+id: user.user.field_skills
+field_name: field_skills
+entity_type: user
+bundle: user
+label: Skills
+description: 'Vos skills par mots clés. Important pour la recherche rapide.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      skills: skills
+    sort:
+      field: name
+      direction: asc
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,19 @@
+uuid: a9c0bbf4-d79b-495c-933d-1e491ef85e43
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_salaire
+    - node.type.jobs
+id: node.jobs.field_salaire
+field_name: field_salaire
+entity_type: node
+bundle: jobs
+label: Salaire
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,31 @@
+uuid: 9267917d-c3b7-44c7-b25e-c997cdb7febb
+langcode: fr
+status: true
+dependencies: {  }
+id: candidat
+label: Candidat
+weight: -7
+is_admin: null
+permissions:
+  - 'access media_entity_browser entity browser pages'
+  - 'create document media'
+  - 'create field_cv'
+  - 'create field_nom'
+  - 'create field_prenom'
+  - 'create field_skills'
+  - 'create media'
+  - 'delete files'
+  - 'delete media'
+  - 'delete own document media'
+  - 'edit own document media'
+  - 'edit own field_cv'
+  - 'edit own field_nom'
+  - 'edit own field_prenom'
+  - 'edit own field_skills'
+  - 'update media'
+  - 'use search_api_autocomplete for jobs_index'
+  - 'view own field_cv'
+  - 'view own field_nom'
+  - 'view own field_prenom'
+  - 'view own field_skills'
+  - 'view own webform submission'

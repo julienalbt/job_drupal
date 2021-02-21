@@ -4,10 +4,16 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.user.compact
+    - field.field.user.user.field_adresse
+    - field.field.user.user.field_description
+    - field.field.user.user.field_image
+    - field.field.user.user.field_nom
+    - field.field.user.user.field_prenom
+    - field.field.user.user.field_secteur_activite
+    - field.field.user.user.field_skills
+    - field.field.user.user.field_societe
     - field.field.user.user.user_picture
-    - image.style.thumbnail
   module:
-    - image
     - user
 _core:
   default_config_hash: '-cLsS3M3JycipXQt9rEb81_HxKneReoGuRh8ijcOPXs'
@@ -15,17 +21,17 @@ id: user.user.compact
 targetEntityType: user
 bundle: user
 mode: compact
-content:
-  user_picture:
-    type: image
-    weight: 0
-    region: content
-    settings:
-      image_style: thumbnail
-      image_link: content
-    third_party_settings: {  }
-    label: hidden
+content: {  }
 hidden:
+  field_adresse: true
+  field_description: true
+  field_image: true
+  field_nom: true
+  field_prenom: true
+  field_secteur_activite: true
+  field_skills: true
+  field_societe: true
   langcode: true
   member_for: true
   search_api_excerpt: true
+  user_picture: true

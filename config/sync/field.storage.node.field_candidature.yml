@@ -1,0 +1,24 @@
+uuid: ce66e163-4050-46bf-872f-c2d75e96e1e4
+langcode: fr
+status: true
+dependencies:
+  module:
+    - field_permissions
+    - node
+    - webform
+third_party_settings:
+  field_permissions:
+    permission_type: public
+id: node.field_candidature
+field_name: field_candidature
+entity_type: node
+type: webform
+settings:
+  target_type: webform
+module: webform
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

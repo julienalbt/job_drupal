@@ -1,10 +1,24 @@
-/* 
+/*
 Theme Name: Bootstrap 4 Sass
 Description: Bootstrap 4 with Sass
 */
 
 // import files
 @import "import";
+
+@import "components/facets";
+@import "components/colors";
+@import "components/backgroundText";
+@import "pages/job-teaser";
+@import "components/recruiter-job-list";
+@import "pages/job-soumissions";
+@import "pages/job-full";
+@import "pages/jobIndex";
+@import "pages/profile";
+@import "pages/jobForm";
+@import "pages/welcome";
+@import "webform/addCv";
+@import "webform/candidature";
 
 /* GENERAL STYLES
 -------------------------------------------------*/
@@ -14,7 +28,7 @@ body {
 }
 
 
-/* COLORS 
+/* COLORS
 --------------------------------------------------*/
 
 a {

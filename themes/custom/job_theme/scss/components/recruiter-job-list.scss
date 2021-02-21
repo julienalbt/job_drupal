@@ -1,0 +1,86 @@
+.view-recuteur-jobs-list {
+
+  .views-infinite-scroll-content-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  article {
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .card {
+      transition: .5s ease-out;
+      border: none;
+    }
+
+    .jobs-card {
+      height: fit-content;
+      text-align: center;
+      border-radius: 5px 5px 0 0;
+
+      .title-container {
+        border-radius: 5px 5px 0 0;
+
+        transition: .5s ease;
+        color: #fff;
+        background: $c-blue;
+        padding: 5px;
+        height: 100%;
+
+        h2 {
+          padding-top: 0;
+          font-size: 1.2em;
+        }
+      }
+    }
+
+    .card-footer {
+      background-color: transparent;
+      border-top: none;
+    }
+  }
+
+  .manage-offer {
+    display: flex;
+
+    .subs-offer, .edit-offer, .delete-offer {
+      flex: 1;
+      font-size: 1.2em;
+      color: $c-blue;
+      transition: .3s ease-out;
+    }
+
+    .subs-offer:hover {
+        color: #fff;
+        box-shadow: inset $c-blue 0 50px 1px 0 ;
+      }
+
+    .edit-offer:hover  {
+          color: #fff;
+          box-shadow: inset $c-blue 0 50px 1px 0 ;
+    }
+
+    .delete-offer:hover {
+        color: #fff;
+        box-shadow: inset $orange 0 50px 1px 0 ;
+    }
+  }
+}
+
+@media all and (max-width: 425px) {
+  .block-views-blockrecuteur-jobs-list-block-1 {
+
+    .views-infinite-scroll-content-wrapper {
+      flex-direction: column;
+    }
+
+    .card-body {
+      h2 {
+        font-size: 1.1em;
+      }
+    }
+  }
+}

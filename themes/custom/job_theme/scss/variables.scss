@@ -1,5 +1,18 @@
 /* VARIABLES */
 
+// custom colors
+$c-green: #558B2F;
+$c-light-green: #689F38;
+$c-lighten-green: #7CB342;
+$c-lightest-green: #8BC34A;
+$c-dark-green: #33691E;
+
+$c-blue: #0277BD;
+$c-light-blue: #4285f4;
+$c-lighten-blue: #039BE5;
+$c-lightest-blue: #03A9F4;
+$c-dark-blue: #01579B;
+
 // colors
 $primary-shade: rgb(255, 78, 46);
 $primary-light: lighten($primary-shade, 37%);

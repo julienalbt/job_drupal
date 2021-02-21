@@ -1,0 +1,59 @@
+.view-jobs-index {
+
+  a {
+    text-decoration: none;
+  }
+
+  .card {
+    min-height: 200px;
+
+    &:hover .card-body {
+      box-shadow: inset $c-blue 0 246px 0 0;
+      color: #fff;
+    }
+
+    &:hover .card-body .i-container {
+      color: white;
+    }
+  }
+
+  .card-header {
+    background: $c-blue;
+    min-height: 80px;
+
+    .card-title {
+      font-size: 1.2em;
+      margin-bottom: 0;
+
+      p {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .card-body {
+    transition: .3s ease-out;
+    border-radius: 0 0 5px 5px;
+    min-height: 120px;
+
+    .logo-field {
+      width: 40px;
+      height: 40px;
+      background: white;
+
+      .logo-img {
+        width: 40px;
+      }
+    }
+
+    .job-location {
+      font-size: 1em;
+    }
+
+    .field--name-created {
+      font-size: .9em;
+    }
+  }
+
+}
+

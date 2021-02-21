@@ -1,0 +1,10 @@
+uuid: 646402e6-4de5-4716-9b38-b9a2621f3cf1
+langcode: fr
+status: true
+dependencies:
+  module:
+    - webform
+id: webform_submission.token
+label: 'Jeton (token)'
+targetEntityType: webform_submission
+cache: true

@@ -1,0 +1,30 @@
+uuid: 349b6353-178b-4f1f-afb2-61e1680aba2d
+langcode: fr
+status: true
+dependencies:
+  config:
+    - views.view.liste_cv_candidat
+  module:
+    - system
+    - views
+  theme:
+    - bartik
+id: views_block__liste_cv_candidat_block_1_2
+theme: bartik
+region: content
+weight: 0
+provider: null
+plugin: 'views_block:liste_cv_candidat-block_1'
+settings:
+  id: 'views_block:liste_cv_candidat-block_1'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+  context_mapping: {  }
+visibility:
+  request_path:
+    id: request_path
+    pages: '*/profile'
+    negate: false

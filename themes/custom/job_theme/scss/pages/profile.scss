@@ -1,0 +1,216 @@
+body[class*='page-user'] {
+
+  // PAGE PROFILE
+  .section-user {
+
+    .user-card {
+      display: flex;
+      overflow: hidden;
+      max-width: 430px;
+      transition: .8s;
+
+      div.action-button {
+        button, a {
+          flex: 1 1 auto;
+        }
+      }
+
+      img {
+        max-width: 430px;
+      }
+    }
+
+    .cvContent, .searchContent {
+      position: absolute;
+    }
+
+    .hide {
+      transform: translateX(-1000%);
+    }
+
+    .cv-webform, #cvModal {
+      label.webform-file-button {
+        font-size: inherit;
+        border: 2px dashed #388e3c;
+        padding: 5px;
+      }
+
+      .view-content {
+        padding: 0;
+      }
+
+      .webform-element-description {
+        text-align: center;
+      }
+
+      .form-managed-file {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .webform-actions {
+        display: flex;
+        justify-content: center;
+      }
+
+      div.form-actions {
+        text-align: center;
+      }
+
+      .vbo-view-form {
+
+        tr.selected td {
+          background-color: $red;
+
+          a {
+            color: white;
+          }
+        }
+
+        button.form-submit {
+          background-color: $red !important;
+
+          &:hover {
+            box-shadow: 0 5px 11px 0 rgba(0, 0, 0, .18), 0 4px 15px 0 rgba(0, 0, 0, .15);
+            color: white;
+          }
+        }
+      }
+    }
+
+    // MEDIA QUERY
+    @media all and (max-width: 425px) {
+
+      .user-card {
+        width: 100%;
+
+        img {
+          max-width: 150px;
+          margin: 15px auto 0;
+        }
+      }
+
+      .searchContent {
+        height: 100%;
+      }
+
+      .cvContent, .searchContent {
+        top: 0;
+        width: 100%;
+
+        .skills {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+    }
+
+
+  }
+
+
+  // PAGE PROFILE EDIT
+  form.user-form {
+    label {
+      display: block;
+      max-width: 100%;
+      padding: 0;
+      margin-bottom: .5rem;
+      font-size: 1.5rem;
+      line-height: inherit;
+      color: inherit;
+      white-space: normal;
+
+      &.custom-control-label {
+        font-size: 1rem;
+      }
+    }
+
+    div.mail-wrapper {
+      background-color: $c-blue;
+    }
+
+    div[id*="format"] {
+      display: none;
+    }
+
+    fieldset[id*="adresse"] legend {
+      margin-bottom: 4px;
+    }
+
+    label[for*="adresse"] {
+      display: none;
+    }
+
+    .btn-user-acc {
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: none;
+      }
+
+      &:focus {
+        box-shadow: none;
+        text-decoration: none;
+      }
+    }
+
+    input.password-field {
+      width: 100%;
+    }
+
+    .form-item-field-skills {
+      div.item-list {
+        ul.list-group {
+          li.list-group-item:nth-child(2) {
+            display: none;
+          }
+        }
+      }
+    }
+
+    span.file--image {
+      display: none;
+    }
+
+    .image-widget {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      .image-preview {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 0;
+
+        img {
+          margin-bottom: 0;
+          width: 92px;
+          height: 92px;
+        }
+      }
+
+      .image-widget-data {
+        button {
+          height: 39px;
+          width: 92px;
+          border: none;
+          padding: 0;
+          position: relative;
+          left: -6px;
+        }
+      }
+    }
+
+    button#edit-submit {
+      height: 62px;
+      margin-bottom: 2rem;
+      margin-top: 40px;
+
+    }
+  }
+}
+
+

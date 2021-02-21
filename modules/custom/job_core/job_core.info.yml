@@ -1,0 +1,6 @@
+name: job_core
+type: module
+description: Job core functionnalities
+package: Job
+core: 8.x
+core_version_requirement: ^8 || ^9

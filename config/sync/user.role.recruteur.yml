@@ -1,0 +1,38 @@
+uuid: 73301170-f79d-4a82-9a72-cdaaa505fd08
+langcode: fr
+status: true
+dependencies: {  }
+id: recruteur
+label: Recruteur
+weight: -8
+is_admin: null
+permissions:
+  - 'access categories_entity_browser entity browser pages'
+  - 'access media_entity_browser entity browser pages'
+  - 'create field_description'
+  - 'create field_logo'
+  - 'create field_secteur_activite'
+  - 'create field_societe'
+  - 'create image media'
+  - 'create jobs content'
+  - 'create media'
+  - 'create terms in skills'
+  - 'delete files'
+  - 'delete media'
+  - 'delete own image media'
+  - 'delete own jobs content'
+  - 'delete webform submissions own node'
+  - 'edit own field_description'
+  - 'edit own field_logo'
+  - 'edit own field_secteur_activite'
+  - 'edit own field_societe'
+  - 'edit own image media'
+  - 'edit own jobs content'
+  - 'update media'
+  - 'use search_api_autocomplete for jobs_index'
+  - 'view own field_description'
+  - 'view own field_logo'
+  - 'view own field_secteur_activite'
+  - 'view own field_societe'
+  - 'view own unpublished content'
+  - 'view webform submissions own node'

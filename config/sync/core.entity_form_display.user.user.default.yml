@@ -3,11 +3,21 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.user.user.field_adresse
+    - field.field.user.user.field_description
+    - field.field.user.user.field_image
+    - field.field.user.user.field_nom
+    - field.field.user.user.field_prenom
+    - field.field.user.user.field_secteur_activite
+    - field.field.user.user.field_skills
+    - field.field.user.user.field_societe
     - field.field.user.user.user_picture
     - image.style.thumbnail
   module:
+    - geofield_map
     - image
-    - path
+    - select2
+    - text
     - user
 _core:
   default_config_hash: K-1rBM8mTIkFp9RqOC2tMRUukOQ1xbRCfSKK8dEddnA
@@ -17,30 +27,114 @@ bundle: user
 mode: default
 content:
   account:
-    weight: -10
-    region: content
-  contact:
-    weight: 5
-    region: content
-  language:
-    weight: 0
-    region: content
-  path:
-    type: path
-    weight: 30
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
-  timezone:
+  field_adresse:
+    type: geofield_map
     weight: 6
     region: content
-  user_picture:
+    settings:
+      map_geocoder:
+        settings:
+          providers:
+            googlemaps:
+              weight: 0
+              checked: false
+          min_terms: 4
+          delay: 800
+          options: ''
+        control: 0
+      map_google_places:
+        places_control: true
+        places_additional_options: ''
+      map_library: gmap
+      map_type_google: roadmap
+      map_type_leaflet: OpenStreetMap_Mapnik
+      map_dimensions:
+        width: 100%
+        height: 350px
+      zoom:
+        start: 5
+        focus: 12
+        min: 2
+        max: 22
+      hide_coordinates: true
+      geoaddress_field:
+        field: '0'
+        disabled: true
+        hidden: false
+      default_value:
+        lat: !!float 0
+        lon: !!float 0
+      map_type_selector: false
+      click_to_find_marker: false
+      click_to_place_marker: false
+      html5_geolocation: false
+      map_google_api_key: ''
+      zoom_level: 5
+    third_party_settings: {  }
+  field_description:
+    type: text_textarea
+    weight: 3
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_image:
     type: image_image
+    weight: 7
+    region: content
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
     third_party_settings: {  }
-    weight: -1
+  field_nom:
+    type: string_textfield
+    weight: 4
     region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_prenom:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_secteur_activite:
+    type: options_select
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_skills:
+    type: select2_entity_reference
+    weight: 5
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      autocomplete: false
+      width: 100%
+    third_party_settings: {  }
+  field_societe:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
 hidden:
+  contact: true
   langcode: true
+  language: true
+  path: true
+  timezone: true
+  user_picture: true

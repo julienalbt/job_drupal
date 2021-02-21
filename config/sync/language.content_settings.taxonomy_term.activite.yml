@@ -1,0 +1,11 @@
+uuid: 6cc5dd2c-ed78-48f2-82fd-14561206b219
+langcode: fr
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.activite
+id: taxonomy_term.activite
+target_entity_type_id: taxonomy_term
+target_bundle: activite
+default_langcode: site_default
+language_alterable: false

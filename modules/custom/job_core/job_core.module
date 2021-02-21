@@ -1,0 +1,87 @@
+<?php
+
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\user\Entity\User;
+use Drupal\user\UserInterface;
+
+/**
+ * @file
+ * Primary module hooks for job_core module.
+ *
+ * @DCG
+ * This file is no longer required in Drupal 8.
+ * @see https://www.drupal.org/node/2217931
+ */
+
+/**
+ * Implements hook_form_alter().
+ */
+function job_core_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+
+  if ($form_id === 'node_jobs_form' || $form_id === 'node_jobs_edit_form') {
+
+    $userId = \Drupal::currentUser()->id();
+    /** @var \Drupal\user\Entity\User $user */
+    $user = User::load($userId);
+    $lat = $user->get('field_adresse')->getValue()[0]['lat'];
+    $lon = $user->get('field_adresse')->getValue()[0]['lon'];
+
+    if (empty($form['field_adresse']['widget'][0]['value']['#default_value']['lat'])) {
+      $form['field_adresse']['widget'][0]['value']['#default_value']['lat'] = $lat;
+    }
+    if (empty($form['field_adresse']['widget'][0]['value']['#default_value']['lon'])) {
+      $form['field_adresse']['widget'][0]['value']['#default_value']['lon'] = $lon;
+    }
+
+    unset($form['field_candidature']);
+  }
+
+
+  if ($form_id === 'views_exposed_form' && 'views-exposed-form-jobs-index-page-1' === $form['#id']) {
+    $input = $form_state->getUserInput();
+    if (!empty($input['text'])) {
+      unset($form['actions']['reset']);
+      $form['hint'] = [
+        '#type' => 'html_tag',
+        '#tag' => 'div',
+        '#attributes' => ['class' => ['search-hint']],
+        'entered' => [
+          '#type' => 'html_tag',
+          '#tag' => 'div',
+          '#value' => Html::escape($input['text']),
+        ],
+        'reset' => [
+          '#value' => 'Reset',
+          '#type' => 'submit',
+          '#attributes' => ['class' => ['search-reset']],
+        ],
+      ];
+    }
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function job_core_theme($existing, $type, $theme, $path) {
+  $theme = [];
+  $theme['user_form'] = [
+    'render element' => 'form',
+    'template' => 'user-form',
+  ];
+  return $theme;
+}
+
+/**
+ * Implements hook_entity_presave() To automatically set username.
+ */
+function job_core_user_presave(UserInterface $user) {
+  $user->setUsername($user->getEmail());
+
+  if ($user->get("field_image")) {
+    $alt = $user->get("field_image")->getValue();
+    $alt[0]['alt'] = 'logo';
+    $user->set('field_image', $alt);
+  }
+}

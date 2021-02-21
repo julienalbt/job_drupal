@@ -1,0 +1,191 @@
+uuid: c0c03740-5805-418b-8ec7-810e38fd436e
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.node.jobs.field_adresse
+    - field.field.node.jobs.field_avantages
+    - field.field.node.jobs.field_candidature
+    - field.field.node.jobs.field_description_job
+    - field.field.node.jobs.field_experience
+    - field.field.node.jobs.field_junior
+    - field.field.node.jobs.field_profil_recherche
+    - field.field.node.jobs.field_salaire
+    - field.field.node.jobs.field_teletravail
+    - field.field.node.jobs.field_type_de_contrat
+    - node.type.jobs
+  module:
+    - geofield_map
+    - path
+    - text
+    - webform
+id: node.jobs.default
+targetEntityType: node
+bundle: jobs
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 15
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_adresse:
+    weight: 26
+    settings:
+      map_geocoder:
+        settings:
+          providers:
+            googlemaps:
+              checked: true
+              weight: 0
+          min_terms: 4
+          delay: 800
+          options: ''
+        control: 0
+      map_google_places:
+        places_control: true
+        places_additional_options: ''
+      map_library: gmap
+      map_type_google: roadmap
+      map_type_leaflet: Esri_WorldStreetMap
+      map_dimensions:
+        width: 100%
+        height: 350px
+      zoom:
+        start: 5
+        focus: 12
+        min: 2
+        max: 22
+      hide_coordinates: true
+      geoaddress_field:
+        field: '0'
+        disabled: true
+        hidden: false
+      default_value:
+        lat: !!float 0
+        lon: !!float 0
+      map_type_selector: false
+      click_to_find_marker: false
+      click_to_place_marker: false
+      html5_geolocation: false
+      map_google_api_key: ''
+      zoom_level: 5
+    third_party_settings: {  }
+    type: geofield_map
+    region: content
+  field_avantages:
+    weight: 12
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_candidature:
+    weight: 27
+    settings:
+      webforms:
+        - candidature
+      default_data: false
+    third_party_settings: {  }
+    type: webform_entity_reference_select
+    region: content
+  field_description_job:
+    weight: 3
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+    type: text_textarea_with_summary
+    region: content
+  field_experience:
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  field_junior:
+    weight: 1
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_profil_recherche:
+    weight: 4
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_salaire:
+    weight: 10
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_teletravail:
+    weight: 2
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_type_de_contrat:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  langcode:
+    type: language_select
+    weight: 13
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 18
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: options_buttons
+    settings: {  }
+    weight: 16
+    region: content
+    third_party_settings: {  }
+  status:
+    type: options_buttons
+    settings: {  }
+    weight: 19
+    region: content
+    third_party_settings: {  }
+  sticky:
+    type: options_buttons
+    settings: {  }
+    weight: 17
+    region: content
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: options_select
+    weight: 14
+    settings: {  }
+    region: content
+    third_party_settings: {  }
+hidden: {  }

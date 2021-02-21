@@ -1,0 +1,14 @@
+uuid: 9b0e6070-7abd-49d2-a600-dd11e068b030
+langcode: fr
+status: true
+dependencies:
+  config:
+    - user.role.recruteur
+  module:
+    - user
+id: user_add_role_action.recruteur
+label: 'Ajouter le rôle recruteur aux utilisateurs sélectionnés'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: recruteur

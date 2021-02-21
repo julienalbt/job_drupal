@@ -1,0 +1,33 @@
+uuid: 60080f4b-329f-485d-89a7-b20f7e500aad
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_candidature
+    - node.type.jobs
+    - webform.webform.candidature
+  module:
+    - webform
+id: node.jobs.field_candidature
+field_name: field_candidature
+entity_type: node
+bundle: jobs
+label: candidature
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    webform_access_group: {  }
+    default_data: ''
+    status: open
+    open: ''
+    close: ''
+    target_uuid: 872dff47-b9a3-4b52-b98b-bc121e1c0279
+default_value_callback: ''
+settings:
+  handler: 'default:webform'
+  handler_settings:
+    target_bundles: null
+    auto_create: false
+field_type: webform

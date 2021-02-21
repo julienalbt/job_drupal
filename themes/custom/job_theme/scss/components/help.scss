@@ -1,0 +1,17 @@
+/**
+ * @file
+ * Styles for the help block.
+ */
+html {
+  scroll-behavior: smooth;
+}
+
+.block-help {
+    border: $border-width solid $border-color;
+    padding: 0 ($spacer * 1.5);
+    margin-bottom: ($spacer * 2);
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

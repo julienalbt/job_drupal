@@ -1,0 +1,21 @@
+uuid: 3fbd8ff0-066d-47d7-9421-5a1a290ebd6b
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_description
+  module:
+    - text
+    - user
+id: user.user.field_description
+field_name: field_description
+entity_type: user
+bundle: user
+label: Description
+description: '<small>La description de l''entreprise sera affiché automatiquement dans les annonces d''emploi que vous posterez.</smal>'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

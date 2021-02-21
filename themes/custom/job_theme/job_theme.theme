@@ -40,19 +40,10 @@ function job_theme_form_system_theme_settings_alter(&$form, FormStateInterface $
 /**
  * Implements hook_theme_suggestions_alter().
  */
-function job_custom_theme_theme_suggestions_alter(array &$suggestions, array $variables, $hook) {
+function job_theme_theme_suggestions_alter(array &$suggestions, array $variables, $hook) {
   if ($hook == 'form' & !empty($variables['element']['#id'])) {
     $suggestions[] = 'form__' . str_replace('-', '_', $variables['element']['#id']);
   }
-
-  /*  if ($hook == 'form' & !empty($variables['element'])) {
-      if (array_key_exists('#theme', $variables['element'])) {
-        $suggestions[] = 'form__' . str_replace(
-            '-', '_',
-            $variables['element']['#theme'][1]
-          );
-      }
-    }*/
 
   if ($hook == 'views_view') {
     /** @var \Drupal\views\ViewExecutable $view */
@@ -84,7 +75,7 @@ function job_custom_theme_theme_suggestions_alter(array &$suggestions, array $va
 /**
  * Implements hook_preprocess().
  */
-function job_custom_theme_preprocess_views_view_field__filename(&$variables, $hook) {
+function job_theme_preprocess_views_view_field__filename(&$variables, $hook) {
   $fid = $variables['row']->fid;
   /** @var \Drupal\file\Entity\File $file */
   $file = File::load($fid);
@@ -97,7 +88,7 @@ function job_custom_theme_preprocess_views_view_field__filename(&$variables, $ho
 /**
  * Implements hook_preprocess().
  */
-function job_custom_theme_preprocess_webform__add_file(&$variables, $hook) {
+function job_theme_preprocess_webform__add_file(&$variables, $hook) {
   $view = Views::getView('liste_cv_candidat');
   $view->get_total_rows = TRUE;
   $view->execute('block_1');
@@ -109,7 +100,7 @@ function job_custom_theme_preprocess_webform__add_file(&$variables, $hook) {
 /**
  * Implements hook_preprocess().
  */
-function job_custom_theme_preprocess_node__jobs__teaser(&$variables, $hook) {
+function job_theme_preprocess_node__jobs__teaser(&$variables, $hook) {
   /** @var \Drupal\node\Entity\Node $node */
   $node = $variables['elements']['#node'];
   /** @var \Drupal\user\Entity\User $owner */
@@ -129,7 +120,7 @@ function job_custom_theme_preprocess_node__jobs__teaser(&$variables, $hook) {
 /**
  * Implements hook_preprocess().
  */
-function job_custom_theme_preprocess_page__user(&$variables, $hook) {
+function job_theme_preprocess_page__user(&$variables, $hook) {
 
   $uid = \Drupal::currentUser()->id();
   /** @var \Drupal\user\Entity\User $user */
@@ -182,7 +173,7 @@ function job_custom_theme_preprocess_page__user(&$variables, $hook) {
 /**
  * Implements hook_preprocess().
  */
-function job_custom_theme_preprocess_node__jobs__recruiter_list(&$variables, $hook) {
+function job_theme_preprocess_node__jobs__recruiter_list(&$variables, $hook) {
   $curentUser = \Drupal::currentUser();
   if (in_array("recruteur", $curentUser->getRoles())) {
     $nid = $variables['node']->nid->value;
@@ -208,7 +199,7 @@ function job_custom_theme_preprocess_node__jobs__recruiter_list(&$variables, $ho
 /**
  * Implements hook_preprocess().
  */
-function job_custom_theme_preprocess_page(&$variables, $hook) {
+function job_theme_preprocess_page(&$variables, $hook) {
   $variables['login_form'] = FALSE;
   if (!\Drupal::currentUser()->id()) {
     $form = Drupal::formBuilder()
@@ -228,7 +219,7 @@ function job_custom_theme_preprocess_page(&$variables, $hook) {
 /**
  * Implements hook_preprocess().
  */
-function job_custom_theme_preprocess_page__accueil(&$variables, $hook) {
+function job_theme_preprocess_page__accueil(&$variables, $hook) {
   $userId = \Drupal::currentUser()->id();
   $variables['user_id'] = $userId;
 }
@@ -236,7 +227,7 @@ function job_custom_theme_preprocess_page__accueil(&$variables, $hook) {
 /**
  * Implements hook_preprocess().
  */
-function job_custom_theme_preprocess_page_title(&$variables, $hook) {
+function job_theme_preprocess_page_title(&$variables, $hook) {
   $user = \Drupal::currentUser();
   $userId = $user->id();
   $userRole = $user->getRoles();
@@ -318,7 +309,7 @@ function job_custom_theme_preprocess_page_title(&$variables, $hook) {
 /**
  * Implements hook_preprocess().
  */
-function job_custom_theme_preprocess_webform_submission_data__candidature(&$variables, $hook) {
+function job_theme_preprocess_webform_submission_data__candidature(&$variables, $hook) {
 
   /** @var \Drupal\webform\Entity\WebformSubmission $submission */
   $submission = $variables['webform_submission'];
@@ -377,7 +368,7 @@ function job_custom_theme_preprocess_webform_submission_data__candidature(&$vari
 /**
  * Implements hook_preprocess().
  */
-function job_custom_theme_preprocess_node_edit_form__jobs(&$variables, $hook) {
+function job_theme_preprocess_node_edit_form__jobs(&$variables, $hook) {
   $variables['form']['actions']['submit']['#attributes'] = [
     'class' => ["btn-success btn-block"],
   ];
@@ -386,7 +377,7 @@ function job_custom_theme_preprocess_node_edit_form__jobs(&$variables, $hook) {
 /**
  * Implements hook_preprocess().
  */
-function job_custom_theme_preprocess_user_form(&$variables, $hook) {
+function job_theme_preprocess_user_form(&$variables, $hook) {
   $variables['form']['field_image']['widget'][0]['remove_button']['#attributes']['class'] = [
     'btn',
     'btn-danger',
@@ -397,7 +388,7 @@ function job_custom_theme_preprocess_user_form(&$variables, $hook) {
 /**
  * Implements hook_form_alter().
  */
-function job_custom_theme_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+function job_theme_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   $formId = $form['#form_id'];
 
   if ($formId === 'user_login_form') {
@@ -420,7 +411,7 @@ function job_custom_theme_form_alter(&$form, FormStateInterface $form_state, $fo
 /**
  * Implements hook_preprocess().
  */
-function job_custom_theme_preprocess_node__jobs__full(&$variables, $hook) {
+function job_theme_preprocess_node__jobs__full(&$variables, $hook) {
   /** @var \Drupal\node\Entity\Node $node */
   $node = $variables['node'];
   /** @var \Drupal\user\Entity\User $user */

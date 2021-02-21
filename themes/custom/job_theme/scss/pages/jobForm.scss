@@ -1,0 +1,82 @@
+form .job-form {
+
+  button.form-submit {
+    height: 62px;
+    transition: .2s ease-in;
+    margin-top: 40px;
+    margin-bottom: 2rem;
+    border: none;
+
+    &:hover {
+      box-shadow: inset $c-blue 0 62px 0 1px;
+    }
+  }
+
+  .btn-job-acc {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    &:focus {
+      box-shadow: none;
+      text-decoration: none;
+    }
+  }
+
+  label {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin-bottom: .5rem;
+    font-size: 1.5rem;
+    line-height: inherit;
+    color: inherit;
+    white-space: normal;
+
+    &.custom-control-label {
+      font-size: 1rem;
+    }
+  }
+
+  fieldset[id*="adresse"] legend {
+    margin-bottom: 4px;
+  }
+
+  label[for*="adresse"] {
+    display: none;
+  }
+
+  .list-group-item {
+    border: none;
+  }
+
+  div[id*="format"] {
+    display: none;
+  }
+
+  small#edit-field-skills--description li.list-group-item:nth-child(2) {
+    display: none;
+  }
+
+  ul[class*="select2"] li.select2-selection__choice {
+    background-color: #0079c0 !important;
+    color: #fff;
+    border: none;
+
+    span.select2-selection__choice__remove {
+      color: #fff;
+    }
+  }
+}
+
+.node-jobs-delete-form {
+  text-align: center;
+
+  .form-actions {
+    display: flex;
+    flex-direction: column;
+  }
+}

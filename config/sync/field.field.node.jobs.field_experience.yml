@@ -1,0 +1,29 @@
+uuid: c6c050a9-335d-43e3-b442-d29486756990
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_experience
+    - node.type.jobs
+    - taxonomy.vocabulary.experience
+id: node.jobs.field_experience
+field_name: field_experience
+entity_type: node
+bundle: jobs
+label: Expérience
+description: 'Sélectionner le ou les niveaux d''expérience accepté(s).'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      experience: experience
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

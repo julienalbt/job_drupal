@@ -1,0 +1,80 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+use Drupal\user\Entity\User;
+use Drupal\user\UserInterface;
+
+/**
+ * Get all Roles.
+ *
+ * @param bool $membersonly
+ *
+ * @return array $all_roles
+ */
+function select_registration_roles_all_roles($membersonly = TRUE) {
+  $roles = user_roles($membersonly);
+  $all_roles = [];
+  foreach ($roles as $role_id => $role) {
+    $all_roles[$role_id] = $role->label();
+  }
+  return $all_roles;
+}
+
+/**
+ *  Implements hook_form_alter().
+ */
+function select_registration_roles_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+
+  if ($form_id == "user_register_form") {
+    $roles = [];
+    $config = \Drupal::configFactory()
+      ->getEditable('select_registration_roles.settings');
+    $display_roles = $config->get('select_registration_roles_setby_admin');
+    if (empty($display_roles)) {
+      $form['select_roles'] = [
+        '#type' => 'checkboxes',
+        '#title' => t('You must configure <a href = "!configure">role field on the registration form.</a>', array('!configure' => Url::fromRoute('select_registration_roles.roles_set_by_admin')->toString())),
+        '#options' => $roles,
+      ];
+    }
+    else {
+      $display_roles = $config->get('select_registration_roles_setby_admin');
+      foreach ($display_roles as $role_id => $role_name) {
+        if ($role_name !== 0) {
+          $roles[$role_id] = $role_name;
+
+          $form['select_roles'] = [
+            '#type' => 'radios',
+            '#title' => t('Candidat ou Recruteur ?'),
+            '#required' => TRUE,
+            '#options' => $roles,
+            '#cache' => [
+              'max-age' => -1,
+            ],
+          ];
+        }
+
+      }
+    }
+    $form['actions']['submit']['#submit'][] = ['select_registration_roles_user_presave'];
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave() for user entities.
+ */
+function select_registration_roles_user_presave(UserInterface $user) {
+  $config = \Drupal::configFactory()
+    ->getEditable('select_registration_roles.settings');
+  $display_roles = $config->get('select_registration_roles_setby_admin');
+  $select_roles = \Drupal::request()->get('select_roles');
+
+  if ($user->isNew()) {
+    foreach ($display_roles as $key => $value) {
+      if ($value && $key === $select_roles) {
+        $user->addRole($key);
+      }
+    }
+  }
+}

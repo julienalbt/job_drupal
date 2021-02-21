@@ -124,7 +124,7 @@
                             {{ 'Modifier le profil'|t }}
                           </a>
                         {% endif %}
-                        <a href="/user/logout" type="button"
+                        <a href="{{ path('user.logout') }}" type="button"
                            class="btn c-lighten-green white-text logout">
                           {{ 'Déconnexion'|t }}
                         </a>
@@ -197,7 +197,7 @@
                             {{ 'Modifier le profil'|t }}
                           </a>
                         {% endif %}
-                        <a href="/user/logout" type="button"
+                        <a href="{{ path('user.logout') }}" type="button"
                            class="btn c-lightest-green white-text logout">
                           {{ 'Déconnexion'|t }}
                         </a>

@@ -1,0 +1,8 @@
+uuid: 3c64a79a-9ffe-473a-8348-35b3bb62fd50
+langcode: fr
+status: true
+dependencies: {  }
+name: Activité
+vid: activite
+description: ''
+weight: 0

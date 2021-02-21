@@ -1,0 +1,22 @@
+uuid: c7ca18d5-4ced-41f9-ad10-611435e999cf
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_adresse
+    - node.type.jobs
+  module:
+    - geofield
+id: node.jobs.field_adresse
+field_name: field_adresse
+entity_type: node
+bundle: jobs
+label: Adresse
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  backend: geofield_backend_default
+field_type: geofield

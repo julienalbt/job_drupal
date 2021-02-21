@@ -1,0 +1,37 @@
+uuid: 0d434a49-cfda-4d85-9eaf-c2f6a7e59614
+langcode: fr
+status: true
+dependencies:
+  config:
+    - views.view.recuteur_jobs_list
+  module:
+    - system
+    - user
+    - views
+  theme:
+    - job_theme
+id: views_block__recuteur_jobs_list_block_1
+theme: job_theme
+region: content
+weight: -2
+provider: null
+plugin: 'views_block:recuteur_jobs_list-block_1'
+settings:
+  id: 'views_block:recuteur_jobs_list-block_1'
+  label: 'Vos offres d''emploi'
+  provider: views
+  label_display: visible
+  views_label: 'Vos offres d''emploi'
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    pages: '*/profile'
+    negate: false
+  user_role:
+    id: user_role
+    roles:
+      recruteur: recruteur
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'

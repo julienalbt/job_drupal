@@ -1,0 +1,10 @@
+uuid: 39fa3fdb-c1a2-4a57-8311-4df8fdc5d146
+langcode: fr
+status: true
+dependencies:
+  module:
+    - node
+id: node.recruiter_list
+label: 'Recruiter list'
+targetEntityType: node
+cache: true

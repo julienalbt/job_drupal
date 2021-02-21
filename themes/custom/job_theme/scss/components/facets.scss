@@ -1,0 +1,67 @@
+.block-facets-block {
+  padding: 0 !important;
+  border: 0 !important;
+  margin-top: 150px !important;
+  box-shadow: 0 2px 10px 0 rgba(0,0,0,.12);
+
+  h2 {
+    text-align: center;
+    border: none;
+  }
+  .content {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .facet-block {
+
+    .facets-apply-button-wrapper {
+      display: flex;
+      justify-content: center;
+      button {
+        background: white;
+        border: 1px solid $c-blue;
+        color: $c-blue;
+        margin-bottom: 10px;
+      }
+    }
+
+
+
+    &:first-child, &:nth-child(2) {
+      width: 100%;
+      .facets-checkbox {
+        cursor: pointer;
+      }
+    }
+    &:nth-child(3), &:last-child {
+      .facets-checkbox {
+        transform: scale(2.5);
+        cursor: pointer;
+      }
+      label {
+        display: none;
+      }
+      width: 50%;
+      margin: 0;
+    }
+
+    p {
+      background: $c-blue;
+      height: 50px;
+      color: #fff;
+      font-size: 1.5em;
+      text-align: center;
+      line-height: 50px;
+    }
+
+    ul {
+      padding: 0;
+      list-style: none;
+      li {
+        text-align: center;
+      }
+
+    }
+  }
+}

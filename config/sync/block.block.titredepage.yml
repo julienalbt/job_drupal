@@ -1,0 +1,18 @@
+uuid: b81316e7-fbc4-42f3-b65a-667b6c5d2ed2
+langcode: fr
+status: false
+dependencies:
+  theme:
+    - job_theme
+id: titredepage
+theme: job_theme
+region: top_header
+weight: -7
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Titre de page'
+  provider: core
+  label_display: '0'
+visibility: {  }

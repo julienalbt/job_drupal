@@ -1,0 +1,22 @@
+uuid: 2afaa119-9427-42c6-97e4-a067f5f25bbc
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_adresse
+  module:
+    - geofield
+    - user
+id: user.user.field_adresse
+field_name: field_adresse
+entity_type: user
+bundle: user
+label: Adresse
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  backend: geofield_backend_default
+field_type: geofield

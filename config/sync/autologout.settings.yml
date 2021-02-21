@@ -1,4 +1,4 @@
-timeout: 1800
+timeout: 172800
 max_timeout: 172800
 padding: 20
 no_individual_logout_threshold: false
@@ -6,8 +6,8 @@ role_logout: false
 role_logout_max: false
 redirect_url: /user/login
 no_dialog: false
-message: 'Your session is about to expire. Do you want to reset it?'
-inactivity_message: 'You have been logged out due to inactivity.'
+message: "Dans un soucis de sécurité, vous êtes déconnecté après 2 minutes d'inactivité. \r\nVoulez vous continuer votre navigation ?"
+inactivity_message: 'Vous avez été déconnecté pour inactivité.'
 inactivity_message_type: status
 enforce_admin: false
 jstimer_format: '%hours%:%mins%:%secs%'
@@ -16,3 +16,8 @@ use_alt_logout_method: false
 use_watchdog: true
 _core:
   default_config_hash: j-ZIPT_JseG1aLxuAdzS-NomYUmBK3OUOjP53Pg8uA8
+dialog_title: 'Alerte déconnexion automatique'
+disable_buttons: false
+yes_button: ''
+no_button: ''
+whitelisted_ip_addresses: ''

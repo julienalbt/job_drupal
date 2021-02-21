@@ -1,0 +1,69 @@
+.node--type-jobs {
+  .field--name-field-candidature {
+    background-color: $c-blue;
+    color: white;
+    padding: 50px 15px 50px 15px;
+    margin-top: 50px;
+
+    .form-item-candidature {
+      margin-bottom: 75px;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 2rem;
+    }
+
+    .js-form-wrapper.form-group {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+
+      .js-webform-type-fieldset, .webform-type-webform-entity-radios {
+        margin-bottom: 75px;
+      }
+      .webform-type-webform-entity-radios {
+        legend {
+          text-align: center;
+        }
+        .js-webform-webform-entity-radios.btn-group-toggle {
+          display: flex;
+          justify-content: center;
+        }
+      }
+
+      .webform-options-display-one-column {
+        display: flex;
+        flex-wrap: wrap;
+
+        label {
+          margin-bottom: 10px;
+          margin-right: 10px;
+        }
+      }
+
+      .bootstrap-radio {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        margin-top: 0;
+        width: 300px;
+        height: 70px;
+
+        &:before {
+          display: none;
+        }
+
+      }
+    }
+
+    .webform-actions {
+      margin-top: 20px;
+      text-align: center;
+
+      .webform-button--submit {
+        width: 250px;
+      }
+    }
+  }
+
+}

@@ -1,0 +1,22 @@
+/**
+ * @file
+ * Visual styles for table drag.
+ */
+
+tr.drag {
+    background-color: #fffff0;
+}
+
+tr.drag-previous {
+    background-color: #ffd;
+}
+
+body div.tabledrag-changed-warning {
+    margin-bottom: ($spacer / 2);
+}
+
+#user-form .tabledrag-toggle-weight-wrapper,
+#user-form .tableresponsive-toggle-columns,
+#user-form a.tabledrag-handle{
+  display: none;
+}

@@ -1,0 +1,7 @@
+job_core.welcome:
+  path: '/accueil'
+  defaults:
+    _controller: '\Drupal\job_core\Controller\WelcomeController::content'
+    _title: 'Bienvenue'
+  requirements:
+    _permission: 'access content'

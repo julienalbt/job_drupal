@@ -1,0 +1,29 @@
+uuid: fb5cc4ac-dbc3-46dc-be4f-da8ef1c612d2
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_type_de_contrat
+    - node.type.jobs
+    - taxonomy.vocabulary.type_de_contrat
+id: node.jobs.field_type_de_contrat
+field_name: field_type_de_contrat
+entity_type: node
+bundle: jobs
+label: 'Type de contrat'
+description: 'Sélectionner le ou les types de contrat proposé(s).'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      type_de_contrat: type_de_contrat
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

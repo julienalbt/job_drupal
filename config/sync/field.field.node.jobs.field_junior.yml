@@ -1,0 +1,23 @@
+uuid: 9322c1cb-2a6e-46a4-96f9-f2cfff371b51
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_junior
+    - node.type.jobs
+id: node.jobs.field_junior
+field_name: field_junior
+entity_type: node
+bundle: jobs
+label: 'Accepter les Juniors'
+description: "Cocher cette case si les juniors sont accepté sur ce poste.\r\n<em>Mieux vaut embaucher un junior rapidement que rechercher un expert pendant 1 an</em>."
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Junior accepté'
+  off_label: 'Junior non accepté'
+field_type: boolean

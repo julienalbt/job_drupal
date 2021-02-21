@@ -1,0 +1,38 @@
+uuid: 2b82da97-bc53-491c-8d85-50767f36c84d
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_image
+  module:
+    - image
+    - user
+id: user.user.field_image
+field_name: field_image
+entity_type: user
+bundle: user
+label: Image
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'png gif jpg jpeg'
+  max_filesize: '2 MB'
+  max_resolution: 500x500
+  min_resolution: 50x50
+  alt_field: false
+  alt_field_required: false
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: 04198c3b-d3d6-4699-b3ae-8dbeadc3ee8c
+    alt: logo
+    title: ''
+    width: 530
+    height: 530
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: image

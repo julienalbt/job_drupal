@@ -1,0 +1,201 @@
+uuid: 9660acaa-c2f0-461e-9467-c157ae0807a2
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.node.jobs.field_adresse
+    - field.field.node.jobs.field_avantages
+    - field.field.node.jobs.field_candidature
+    - field.field.node.jobs.field_description_job
+    - field.field.node.jobs.field_experience
+    - field.field.node.jobs.field_junior
+    - field.field.node.jobs.field_profil_recherche
+    - field.field.node.jobs.field_salaire
+    - field.field.node.jobs.field_teletravail
+    - field.field.node.jobs.field_type_de_contrat
+    - node.type.jobs
+  module:
+    - geofield_map
+    - text
+    - user
+    - webform
+id: node.jobs.default
+targetEntityType: node
+bundle: jobs
+mode: default
+content:
+  field_adresse:
+    weight: 14
+    label: hidden
+    settings:
+      map_dimensions:
+        width: 100%
+        height: 350px
+      map_empty:
+        empty_behaviour: '1'
+        empty_message: 'L''entreprise n''a pas renseigner d''adresse.'
+      map_center:
+        lat: '42'
+        lon: '12.5'
+        center_force: 0
+        geocode: 'Find my location'
+      map_zoom_and_pan:
+        zoom:
+          initial: '13'
+          min: '1'
+          max: '22'
+          finer: '0'
+          force: 0
+        gestureHandling: auto
+        scrollwheel: '1'
+        draggable: '1'
+        map_reset_position: TOP_RIGHT
+        map_reset: 0
+      map_controls:
+        disable_default_ui: '1'
+        zoom_control: '1'
+        map_type_id: roadmap
+        map_type_control: '1'
+        map_type_control_options_type_ids:
+          roadmap: roadmap
+          satellite: satellite
+          hybrid: hybrid
+          terrain: terrain
+        scale_control: '1'
+        street_view_control: '1'
+        fullscreen_control: '1'
+      map_marker_and_infowindow:
+        icon_image_mode: icon_file
+        icon_file_wrapper:
+          icon_file:
+            fids: ''
+            upload_button: Transférer
+            remove_button: Retirer
+            upload: ''
+            is_svg: false
+          image_style: geofield_map_default_icon_style
+        icon_image_path: ''
+        infowindow_field: title
+        view_mode: full
+        tooltip_field: title
+        multivalue_split: 0
+        force_open: 0
+      map_additional_options: ''
+      map_geometries_options: '{"strokeColor":"black","strokeOpacity":"0.8","strokeWeight":2,"fillColor":"blue","fillOpacity":"0.1","clickable":false}'
+      map_oms:
+        map_oms_control: '1'
+        map_oms_options: '{"markersWontMove":"true","markersWontHide":"true","basicFormatEvents":"true","nearbyDistance":3}'
+      custom_style_map:
+        custom_style_name: ''
+        custom_style_options: ''
+        custom_style_control: 0
+        custom_style_default: 0
+      map_markercluster:
+        markercluster_additional_options: '{"maxZoom":12,"gridSize":50}'
+        markercluster_control: 0
+      map_geocoder:
+        settings:
+          position: TOP_LEFT
+          input_size: '25'
+          providers:
+            googlemaps:
+              weight: '0'
+              checked: 0
+          min_terms: '4'
+          delay: '800'
+          zoom: '16'
+          options: ''
+          infowindow: 0
+        control: 0
+      map_additional_libraries:
+        places: 0
+        drawing: 0
+        geometry: 0
+        visualization: 0
+      map_lazy_load:
+        lazy_load: 0
+      gmap_api_key: ''
+    third_party_settings: {  }
+    type: geofield_google_map
+    region: content
+  field_avantages:
+    weight: 10
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_candidature:
+    weight: 15
+    label: hidden
+    settings:
+      source_entity: true
+    third_party_settings: {  }
+    type: webform_entity_reference_entity_view
+    region: content
+  field_description_job:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_experience:
+    weight: 13
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_junior:
+    type: boolean
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+  field_profil_recherche:
+    weight: 5
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_salaire:
+    weight: 11
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_teletravail:
+    weight: 8
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_type_de_contrat:
+    weight: 7
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  langcode: true
+  search_api_excerpt: true

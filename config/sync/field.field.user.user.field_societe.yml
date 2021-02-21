@@ -1,0 +1,20 @@
+uuid: adc8a6fc-2e17-465d-906a-af61b5a881b0
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_societe
+  module:
+    - user
+id: user.user.field_societe
+field_name: field_societe
+entity_type: user
+bundle: user
+label: Société
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

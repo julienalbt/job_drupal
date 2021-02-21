@@ -1,19 +1,24 @@
-uuid: 20b76c0b-85d2-443d-a257-1032cc64997b
-langcode: en
+uuid: cc8d8579-e7ea-4595-ace7-b22f778a8460
+langcode: fr
 status: true
 dependencies: {  }
 _core:
   default_config_hash: btW6TFHajhy7Eo6YUvdFiPh4TcPggo8GBXYctjV6zag
 id: authenticated
-label: 'Authenticated user'
-weight: 1
+label: 'Utilisateur authentifié'
+weight: -9
 is_admin: false
 permissions:
   - 'access comments'
   - 'access content'
+  - 'access media_entity_browser entity browser pages'
+  - 'access media_entity_browser_media_library entity browser pages'
+  - 'access media_entity_browser_modal entity browser pages'
   - 'access shortcuts'
   - 'access site-wide contact form'
   - 'post comments'
   - 'search content'
   - 'skip comment approval'
   - 'use text format basic_html'
+  - 'view media'
+  - 'view own unpublished media'

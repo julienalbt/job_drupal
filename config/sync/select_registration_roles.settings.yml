@@ -1,0 +1,5 @@
+select_registration_roles_setby_admin:
+  recruteur: recruteur
+  candidat: candidat
+  authenticated: 0
+  administrator: 0

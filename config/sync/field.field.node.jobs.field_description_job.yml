@@ -1,0 +1,23 @@
+uuid: f5d11743-813f-45ee-bdf1-67775d352c2b
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_description_job
+    - node.type.jobs
+  module:
+    - text
+id: node.jobs.field_description_job
+field_name: field_description_job
+entity_type: node
+bundle: jobs
+label: 'Description du poste'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+  required_summary: false
+field_type: text_with_summary
