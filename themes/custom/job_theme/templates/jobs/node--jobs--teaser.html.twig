@@ -87,15 +87,18 @@
         </div>
 
 
-        <div class="card-body jobs-card pt-0 pr-1 pb-1">
-          <div class="px-0 d-flex justify-content-end">
-            {% if node.field_teletravail.value %}
-              <div class="i-container mr-2 mt-2"><i title="télétravail" class="fas fa-home"></i></div>
+        <div class="card-body jobs-card">
+          <small class="job-date d-flex justify-content-center mb-2" rel="bookmark">
+            {% if node_date < 1 %}
+              {{ "Créée il y a moins d'un jour"|t }}
+            {% elseif node_date == 1 %}
+              {{ "Créée il y a 1 jour"|t }}
+            {% else %}
+              {% set string = 'créée il y a'|t ~ node_date ~ 'jours'|t %}
+              {{ string }}
             {% endif %}
-            {% if node.field_junior.value %}
-              <div class="i-container mr-2 mt-2"><i title="junior accepté" class="fas fa-user-graduate"></i></div>
-            {% endif %}
-          </div>
+          </small>
+
           {% if author %}
             <div class="d-flex align-items-center mb-2">
               {% if logo %}
@@ -103,15 +106,24 @@
                   <img src="{{ logo }}" alt="logo" class="logo-img">
                 </div>
               {% endif %}
-              <div>
-                <p class="job-location mb-0" rel="bookmark">{{ author }} - Nice</p>
-                {{ content }}
+              <div class="d-flex flex-column">
+                <p class="author-picture mb-0" rel="bookmark"><b>{{ author }}</b></p>
+                <p class="job-location mb-0" rel="bookmark">Nice</p>
               </div>
             </div>
           {% else %}
             <p class="job-location mb-2" rel="bookmark">Nice</p>
           {% endif %}
-          <small class="job-location mb-0" rel="bookmark">{{ date }}</small>
+        </div>
+        <div class="card-footer">
+          <div class="d-flex justify-content-center">
+            {% if node.field_teletravail.value %}
+              <div class="i-container mr-2"><i title="télétravail" class="fas fa-home fa-2x"></i></div>
+            {% endif %}
+            {% if node.field_junior.value %}
+              <div class="i-container mr-2"><i title="junior accepté" class="fas fa-user-graduate fa-2x"></i></div>
+            {% endif %}
+          </div>
         </div>
 
       </a>

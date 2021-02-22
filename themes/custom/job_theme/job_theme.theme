@@ -115,6 +115,13 @@ function job_theme_preprocess_node__jobs__teaser(&$variables, $hook) {
   if ($logo->getValue()) {
     $variables['logo'] = file_create_url($file->getFileUri());
   }
+
+  $nowDate = time();
+  $nodeDate = $node->getCreatedTime();
+  $difference = abs($nowDate - $nodeDate);
+
+  $variables['node_date'] = intval(ceil($difference / 86400),10);
+
 }
 
 /**

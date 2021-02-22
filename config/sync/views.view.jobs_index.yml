@@ -204,7 +204,7 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           parse_mode: phrase
-          min_length: null
+          min_length: 3
           fields:
             - rendered_item
             - title
