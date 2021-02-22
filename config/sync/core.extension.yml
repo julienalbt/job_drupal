@@ -5,7 +5,6 @@ module:
   adminimal_admin_toolbar: 0
   autologout: 0
   automated_cron: 0
-  back_to_top: 0
   big_pipe: 0
   block: 0
   block_content: 0
@@ -84,6 +83,7 @@ module:
   webform_image_select: 0
   webform_node: 0
   webform_ui: 0
+  webform_views: 0
   pathauto: 1
   webform_bootstrap: 1
   content_translation: 10

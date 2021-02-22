@@ -4,17 +4,17 @@
     margin: 20px auto;
     text-align: center;
   }
-  .card {
-    box-shadow: black 0 0 10px -5px;
-
-    &:hover .card-body {
-      box-shadow: inset $c-blue 0px 246px 0px 0;
-      color: #fff;
-    }
-
-    &:hover .showCv {
-      background: #fff;
+  .modal-content {
+    .showCv {
       color: $c-blue;
+      transition: .3s ease-out;
+      border: 1px solid $c-blue;
+
+      &:hover {
+        box-shadow: inset $c-blue 0 55px 1px 0;
+        color: white;
+      }
+
     }
   }
 
@@ -24,25 +24,6 @@
     min-height: 80px;
     justify-content: space-between;
     align-items: center;
-    cursor: pointer;
-
-  }
-
-  .card-body {
-    transition: .3s ease-out;
-    border-radius: 0;
-
-
-    .showCv {
-      font-size: 1em;
-      background: $c-blue;
-      transform: scale(1.1);
-      color: #fff;
-
-      &:active {
-        transform: scale(1);
-      }
-    }
   }
 
 }

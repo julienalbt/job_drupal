@@ -1,14 +1,27 @@
-form .job-form {
+form#node-jobs-form, form#node-jobs-edit-form {
 
-  button.form-submit {
-    height: 62px;
-    transition: .2s ease-in;
-    margin-top: 40px;
-    margin-bottom: 2rem;
-    border: none;
+  .form-actions {
+    display: flex;
+    justify-content: center;
+    margin: 50px 0;
 
-    &:hover {
-      box-shadow: inset $c-blue 0 62px 0 1px;
+    button.form-submit {
+      height: 62px;
+      width: 250px;
+      border: none;
+    }
+
+    a#edit-delete {
+      height: 62px;
+      width: 250px;
+      border: none;
+      line-height: 35px;
+      transition: 0.5s;
+
+      &:hover {
+        box-shadow: inset red 0 110px 1px 0;
+        color: white;
+      }
     }
   }
 
@@ -39,6 +52,10 @@ form .job-form {
     &.custom-control-label {
       font-size: 1rem;
     }
+  }
+
+  #edit-field-adresse-0-value-map-actions {
+    display: none;
   }
 
   fieldset[id*="adresse"] legend {

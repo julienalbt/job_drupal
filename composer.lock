@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "69fea2ee409fabe0ba9bf2d0706b465a",
+    "content-hash": "1f6167fb30a44d945f384ea23c54553d",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2660,66 +2660,6 @@
             }
         },
         {
-            "name": "drupal/back_to_top",
-            "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/back_to_top.git",
-                "reference": "8.x-1.1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/back_to_top-8.x-1.1.zip",
-                "reference": "8.x-1.1",
-                "shasum": "5698e1c440561fdb109bb15816bdf6332f9bbb8f"
-            },
-            "require": {
-                "drupal/core": "^8 || ^9"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "8.x-1.1",
-                    "datestamp": "1579012388",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Alsén",
-                    "homepage": "https://www.drupal.org/user/1726528"
-                },
-                {
-                    "name": "Nitesh Sethia",
-                    "homepage": "https://www.drupal.org/user/2474982"
-                },
-                {
-                    "name": "acke",
-                    "homepage": "https://www.drupal.org/user/765764"
-                },
-                {
-                    "name": "diqidoq",
-                    "homepage": "https://www.drupal.org/user/1001934"
-                },
-                {
-                    "name": "sumitmadan",
-                    "homepage": "https://www.drupal.org/user/1538790"
-                }
-            ],
-            "description": "Back To Top adds a button that hovers in the bottom of your screen and allow users to smoothly scroll up the page using jQuery.",
-            "homepage": "https://www.drupal.org/project/back_to_top",
-            "support": {
-                "source": "https://git.drupalcode.org/project/back_to_top"
-            }
-        },
-        {
             "name": "drupal/bootstrap_barrio",
             "version": "5.1.4",
             "source": {
@@ -5371,6 +5311,67 @@
                 "issues": "https://www.drupal.org/project/issues/webform?version=8.x",
                 "docs": "https://www.drupal.org/docs/8/modules/webform",
                 "forum": "https://drupal.stackexchange.com/questions/tagged/webform"
+            }
+        },
+        {
+            "name": "drupal/webform_views",
+            "version": "5.0.0-alpha8",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/webform_views.git",
+                "reference": "8.x-5.0-alpha8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/webform_views-8.x-5.0-alpha8.zip",
+                "reference": "8.x-5.0-alpha8",
+                "shasum": "110cf10ed151c1954fe4b7fee5c4f5fb9b81f99b"
+            },
+            "require": {
+                "drupal/core": "^8.8 || ^9",
+                "drupal/webform": "^6"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-5.0-alpha8",
+                    "datestamp": "1594941454",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "acbramley",
+                    "homepage": "https://www.drupal.org/user/1036766"
+                },
+                {
+                    "name": "bucefal91",
+                    "homepage": "https://www.drupal.org/user/504128"
+                },
+                {
+                    "name": "jrockowitz",
+                    "homepage": "https://www.drupal.org/user/371407"
+                },
+                {
+                    "name": "matio89",
+                    "homepage": "https://www.drupal.org/user/2320090"
+                },
+                {
+                    "name": "ws.agency",
+                    "homepage": "https://www.drupal.org/user/2851415"
+                }
+            ],
+            "description": "Webform integration with views.",
+            "homepage": "https://www.drupal.org/project/webform_views",
+            "support": {
+                "source": "https://git.drupalcode.org/project/webform_views"
             }
         },
         {
@@ -10927,7 +10928,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "drupal/webform_views": 15
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],

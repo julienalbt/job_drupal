@@ -116,10 +116,7 @@ function job_theme_preprocess_node__jobs__teaser(&$variables, $hook) {
     $variables['logo'] = file_create_url($file->getFileUri());
   }
 
-  $nowDate = time();
-  $nodeDate = $node->getCreatedTime();
-  $difference = abs($nowDate - $nodeDate);
-
+  $difference = abs(time() - $node->getCreatedTime());
   $variables['node_date'] = intval(ceil($difference / 86400),10);
 
 }
@@ -376,8 +373,8 @@ function job_theme_preprocess_webform_submission_data__candidature(&$variables, 
  * Implements hook_preprocess().
  */
 function job_theme_preprocess_node_edit_form__jobs(&$variables, $hook) {
-  $variables['form']['actions']['submit']['#attributes'] = [
-    'class' => ["btn-success btn-block"],
+  $variables['form']['actions']['delete']['#attributes'] = [
+    'class' => ["btn btn-outline-danger"],
   ];
 }
 

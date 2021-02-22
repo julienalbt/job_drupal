@@ -80,7 +80,7 @@
       <a href="{{ url }}" rel="bookmark">
         <div class="card-header text-white border-0">
           {{ title_prefix }}
-          <h2{{ title_attributes.addClass('node__title', 'card-title') }}>
+          <h2{{ title_attributes.addClass('node__title', 'card-title d-flex justify-content-center') }}>
             <p rel="bookmark">{{ label }}</p>
           </h2>
           {{ title_suffix }}
@@ -88,7 +88,7 @@
 
 
         <div class="card-body jobs-card">
-          <small class="job-date d-flex justify-content-center mb-2" rel="bookmark">
+          <small class="job-date d-flex justify-content-center mb-4" rel="bookmark">
             {% if node_date < 1 %}
               {{ "Créée il y a moins d'un jour"|t }}
             {% elseif node_date == 1 %}
@@ -116,7 +116,7 @@
           {% endif %}
         </div>
         <div class="card-footer">
-          <div class="d-flex justify-content-center">
+          <div class="d-flex justify-content-end">
             {% if node.field_teletravail.value %}
               <div class="i-container mr-2"><i title="télétravail" class="fas fa-home fa-2x"></i></div>
             {% endif %}

@@ -110,7 +110,7 @@
                                   data-toggle="modal" data-target="#jobsModal">
                             {{ 'Gérer mes jobs'|t }}
                           </button>
-                          <a href="/liste-candidatures" type="button"
+                          <a href="{{ path('view.liste_candidatures.page_1') }}" type="button"
                              class="btn c-green white-text">
                             {{ 'Voir toutes les candidatures'|t }}
                           </a>
@@ -237,7 +237,7 @@
                             <h4 class="w-100 font-weight-light white-text">{{ 'Trouve ton job'|t }}</h4>
                           </div>
                           <div class="modal-body">
-                            <div class="skills p-3">
+                            <div class="skills p-3 d-flex justify-content-center flex-wrap">
                               {% if skills %}
                                 {% for key, skill in skills %}
                                   <a href="{{ path('view.jobs_index.page_1') }}?text={{ skill }}"
