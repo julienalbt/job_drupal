@@ -102,30 +102,40 @@
                       </div>
 
                       <div class="card-body">
-                        <h4 class="card-title text-center">{{ society }}</h4>
-                        <div class="action-button d-flex flex-wrap">
+                        {% if infos %}
+                          <h4 class="card-title text-center">{{ society }}</h4>
+                          <div class="action-button d-flex flex-wrap">
 
-                          <button type="button"
-                                  class="btn c-dark-green white-text"
-                                  data-toggle="modal" data-target="#jobsModal">
-                            {{ 'Gérer mes jobs'|t }}
-                          </button>
-                          <a href="{{ path('view.liste_candidatures.page_1') }}" type="button"
-                             class="btn c-green white-text">
-                            {{ 'Voir toutes les candidatures'|t }}
-                          </a>
-                        </div>
+                            <button type="button"
+                                    class="btn bg-c-dark-green"
+                                    data-toggle="modal" data-target="#jobsModal">
+                              {{ 'Gérer mes jobs'|t }}
+                            </button>
+                            <a href="{{ path('view.liste_candidatures.page_1') }}" type="button"
+                               class="btn bg-c-green">
+                              {{ 'Voir toutes les candidatures'|t }}
+                            </a>
+                          </div>
+                        {% else %}
+                          {% if user_id %}
+                            <a id="editProfile" class="btn bg-c-dark-green edit-profile"
+                               href="{{ path('entity.user.edit_form', {'user': user_id}) }}">
+                              {{ 'Complete your profile to use the site !'|t }}
+                            </a>
+                          {% endif %}
+                        {% endif %}
                       </div>
+
 
                       <div class="card-footer d-flex justify-content-center flex-wrap">
                         {% if user_id %}
-                          <a id="editProfile" class="btn c-light-green white-text edit-profile"
+                          <a id="editProfile" class="btn bg-c-light-green edit-profile"
                              href="{{ path('entity.user.edit_form', {'user': user_id}) }}">
                             {{ 'Modifier le profil'|t }}
                           </a>
                         {% endif %}
                         <a href="{{ path('user.logout') }}" type="button"
-                           class="btn c-lighten-green white-text logout">
+                           class="btn bg-c-lighten-green logout">
                           {{ 'Déconnexion'|t }}
                         </a>
                       </div>
@@ -134,7 +144,7 @@
                     <div class="modal fade" id="jobsModal" tabindex="-1" role="dialog" aria-labelledby="jobsModalLabel">
                       <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
-                          <div class="modal-header text-center c-dark-blue">
+                          <div class="modal-header text-center bg-c-dark-blue">
                             <h4 class="w-100 font-weight-light white-text">{{ 'Gérer les jobs'|t }}</h4>
                           </div>
                           <div class="modal-body px-1">
@@ -143,10 +153,10 @@
                           <div class="modal-footer align-center">
                             <a href="{{ path('node.add', {'node_type' : 'jobs'}) }}"
                                type="button"
-                               class="btn c-light-blue white-text">
+                               class="btn bg-c-light-blue">
                               {{ 'Ajouter un job'|t }}
                             </a>
-                            <button type="button" class="btn c-dark-blue white-text" data-dismiss="modal"
+                            <button type="button" class="btn bg-c-dark-blue" data-dismiss="modal"
                                     aria-label="Close">
                               {{ 'Retour'|t }}
                             </button>
@@ -172,33 +182,43 @@
                       </div>
 
                       <div class="card-body">
+                        {% if infos %}
                         <h4 class="card-title text-center">{{ username }}</h4>
                         <div class="action-button d-flex flex-wrap">
                           <button type="button"
-                                  class="btn c-dark-green white-text"
+                                  class="btn bg-c-dark-green"
                                   data-toggle="modal" data-target="#cvModal">
                             {{ 'Géres tes CVs'|t }}
                           </button>
                           <button type="button"
-                                  class="btn c-green white-text"
+                                  class="btn bg-c-green"
                                   data-toggle="modal" data-target="#searchModal">
                             {{ 'Trouve ton job'|t }}
                           </button>
-                          <a href="/vos-candidatures" type="button" class="btn c-light-green white-text">
+                          <a href="{{ path('view.liste_candidatures_candidat.page_1') }}" type="button"
+                             class="btn bg-c-light-green">
                             {{ 'Suis tes candidatures'|t }}
                           </a>
                         </div>
+                        {% else %}
+                          {% if user_id %}
+                            <a id="editProfile" class="btn bg-c-dark-green edit-profile"
+                               href="{{ path('entity.user.edit_form', {'user': user_id}) }}">
+                              {{ 'Complete your profile to use the site !'|t }}
+                            </a>
+                          {% endif %}
+                        {% endif %}
                       </div>
 
                       <div class="card-footer d-flex justify-content-center flex-wrap">
                         {% if user_id %}
-                          <a id="editProfile" class="btn c-lighten-green white-text edit-profile"
+                          <a id="editProfile" class="btn bg-c-lighten-green edit-profile"
                              href="{{ path('entity.user.edit_form', {'user': user_id}) }}">
                             {{ 'Modifier le profil'|t }}
                           </a>
                         {% endif %}
                         <a href="{{ path('user.logout') }}" type="button"
-                           class="btn c-lightest-green white-text logout">
+                           class="btn bg-c-lightest-green logout">
                           {{ 'Déconnexion'|t }}
                         </a>
                       </div>
@@ -208,7 +228,7 @@
                          aria-labelledby="cvModalLabel">
                       <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
-                          <div class="modal-header text-center c-dark-blue">
+                          <div class="modal-header text-center bg-c-dark-blue">
                             <h4 class="w-100 font-weight-light white-text">{{ 'Gères tes CVs'|t }}</h4>
                           </div>
                           <div class="modal-body px-1">
@@ -220,7 +240,7 @@
                             </div>
                           </div>
                           <div class="modal-footer align-center">
-                            <button type="button" class="btn c-dark-blue white-text" data-dismiss="modal"
+                            <button type="button" class="btn bg-c-dark-blue" data-dismiss="modal"
                                     aria-label="Close">
                               {{ 'Retour'|t }}
                             </button>
@@ -233,7 +253,7 @@
                          aria-labelledby="searchModalLabel">
                       <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
-                          <div class="modal-header text-center c-dark-blue">
+                          <div class="modal-header text-center bg-c-dark-blue">
                             <h4 class="w-100 font-weight-light white-text">{{ 'Trouve ton job'|t }}</h4>
                           </div>
                           <div class="modal-body">
@@ -257,8 +277,9 @@
                               {% endif %}
                             </div>
                             <div class="modal-footer d-flex justify-content-center">
-                              <a class="btn c-blue white-text" href="{{ path('view.jobs_index.page_1') }}">{{ 'Page de recherche'|t }}</a>
-                              <button type="button" class="btn c-dark-blue white-text" data-dismiss="modal"
+                              <a class="btn bg-c-blue"
+                                 href="{{ path('view.jobs_index.page_1') }}">{{ 'Page de recherche'|t }}</a>
+                              <button type="button" class="btn bg-c-dark-blue" data-dismiss="modal"
                                       aria-label="Close">
                                 {{ 'Retour'|t }}
                               </button>

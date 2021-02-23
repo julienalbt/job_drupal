@@ -34,8 +34,8 @@
   <div class="modal fade" id="submissionModal" tabindex="-1" role="dialog" aria-labelledby="submissionModalLabel">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
-        <div class="modal-header text-center c-dark-blue">
-          <h4 class="w-100 font-weight-light white-text">{{ 'Offre'|t }} : {{ sub_node_title }}</h4>
+        <div class="modal-header text-center bg-c-dark-blue">
+          <h4 class="w-100 font-weight-light white-text">{{ sub_node_title }}</h4>
         </div>
         <div class="modal-body px-3 d-flex flex-column justify-content-center align-items-center">
           <p>{{ sub_msg }}</p>
@@ -47,7 +47,7 @@
         </div>
         <div class="modal-footer d-flex flex-column justify-content-center align-items-center">
           <p class="mb-0">{{ 'Répondre par email à'|t }} : <a href="mailto:{{ sub_mail }}">{{ sub_mail }}</a></p>
-          <button type="button" class="btn c-dark-blue white-text my-3" data-dismiss="modal"
+          <button type="button" class="btn bg-c-dark-blue my-3" data-dismiss="modal"
                   aria-label="Close">
             {{ 'Retour'|t }}
           </button>
@@ -58,27 +58,43 @@
 
 {% else %}
 
-  <div class="card my-5">
-    <div class="card-header text-white border-0"
-         data-toggle="collapse"
-         data-target="#collapse_{{ sub_id }}"
-         aria-expanded="false"
-         aria-controls="collapse_{{ sub_id }}">
+  <div class="card">
+    <div class="card-header text-white border-0">
+      <p class="mb-0">{{ 'Date'|t }} : {{ sub_date }} - {{ sub_node_owner }}</p>
       {% if sub_node_title != '' %}
         <h2 class="h4">{{ 'Offre'|t }} : {{ sub_node_title }}</h2>
       {% else %}
         <h2 class="h4">{{ 'Offre supprimée'|t }}</h2>
       {% endif %}
-      <p class="mb-0">{{ 'Date'|t }} : {{ sub_date }}</p>
+      <button type="button"
+              class="btn btn-white"
+              data-toggle="modal" data-target="#submissionModal">
+        {{ 'Voir'|t }}
+      </button>
     </div>
+  </div>
 
-    <div id="collapse_{{ sub_id }}" class="collapse card-body jobs-card pt-0">
-      <p>{{ sub_msg }}</p>
-      {% if sub_cv %}
-        <a class="showCv btn btn-lg" target="_blank" href="{{ sub_cv }}">{{ 'Afficher le CV'|t }}</a>
-      {% else %}
-        <button class="showCv btn btn-lg">{{ 'CV supprimé'|t }}</button>
-      {% endif %}
+  <div class="modal fade" id="submissionModal" tabindex="-1" role="dialog" aria-labelledby="submissionModalLabel">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-center bg-c-dark-blue">
+          <h4 class="w-100 font-weight-light white-text">{{ sub_node_title }}</h4>
+        </div>
+        <div class="modal-body px-3 d-flex flex-column justify-content-center align-items-center">
+          <p>{{ sub_msg }}</p>
+          {% if sub_cv %}
+            <a class="showCv btn-lg" target="_blank" href="{{ sub_cv }}">{{ 'Afficher le CV'|t }}</a>
+          {% else %}
+            <button class="btn btn-dark btn-lg">{{ 'CV supprimé'|t }}</button>
+          {% endif %}
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button type="button" class="btn bg-c-dark-blue my-3" data-dismiss="modal"
+                  aria-label="Close">
+            {{ 'Retour'|t }}
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 

@@ -204,10 +204,20 @@ body[class*='page-user'] {
       }
     }
 
-    button#edit-submit {
-      height: 62px;
-      margin-bottom: 2rem;
-      margin-top: 40px;
+    #edit-field-adresse-0-value-map-actions {
+      display: none;
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: center;
+      margin: 50px 0;
+
+      button.form-submit {
+        height: 62px;
+        width: 250px;
+        border: none;
+      }
 
     }
   }

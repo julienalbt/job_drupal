@@ -1,32 +1,106 @@
 // CUSTOM COLORS
-.c-green {
+.bg-c-green {
   background-color: $c-green;
 }
 
-.c-light-green {
+.bg-c-light-green {
   background-color: $c-light-green;
 }
 
-.c-lighten-green {
+.bg-c-lighten-green {
   background-color: $c-lighten-green;
 }
 
-.c-lightest-green {
+.bg-c-lightest-green {
   background-color: $c-lightest-green;
 }
 
-.c-dark-green {
+.bg-c-dark-green {
   background-color: $c-dark-green;
 }
 
-.c-blue {
+.bg-c-blue {
   background-color: $c-blue;
 }
 
-.c-light-blue {
+.bg-c-light-blue {
   background-color: $c-light-blue;
 }
 
-.c-dark-blue {
+.bg-c-lighten-blue {
+  background-color: $c-lighten-blue;
+}
+
+.bg-c-lightest-blue {
+  background-color: $c-lightest-blue;
+}
+
+.bg-c-dark-blue {
   background-color: $c-dark-blue;
+}
+
+.bg-c-red {
+  background-color: $c-red;
+}
+
+.bg-c-light-red {
+  background-color: $c-light-red;
+}
+
+.bg-c-lighten-red {
+  background-color: $c-lighten-red;
+}
+
+.bg-c-lightest-red {
+  background-color: $c-lightest-red;
+}
+
+.bg-c-dark-red {
+  background-color: $c-dark-red;
+}
+
+.text-c-red {
+  color: $c-red;
+}
+
+.text-c-light-red {
+  color: $c-light-red;
+}
+
+.text-c-lighten-red {
+  color: $c-lighten-red;
+}
+
+.text-c-lightest-red {
+  color: $c-lightest-red;
+}
+
+.text-c-dark-red {
+  color: $c-dark-red;
+}
+
+.text-c-blue {
+  color: $c-blue;
+}
+
+.text-c-light-blue {
+  color: $c-light-blue;
+}
+
+.text-c-lighten-blue {
+  color: $c-lighten-blue;
+}
+
+.text-c-lightest-blue {
+  color: $c-lightest-blue;
+}
+
+.text-c-dark-blue {
+  color: $c-dark-blue;
+}
+
+button[class*="c-"], a[class*="c-"] {
+  &.btn {
+    color: white;
+  }
 }

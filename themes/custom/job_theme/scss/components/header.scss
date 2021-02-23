@@ -53,18 +53,10 @@
   color: $white;
 }
 
-.node--type-jobs.node--view-mode-full {
-
-  .job-bool {
-    width: 100%;
-    height: fit-content;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .job-junior, .job-tt {
-    flex-grow: 1;
+#block-job-theme-page-title {
+  .manage-job-btn {
+    height: 62px;
+    width: 106px;
+    border: none;
   }
 }

@@ -1,4 +1,6 @@
-.view-custom-soumissions-de-webform, .view-liste-candidatures, .view-liste-candidatures-candidat {
+.view-custom-soumissions-de-webform,
+.view-liste-candidatures,
+.view-liste-candidatures-candidat {
 
   .view-header {
     margin: 20px auto;
@@ -28,7 +30,7 @@
 
 }
 
-.view-liste-candidatures {
+.view-liste-candidatures, .view-liste-candidatures-candidat {
   .card {
     margin-bottom: 24px;
     margin-top: 24px;

@@ -1,3 +1,14 @@
 .node--type-jobs.node--view-mode-full {
+  .job-bool {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
 
+  .job-junior, .job-tt {
+    flex-grow: 1;
+  }
 }

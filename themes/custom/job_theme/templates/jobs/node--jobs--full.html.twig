@@ -72,15 +72,15 @@
 ] %}
 <article{{ attributes.addClass(classes) }}>
   <header>
-    <div class="job-bool c-dark-blue text-white text-center">
+    <div class="job-bool bg-c-dark-blue text-center">
       {% if node.field_junior.value %}
         <div class="job-junior col-12 col-sm-6">
-          <h2 class="h4">{{ 'Junior'|t }} <i class="fas fa-check deep-orange-text"></i></h2>
+          <h2 class="h4 white-text">{{ 'Junior'|t }} <i class="fas fa-check text-c-lightest-red"></i></h2>
         </div>
       {% endif %}
       {% if node.field_teletravail.value %}
         <div class="job-tt col-12 col-sm-6">
-          <h2 class="h4">{{ 'Télétravail'|t }} <i class="fas fa-check deep-orange-text"></i></h2>
+          <h2 class="h4 white-text">{{ 'Télétravail'|t }} <i class="fas fa-check text-c-lightest-red"></i></h2>
         </div>
       {% endif %}
     </div>
@@ -103,7 +103,7 @@
       <div class="row text-center my-5 mx-0">
 
         <div class="col-12 col-sm-6 col-lg-3 mb-3">
-          <div class="icon deep-orange-text"><i class="fas fa-suitcase fa-2x"></i></div>
+          <div class="icon text-c-lightest-red"><i class="fas fa-suitcase fa-2x"></i></div>
           <h2 class="h4">{{ 'Expériences'|t }}</h2>
           {% set tid = node.field_experience.target_id %}
           {% if tid %}
@@ -117,13 +117,13 @@
         </div>
 
         <div class="col-12 col-sm-6 col-lg-3 mb-3">
-          <div class="icon deep-orange-text"><i class="fas fa-building fa-2x"></i></div>
+          <div class="icon text-c-lightest-red"><i class="fas fa-building fa-2x"></i></div>
           <h2 class="h4">{{ 'Entreprise'|t }}</h2>
           <p>{{ owner }}</p>
         </div>
 
         <div class="col-12 col-sm-6 col-lg-3 mb-3">
-          <div class="icon deep-orange-text"><i class="fas fa-file-signature fa-2x"></i></div>
+          <div class="icon text-c-lightest-red"><i class="fas fa-file-signature fa-2x"></i></div>
           <h2 class="h4">{{ 'Type de contrat'|t }}</h2>
           {% set tid = node.field_type_de_contrat.target_id %}
           {% if tid %}
@@ -137,7 +137,7 @@
         </div>
 
         <div class="col-12 col-sm-6 col-lg-3 mb-3">
-          <div class="icon deep-orange-text"><i class="fas fa-dollar-sign fa-2x"></i></div>
+          <div class="icon text-c-lightest-red"><i class="fas fa-dollar-sign fa-2x"></i></div>
           <h2 class="h4">{{ 'Salaire'|t }}</h2>
           {% if node.field_salaire.value %}
             <p>{{ content.field_salaire }}</p>

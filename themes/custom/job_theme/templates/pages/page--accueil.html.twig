@@ -83,16 +83,16 @@
                   <h3 class="display-3 text-center white-text"></h3>
                   <div class="welcome-action d-flex justify-content-center flex-wrap">
                     {% if user_id == 0 %}
-                      <button type="button" class="btn c-dark-green white-text flex-1" data-toggle="modal"
+                      <button type="button" class="btn bg-c-dark-green flex-1" data-toggle="modal"
                               data-target="#modalLoginForm">
                         {{ "I have an account" }}
                       </button>
-                      <button type="button" class="btn c-lighten-green white-text flex-1" data-toggle="modal"
+                      <button type="button" class="btn bg-c-lighten-green flex-1" data-toggle="modal"
                               data-target="#modalRegisterForm">
                         {{ "I am new" }}
                       </button>
                     {% else %}
-                      <a class="btn c-lightest-green white-text" href="{{ path('entity.user.canonical', {'user': user_id}) }}">
+                      <a class="btn bg-c-lightest-green" href="{{ path('entity.user.canonical', {'user': user_id}) }}">
                         {{ "Go back to work" }}
                       </a>
                     {% endif %}
@@ -103,7 +103,7 @@
                        aria-hidden="true">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
-                        <div class="modal-header text-center c-dark-green">
+                        <div class="modal-header text-center bg-c-dark-green">
                           <h4 class="modal-title w-100 font-weight-light white-text">{{ 'Connexion' }}</h4>
                           <button type="button" class="close white-text" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -121,7 +121,7 @@
                        aria-hidden="true">
                     <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
-                        <div class="modal-header c-dark-green text-center">
+                        <div class="modal-header bg-c-dark-green text-center">
                           <h4 class="modal-title w-100 font-weight-light white-text">{{ 'Créer un compte'|t }}</h4>
                           <button type="button" class="close white-text" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>

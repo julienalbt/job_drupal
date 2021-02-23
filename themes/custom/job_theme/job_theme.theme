@@ -19,22 +19,22 @@ use Drupal\views\Views;
  * Replace Barrio setting options with subtheme ones.
  */
 function job_theme_form_system_theme_settings_alter(&$form, FormStateInterface $form_state) {
-  $form['components']['navbar']['bootstrap_barrio_navbar_top_background']['#options'] = array(
+  $form['components']['navbar']['bootstrap_barrio_navbar_top_background']['#options'] = [
     'bg-primary' => t('Primary'),
     'bg-secondary' => t('Secondary'),
     'bg-light' => t('Light'),
     'bg-dark' => t('Dark'),
     'bg-white' => t('White'),
     'bg-transparent' => t('Transparent'),
-  );
-  $form['components']['navbar']['bootstrap_barrio_navbar_background']['#options'] = array(
+  ];
+  $form['components']['navbar']['bootstrap_barrio_navbar_background']['#options'] = [
     'bg-primary' => t('Primary'),
     'bg-secondary' => t('Secondary'),
     'bg-light' => t('Light'),
     'bg-dark' => t('Dark'),
     'bg-white' => t('White'),
     'bg-transparent' => t('Transparent'),
-  );
+  ];
 }
 
 /**
@@ -117,7 +117,7 @@ function job_theme_preprocess_node__jobs__teaser(&$variables, $hook) {
   }
 
   $difference = abs(time() - $node->getCreatedTime());
-  $variables['node_date'] = intval(ceil($difference / 86400),10);
+  $variables['node_date'] = intval(ceil($difference / 86400), 10);
 
 }
 
@@ -159,7 +159,11 @@ function job_theme_preprocess_page__user(&$variables, $hook) {
   if (in_array("recruteur", $user->getRoles())) {
     $variables['recrut'] = TRUE;
     $society = $user->get('field_societe');
-    $variables['society'] = $society->value ? $society->value : $user->getEmail() ;
+    $variables['society'] = $society->value ? $society->value : $user->getEmail();
+  }
+
+  if (!empty($user->get('field_adresse')->getValue())) {
+    $variables['infos'] = TRUE;
   }
 
   // get user edit form.
@@ -195,6 +199,7 @@ function job_theme_preprocess_node__jobs__recruiter_list(&$variables, $hook) {
         'entity_type' => 'node',
         'entity_id' => $nid,
       ]);
+
       $variables['sub_count'] = count($webform_submission);
     }
   }
@@ -234,79 +239,68 @@ function job_theme_preprocess_page__accueil(&$variables, $hook) {
 function job_theme_preprocess_page_title(&$variables, $hook) {
   $user = \Drupal::currentUser();
   $userId = $user->id();
-  $userRole = $user->getRoles();
-  $url = \Drupal::request()->getPathInfo();
-  $arrayUrl = explode('/', $url);
-
   /** @var \Drupal\user\Entity\User $userLoaded */
   $userLoaded = User::load($userId);
-
-  // if PAGE = PROFILE.
-  if (end($arrayUrl) === "profile") {
-    $variables['page_profile'] = TRUE;
-    $variables['user_id'] = $userId;
-  }
-  // if PAGE = EDIT PROFILE.
-  elseif ($url === "/user/" . $userId . "/edit") {
-    $variables['user_id'] = $userId;
-    $variables['page_profile_edit'] = TRUE;
-  }
-
-  if (end($arrayUrl) === "jobs") {
-    $variables['page_job_edit'] = TRUE;
-    $variables['user_id'] = $userId;
-  }
-
-  // if ROLE = RECRUTEUR.
-  if (in_array("recruteur", $userRole)) {
-    $variables['user_role'] = 'recruteur';
-    $society = $userLoaded->get('field_societe')->value;
-    if (!empty($society)) {
-      $variables['page_title'] = $society;
-    }
-    else {
-      $variables['page_title'] = $user->getEmail();
-    }
-  }
-  // if ROLE = CANDIDAT.
-  elseif (in_array("candidat", $userRole)) {
-    $firstName = $userLoaded->get('field_prenom')->value;
-    $lastName = $userLoaded->get('field_nom')->value;
-    if (!empty($firstName) or !empty($lastName)) {
-      $variables['page_title'] = $firstName . ' ' . $lastName;
-    }
-    else {
-      $variables['page_title'] = $user->getEmail();
-    }
-    $variables['user_role'] = 'candidat';
-  }
-
-
+  $userRole = $user->getRoles();
+  $routeName = \Drupal::routeMatch()->getRouteName();
   $node = \Drupal::routeMatch()->getParameter('node');
+
   if ($node instanceof NodeInterface) {
     $nodeType = $node->getType();
     $nid = $node->id();
-    $storage = \Drupal::entityTypeManager()->getStorage('webform_submission');
-    $webform_submission = $storage->loadByProperties([
-      'entity_type' => 'node',
-      'entity_id' => $nid,
-      'uid' => $userId,
-    ]);
+    $variables['node_id'] = $nid;
+  }
 
-    if ($nodeType === "jobs") {
-      $variables['node_job_full'] = TRUE;
-      $variables['node_id'] = $nid;
-      // If user already submit the candidure webform.
+  $variables['user_id'] = $userId;
+
+  if (in_array("recruteur", $userRole)) {
+    $variables['user_role'] = 'recruteur';
+  }
+  elseif (in_array("candidat", $userRole)) {
+    $variables['user_role'] = 'candidat';
+  }
+
+  switch ($routeName) {
+    case 'entity.user.edit_form':
+      if (in_array("recruteur", $userRole)) {
+        $society = $userLoaded->get('field_societe')->value;
+        if (!empty($society)) {
+          $variables['title'] = $society;
+        }
+        else {
+          $variables['title'] = $user->getEmail();
+        }
+      }
+      elseif (in_array("candidat", $userRole)) {
+        $firstName = $userLoaded->get('field_prenom')->value;
+        $lastName = $userLoaded->get('field_nom')->value;
+        if (!empty($firstName) or !empty($lastName)) {
+          $variables['title'] = $firstName . ' ' . $lastName;
+        }
+        else {
+          $variables['title'] = $user->getEmail();
+        }
+      }
+      break;
+
+    case 'entity.node.canonical':
+      if ($nodeType === 'jobs') {
+        $storage = \Drupal::entityTypeManager()
+          ->getStorage('webform_submission');
+        $webform_submission = $storage->loadByProperties([
+          'entity_type' => 'node',
+          'entity_id' => $nid,
+          'uid' => $userId,
+        ]);
+        $uid = $node->uid->target_id;
+
+        $variables['uid'] = $uid;
+        $variables['page_job_full'] = TRUE;
+      }
       if (!empty($webform_submission)) {
         $variables['submitted'] = TRUE;
       }
-    }
-    if ($nodeType === "jobs" && end($arrayUrl) === "delete") {
-      $variables['node_job_delete'] = TRUE;
-    }
-    if ($nodeType === "jobs" && end($arrayUrl) === "submissions") {
-      $variables['node_job_submission'] = TRUE;
-    }
+      break;
   }
 }
 
@@ -347,6 +341,16 @@ function job_theme_preprocess_webform_submission_data__candidature(&$variables, 
   if ($submission_cv_url) {
     $variables['sub_cv'] = $submission_cv_value['#url']->toString();
   }
+  if ($node) {
+    /** @var \Drupal\user\Entity\User $nodeOwner */
+    $nodeOwner = $node->getOwner();
+    $societeField = $nodeOwner->get('field_societe');
+    if ($societeField) {
+      $owner = $node->getOwner()->get('field_societe')->value;
+      $variables['sub_node_owner'] = $owner;
+    }
+  }
+
   $variables['sub_node_title'] = $node ? $node->getTitle() : '';
   $variables['sub_id'] = $sid;
   $variables['sub_date'] = date('d/m/Y', $submission->getCompletedTime());
@@ -372,10 +376,10 @@ function job_theme_preprocess_webform_submission_data__candidature(&$variables, 
 /**
  * Implements hook_preprocess().
  */
-function job_theme_preprocess_node_edit_form__jobs(&$variables, $hook) {
-  $variables['form']['actions']['delete']['#attributes'] = [
-    'class' => ["btn btn-outline-danger"],
-  ];
+function job_theme_preprocess_input__submit_button(&$variables, $hook) {
+  /** @var \Drupal\Core\Template\Attribute $attributes */
+  $attributes = $variables['attributes'];
+  $attributes->removeClass('btn-primary');
 }
 
 /**
@@ -393,22 +397,38 @@ function job_theme_preprocess_user_form(&$variables, $hook) {
  * Implements hook_form_alter().
  */
 function job_theme_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  $formId = $form['#form_id'];
 
-  if ($formId === 'user_login_form') {
-    $form['actions']['submit']['#attributes']['class'] = [
-      'btn',
-      'btn-dark-green',
-      'btn-block',
-    ];
-  }
-
-  if ($formId === 'user_register_form') {
-    $form['actions']['submit']['#attributes']['class'] = [
-      'btn',
-      'btn-dark-green',
-      'btn-block',
-    ];
+  switch ($form_id) {
+    case 'user_register_form':
+    case 'user_login_form':
+      $form['actions']['submit']['#attributes']['class'] = [
+        'btn',
+        'btn-dark-green',
+        'btn-block',
+      ];
+      break;
+    case 'node_jobs_form':
+    case 'user_form':
+      $form['actions']['submit']['#attributes'] = [
+        'class' => ["bg-c-dark-blue"],
+      ];
+      break;
+    case 'node_jobs_edit_form':
+      $form['actions']['delete']['#attributes'] = [
+        'class' => ["btn btn-light"],
+      ];
+      $form['actions']['submit']['#attributes'] = [
+        'class' => ["bg-c-dark-blue"],
+      ];
+      break;
+    case 'node_jobs_delete_form':
+      $form['actions']['cancel']['#attributes'] = [
+        'class' => ["btn btn-light"],
+      ];
+      $form['actions']['submit']['#attributes'] = [
+        'class' => ["bg-c-red"],
+      ];
+      break;
   }
 }
 

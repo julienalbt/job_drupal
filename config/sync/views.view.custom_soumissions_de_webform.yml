@@ -337,7 +337,7 @@ display:
           admin_label: ''
           empty: true
           tokenize: false
-          content: 'Aucune soumission n''est disponible.'
+          content: 'There are currently no application for this job offer. '
           plugin_id: text_custom
       relationships: {  }
       arguments:

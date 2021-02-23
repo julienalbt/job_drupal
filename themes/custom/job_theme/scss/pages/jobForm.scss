@@ -16,10 +16,10 @@ form#node-jobs-form, form#node-jobs-edit-form {
       width: 250px;
       border: none;
       line-height: 35px;
-      transition: 0.5s;
+      transition: 0.3s ease-in;
 
       &:hover {
-        box-shadow: inset red 0 110px 1px 0;
+        box-shadow: inset $c-dark-red 0 62px 1px 0;
         color: white;
       }
     }
@@ -89,11 +89,32 @@ form#node-jobs-form, form#node-jobs-edit-form {
   }
 }
 
+// DELETE CONFIRM
 .node-jobs-delete-form {
   text-align: center;
-
+  margin-top: 20px;
   .form-actions {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 50px 0;
+
+    button.form-submit {
+      height: 62px;
+      width: 250px;
+      border: none;
+
+      &:hover {
+        background-color: $c-light-red;
+      }
+    }
+
+    a#edit-cancel {
+      height: 62px;
+      width: 250px;
+      border: none;
+      line-height: 35px;
+
+    }
   }
 }
