@@ -5,3 +5,10 @@ job_core.welcome:
     _title: 'Bienvenue'
   requirements:
     _permission: 'access content'
+job_core.delete_submission:
+  path: '/delete_sub/{sid}'
+  defaults:
+    _controller: '\Drupal\job_core\Controller\SubmissionController::delete'
+    _title: ''
+  requirements:
+    _permission: 'access content'

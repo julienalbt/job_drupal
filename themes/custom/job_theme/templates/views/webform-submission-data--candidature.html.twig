@@ -18,38 +18,51 @@
   view_mode ? 'webform-submission-data--view-mode-' ~ view_mode|clean_class,
 ] %}
 {% if user_role == 'recruteur' %}
-  <div class="card">
-    <div class="card-header text-white border-0">
-      <h2>{{ sub_user }}</h2>
-      <p class="mb-0">{{ 'Offre'|t }} : {{ sub_node_title }}</p>
-      <p class="mb-0">{{ 'A postulé le'|t }} : {{ sub_date }}</p>
-      <button type="button"
-              class="btn btn-white"
-              data-toggle="modal" data-target="#submissionModal">
-        {{ 'Voir'|t }}
-      </button>
-    </div>
-  </div>
+  <article class="col-lg-4 col-md-6 col-sm-12">
+    <div class="card p-0"
+         type="button"
+         data-toggle="modal" data-target="#submissionModal-{{ sub_id }}">
+      <div class="card-header text-white border-0 d-flex justify-content-center bg-c-blue">
+        {{ sub_node_title }}
+      </div>
 
-  <div class="modal fade" id="submissionModal" tabindex="-1" role="dialog" aria-labelledby="submissionModalLabel">
+      <div class="card-body">
+        <div class="text-align-center d-flex flex-column align-items-center">
+          <p>{{ sub_user }}</p>
+          <p>{{ 'Application date'|t }} : {{ sub_date }}</p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <div class="modal fade" id="submissionModal-{{ sub_id }}" tabindex="-1" role="dialog"
+       aria-labelledby="submissionModalLabel">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header text-center bg-c-dark-blue">
           <h4 class="w-100 font-weight-light white-text">{{ sub_node_title }}</h4>
         </div>
-        <div class="modal-body px-3 d-flex flex-column justify-content-center align-items-center">
-          <p>{{ sub_msg }}</p>
+        <div class="modal-body d-flex flex-column justify-content-center align-items-center">
+          <div class="sub-msg">{{ sub_msg }}</div>
           {% if sub_cv %}
-            <a class="showCv btn-lg" target="_blank" href="{{ sub_cv }}">{{ 'Afficher le CV'|t }}</a>
+            <a class="showCv btn-lg" target="_blank" href="{{ sub_cv }}">{{ 'Show CV'|t }}</a>
           {% else %}
-            <button class="btn btn-dark btn-lg">{{ 'Le candidat a supprimé son CV'|t }}</button>
+            <button class="btn btn-dark btn-lg">{{ 'the candidate has deleted his resume'|t }}</button>
           {% endif %}
+          <p class="mt-5 mb-0 text-align-center">{{ 'Contact'|t }} : <a href="mailto:{{ sub_mail }}">{{ sub_mail }}</a>
+          </p>
         </div>
-        <div class="modal-footer d-flex flex-column justify-content-center align-items-center">
-          <p class="mb-0">{{ 'Répondre par email à'|t }} : <a href="mailto:{{ sub_mail }}">{{ sub_mail }}</a></p>
-          <button type="button" class="btn bg-c-dark-blue my-3" data-dismiss="modal"
+        <div class="modal-footer d-flex justify-content-center my-3">
+          <button type="button"
+                  class="btn btn-lg bg-c-dark-blue"
+                  data-dismiss="modal"
                   aria-label="Close">
-            {{ 'Retour'|t }}
+            {{ 'Back'|t }}
+          </button>
+          <button type="button"
+                  class="btn btn-lg bg-c-dark-red"
+                  data-toggle="modal" data-target="#submissionDeleteModal-{{ sub_id }}">
+            {{ 'Delete'|t }}
           </button>
         </div>
       </div>
@@ -57,45 +70,90 @@
   </div>
 
 {% else %}
+  <article class="col-lg-4 col-md-6 col-sm-12">
+    <div class="card p-0"
+         type="button"
+         data-toggle="modal" data-target="#submissionModal-{{ sub_id }}">
+      <div class="card-header text-white border-0 d-flex justify-content-center bg-c-blue">
+        {{ sub_date }} - {{ sub_node_owner }}
+      </div>
 
-  <div class="card">
-    <div class="card-header text-white border-0">
-      <p class="mb-0">{{ 'Date'|t }} : {{ sub_date }} - {{ sub_node_owner }}</p>
-      {% if sub_node_title != '' %}
-        <h2 class="h4">{{ 'Offre'|t }} : {{ sub_node_title }}</h2>
-      {% else %}
-        <h2 class="h4">{{ 'Offre supprimée'|t }}</h2>
-      {% endif %}
-      <button type="button"
-              class="btn btn-white"
-              data-toggle="modal" data-target="#submissionModal">
-        {{ 'Voir'|t }}
-      </button>
+      <div class="card-body">
+        <div class="text-align-center d-flex justify-content-center">
+          {% if sub_node_title != '' %}
+            <p>{{ sub_node_title }}</p>
+          {% else %}
+            <p>{{ 'Offer deleted'|t }}</p>
+          {% endif %}
+        </div>
+      </div>
     </div>
-  </div>
+  </article>
 
-  <div class="modal fade" id="submissionModal" tabindex="-1" role="dialog" aria-labelledby="submissionModalLabel">
+  <div class="modal fade" id="submissionModal-{{ sub_id }}" tabindex="-1" role="dialog"
+       aria-labelledby="submissionModalLabel">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
+
         <div class="modal-header text-center bg-c-dark-blue">
           <h4 class="w-100 font-weight-light white-text">{{ sub_node_title }}</h4>
         </div>
+
         <div class="modal-body px-3 d-flex flex-column justify-content-center align-items-center">
-          <p>{{ sub_msg }}</p>
+          <div class="sub-msg">{{ sub_msg }}</div>
           {% if sub_cv %}
-            <a class="showCv btn-lg" target="_blank" href="{{ sub_cv }}">{{ 'Afficher le CV'|t }}</a>
+            <a class="showCv btn-lg" target="_blank" href="{{ sub_cv }}">{{ 'Show CV'|t }}</a>
           {% else %}
-            <button class="btn btn-dark btn-lg">{{ 'CV supprimé'|t }}</button>
+            <button class="btn btn-dark btn-lg">{{ 'CV deleted'|t }}</button>
           {% endif %}
         </div>
+
         <div class="modal-footer d-flex justify-content-center">
           <button type="button" class="btn bg-c-dark-blue my-3" data-dismiss="modal"
                   aria-label="Close">
-            {{ 'Retour'|t }}
+            {{ 'Back'|t }}
+          </button>
+          <button
+            type="button"
+            class="btn bg-c-red"
+            data-toggle="modal"
+            data-target="#submissionDeleteModal-{{ sub_id }}">
+            {{ 'Delete'|t }}
           </button>
         </div>
+
       </div>
     </div>
   </div>
 
 {% endif %}
+
+
+<div
+  class="modal fade bottom"
+  id="submissionDeleteModal-{{ sub_id }}"
+  tabindex="-1"
+  aria-labelledby="submissionDeleteModal-{{ sub_id }}"
+  aria-hidden="true">
+  <div class="modal-dialog modal-frame modal-bottom">
+    <div class="modal-content">
+      <div class="modal-body py-1 bg-c-dark-red">
+        <div class="d-flex flex-column justify-content-center align-items-center my-3">
+          <p class="mb-0 text-center white-text">{{ 'Are you sure you want to delete this application ?'|t }}</p>
+          <div class="d-flex justify-content-center">
+            <a type="button" class="btn btn-lg bg-c-lightest-red"
+               data-mdb-dismiss="modal"
+               href="{{ path('job_core.delete_submission', {'sid' : sub_id}) }}">
+              {{ 'Yes, delete' }}
+            </a>
+            <button type="button"
+                    class="btn btn-lg btn-light"
+                    data-dismiss="modal"
+                    aria-label="Close">{{ 'Cancel'|t }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

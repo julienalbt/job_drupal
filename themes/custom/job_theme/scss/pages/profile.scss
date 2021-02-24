@@ -31,7 +31,7 @@ body[class*='page-user'] {
     .cv-webform, #cvModal {
       label.webform-file-button {
         font-size: inherit;
-        border: 2px dashed #388e3c;
+        border: 1px solid $c-blue;
         padding: 5px;
       }
 
@@ -61,7 +61,7 @@ body[class*='page-user'] {
       .vbo-view-form {
 
         tr.selected td {
-          background-color: $red;
+          background-color: $c-red;
 
           a {
             color: white;
@@ -69,11 +69,11 @@ body[class*='page-user'] {
         }
 
         button.form-submit {
-          background-color: $red !important;
+          background-color: $c-red !important;
+          color: white;
 
           &:hover {
             box-shadow: 0 5px 11px 0 rgba(0, 0, 0, .18), 0 4px 15px 0 rgba(0, 0, 0, .15);
-            color: white;
           }
         }
       }

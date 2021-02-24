@@ -12,6 +12,7 @@ use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\user\Entity\User;
 use Drupal\views\Views;
+use Drupal\webform\Entity\WebformSubmission;
 
 /**
  * Implements hook_form_system_theme_settings_alter() for settings form.
@@ -306,6 +307,8 @@ function job_theme_preprocess_page_title(&$variables, $hook) {
 
 /**
  * Implements hook_preprocess().
+ *
+ * @throws \Drupal\Core\Entity\EntityStorageException
  */
 function job_theme_preprocess_webform_submission_data__candidature(&$variables, $hook) {
 
@@ -324,6 +327,7 @@ function job_theme_preprocess_webform_submission_data__candidature(&$variables, 
   $userConnectedRole = \Drupal::currentUser()->getRoles();
 
   // Get submission data field by field.
+  /**  @var \Drupal\Core\Render\Markup $submission_msg */
   $submission_msg = $variables['elements']['data']['container']['#value']['message_container']['#value']['#children']['message']['#value'];
 
   $submission_mail = $variables['elements']['data']['email']['#value'];
@@ -334,7 +338,6 @@ function job_theme_preprocess_webform_submission_data__candidature(&$variables, 
 
   // Create variable for template.
   if (gettype($submission_msg) !== 'array') {
-    /**  @var \Drupal\Core\Render\Markup $submission_msg */
     $variables['sub_msg'] = $submission_msg;
   }
   $variables['sub_mail'] = $submission_mail;

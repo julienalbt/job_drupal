@@ -99,6 +99,26 @@
   color: $c-dark-blue;
 }
 
+.text-c-green {
+  color: $c-green;
+}
+
+.text-c-light-green {
+  color: $c-light-green;
+}
+
+.text-c-lighten-green {
+  color: $c-lighten-green;
+}
+
+.text-c-lightest-green {
+  color: $c-lightest-green;
+}
+
+.text-c-dark-green {
+  color: $c-dark-green;
+}
+
 button[class*="c-"], a[class*="c-"] {
   &.btn {
     color: white;

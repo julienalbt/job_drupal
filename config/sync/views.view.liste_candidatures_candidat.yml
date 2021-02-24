@@ -8,6 +8,7 @@ dependencies:
     - webform.webform.candidature
   module:
     - user
+    - views_infinite_scroll
     - webform
     - webform_views
 id: liste_candidatures_candidat
@@ -318,6 +319,90 @@ display:
         context: '0'
         menu_name: main
         enabled: true
+      sorts:
+        completed:
+          id: completed
+          table: webform_submission
+          field: completed
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+          granularity: second
+          entity_type: webform_submission
+          entity_field: completed
+          plugin_id: date
+      defaults:
+        sorts: false
+        filters: false
+        filter_groups: false
+        style: false
+        row: false
+        header: false
+        pager: false
+      filters:
+        webform_id:
+          id: webform_id
+          table: webform_submission
+          field: webform_id
+          value:
+            candidature: candidature
+          entity_type: webform_submission
+          entity_field: webform_id
+          plugin_id: bundle
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      style:
+        type: default
+        options:
+          row_class: ''
+          default_row_class: true
+          uses_fields: false
+      row:
+        type: 'entity:webform_submission'
+        options:
+          relationship: none
+          view_mode: default
+      header:
+        result:
+          id: result
+          table: views
+          field: result
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          content: 'Displaying @start - @end of @total'
+          plugin_id: result
+      pager:
+        type: infinite_scroll
+        options:
+          items_per_page: 10
+          offset: 0
+          id: 0
+          total_pages: null
+          tags:
+            previous: ‹‹
+            next: ››
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+          views_infinite_scroll:
+            button_text: 'Load More'
+            automatically_load_content: false
     cache_metadata:
       max-age: -1
       contexts:
