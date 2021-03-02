@@ -119,8 +119,127 @@
   color: $c-dark-green;
 }
 
-button[class*="c-"], a[class*="c-"] {
-  &.btn {
-    color: white;
+.aut-sky {
+  &-bg {
+    background-color: $autumn-sky;
+
+    &-2 {
+      background-color: $autumn-sky-2;
+    }
+  }
+
+  &-text {
+    color: $autumn-sky;
+
+    &-2 {
+      color: $autumn-sky-2;
+    }
   }
 }
+
+.aut-road {
+  &-bg {
+    background-color: $autumn-road;
+
+    &-2 {
+      background-color: $autumn-road-2;
+    }
+  }
+
+  &-text {
+    color: $autumn-road;
+
+    &-2 {
+      color: $autumn-road-2;
+    }
+  }
+}
+
+.aut-wood {
+  &-bg {
+    background-color: $autumn-wood;
+
+    &.btn:hover {
+      color: #fff;
+    }
+
+    &-2 {
+      background-color: $autumn-wood-2;
+
+      &.btn:hover {
+        color: #fff;
+      }
+    }
+  }
+
+  &-text {
+    color: $autumn-wood;
+
+    &-2 {
+      color: $autumn-wood-2;
+    }
+  }
+}
+
+.aut-tomato {
+  &-bg {
+    background-color: $autumn-tomato;
+
+    &-2 {
+      background-color: $autumn-tomato-2;
+    }
+  }
+
+  &-text {
+    color: $autumn-tomato;
+
+    &-2 {
+      color: $autumn-tomato-2;
+    }
+  }
+}
+
+.aut-pumpkin {
+  &-bg {
+    background-color: $autumn-pumpkin;
+
+    &-2 {
+      background-color: $autumn-pumpkin-2;
+    }
+  }
+
+  &-text {
+    color: $autumn-pumpkin;
+
+    &-2 {
+      color: $autumn-pumpkin-2;
+    }
+  }
+}
+
+.aut-leaves {
+  &-bg {
+    background-color: $autumn-leaves;
+
+    &.btn:hover {
+      color: #fff;
+    }
+
+    &-2 {
+      background-color: $autumn-leaves-2;
+
+      &.btn:hover {
+        color: #fff;
+      }
+    }
+  }
+
+  &-text {
+    color: $autumn-leaves;
+
+    &-2 {
+      color: $autumn-leaves-2;
+    }
+  }
+}
+

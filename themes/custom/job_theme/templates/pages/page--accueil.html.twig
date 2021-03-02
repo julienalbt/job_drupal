@@ -83,11 +83,11 @@
                   <h3 class="display-3 text-center white-text"></h3>
                   <div class="welcome-action d-flex justify-content-center flex-wrap">
                     {% if user_id == 0 %}
-                      <button type="button" class="btn bg-c-dark-green flex-1" data-toggle="modal"
+                      <button type="button" class="btn aut-leaves-bg-2 white-text flex-1" data-toggle="modal"
                               data-target="#modalLoginForm">
                         {{ "I have an account" }}
                       </button>
-                      <button type="button" class="btn bg-c-lighten-green flex-1" data-toggle="modal"
+                      <button type="button" class="btn aut-leaves-bg flex-1" data-toggle="modal"
                               data-target="#modalRegisterForm">
                         {{ "I am new" }}
                       </button>
@@ -101,10 +101,10 @@
 
                   <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                        aria-hidden="true">
-                    <div class="modal-dialog" role="document">
+                    <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
-                        <div class="modal-header text-center bg-c-dark-green">
-                          <h4 class="modal-title w-100 font-weight-light white-text">{{ 'Connexion' }}</h4>
+                        <div class="modal-header text-center aut-leaves-bg-2">
+                          <h4 class="modal-title w-100 font-weight-light white-text">{{ 'Login' }}</h4>
                           <button type="button" class="close white-text" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
@@ -113,7 +113,7 @@
                           {{ login_form }}
                         </div>
                       </div>
-                    </div>
+                    </div>b
                   </div>
 
                   <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog"
@@ -121,8 +121,8 @@
                        aria-hidden="true">
                     <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
-                        <div class="modal-header bg-c-dark-green text-center">
-                          <h4 class="modal-title w-100 font-weight-light white-text">{{ 'Créer un compte'|t }}</h4>
+                        <div class="modal-header aut-leaves-bg-2 text-center">
+                          <h4 class="modal-title w-100 font-weight-light white-text">{{ 'Signup'|t }}</h4>
                           <button type="button" class="close white-text" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
@@ -136,15 +136,14 @@
 
                 </div>
 
-                <div class="welcome-slide">
-                  <ul class="slideshow">
-                    <li><span>Slide One</span></li>
-                    <li><span>Slide Two</span></li>
-                    <li><span>Slide Three</span></li>
-                    <li><span>Slide Four</span></li>
-                    <li><span>Slide Five</span></li>
-                  </ul>
-                </div>
+                <ul class="cb-slideshow">
+                  <li><span>Image 01</span></li>
+                  <li><span>Image 02</span></li>
+                  <li><span>Image 03</span><li>
+                  <li><span>Image 04</span></li>
+                  <li><span>Image 05</span></li>
+                  <li><span>Image 06</span></li>
+                </ul>
               </section>
             </main>
           </div>

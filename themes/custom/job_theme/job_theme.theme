@@ -406,8 +406,9 @@ function job_theme_form_alter(&$form, FormStateInterface $form_state, $form_id) 
     case 'user_login_form':
       $form['actions']['submit']['#attributes']['class'] = [
         'btn',
-        'btn-dark-green',
+        'aut-leaves-bg-2',
         'btn-block',
+        'white-text',
       ];
       break;
     case 'node_jobs_form':

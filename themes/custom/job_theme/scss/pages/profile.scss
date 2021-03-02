@@ -3,29 +3,70 @@ body[class*='page-user'] {
   // PAGE PROFILE
   .section-user {
 
-    .user-card {
-      display: flex;
-      overflow: hidden;
-      max-width: 430px;
-      transition: .8s;
+    .big-title-container {
+      color: rgba(255,255,255,0.7);
+      width: fit-content;
 
-      div.action-button {
-        button, a {
-          flex: 1 1 auto;
+      .h2-title {
+        text-align: center;
+      }
+
+      a {
+        flex: 1;
+        min-width: 160px;
+      }
+    }
+
+    .action-button {
+      margin: auto;
+
+      .button {
+        &-cv {
+          background: rgba(0,0,0,.3);
+        }
+        &-job {
+          background: rgba(0,0,0,.3);
+        }
+        &-application {
+          background: rgba(0,0,0,.3);
         }
       }
 
-      img {
-        max-width: 430px;
+      button, a {
+        color: rgba(255,255,255,0.7) !important;
+        backdrop-filter: blur(4px);
+        transition: .5s ease-out;
+        height: 150px;
+        width: 300px;
+        border: none;
+        border-radius: 2px;
+        margin: 20px;
+        font-size: large;
+        text-transform: uppercase;
+        padding: 10px;
+        text-align: center;
+
+        &:hover {
+          box-shadow: inset rgba(0,0,0,0.5) 0 150px 1px 0;
+          backdrop-filter: blur(2px);
+          color: #fff;
+        }
       }
     }
 
-    .cvContent, .searchContent {
-      position: absolute;
+    .button-edit-profile {
+      background: rgba(0,0,0,.5);
+      backdrop-filter: blur(0px);
+      &:hover {
+        color: #fff;
+      }
     }
-
-    .hide {
-      transform: translateX(-1000%);
+    .button-logout {
+      background: rgba(0,0,0,.5);
+      backdrop-filter: blur(0px);
+      &:hover {
+        color: #fff;
+      }
     }
 
     .cv-webform, #cvModal {

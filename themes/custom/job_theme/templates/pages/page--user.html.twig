@@ -169,60 +169,36 @@
 
                 {% else %}
 
-                  <div class="d-flex align-items-center justify-content-center profile-container">
+                  <div class="d-flex align-items-center flex-column justify-content-between profile-container">
 
-                    <div class="card user-card animated" id="mainContent">
-                      <div class="view overlay">
-                        {% if image %}
-                          <img src="{{ image }}" class="card-img-top" alt="profile-img"/>
-                        {% else %}
-                          <img src="{{ base_path ~ directory }}/images/default-image.png" class="card-img-top"
-                               alt="profile-img"/>
-                        {% endif %}
-                      </div>
-
-                      <div class="card-body">
-                        {% if infos %}
-                        <h4 class="card-title text-center">{{ username }}</h4>
-                        <div class="action-button d-flex flex-wrap">
-                          <button type="button"
-                                  class="btn bg-c-dark-green"
-                                  data-toggle="modal" data-target="#cvModal">
-                            {{ 'Géres tes CVs'|t }}
-                          </button>
-                          <button type="button"
-                                  class="btn bg-c-green"
-                                  data-toggle="modal" data-target="#searchModal">
-                            {{ 'Trouve ton job'|t }}
-                          </button>
-                          <a href="{{ path('view.liste_candidatures_candidat.page_1') }}" type="button"
-                             class="btn bg-c-light-green">
-                            {{ 'Suis tes candidatures'|t }}
-                          </a>
-                        </div>
-                        {% else %}
-                          {% if user_id %}
-                            <a id="editProfile" class="btn bg-c-dark-green edit-profile"
-                               href="{{ path('entity.user.edit_form', {'user': user_id}) }}">
-                              {{ 'Complete your profile to use the site !'|t }}
-                            </a>
-                          {% endif %}
-                        {% endif %}
-                      </div>
-
-                      <div class="card-footer d-flex justify-content-center flex-wrap">
-                        {% if user_id %}
-                          <a id="editProfile" class="btn bg-c-lighten-green edit-profile"
-                             href="{{ path('entity.user.edit_form', {'user': user_id}) }}">
-                            {{ 'Modifier le profil'|t }}
-                          </a>
-                        {% endif %}
-                        <a href="{{ path('user.logout') }}" type="button"
-                           class="btn bg-c-lightest-green logout">
-                          {{ 'Déconnexion'|t }}
+                    {% if infos %}
+                      <div class="action-button flex-wrap d-flex justify-content-center align-items-center">
+                        <button type="button"
+                                class="white-text font-weight-bolder button-cv"
+                                data-toggle="modal" data-target="#cvModal">
+                          {{ 'Manage CVs'|t }}
+                        </button>
+                        <button type="button"
+                                class="white-text font-weight-bolder button-job"
+                                data-toggle="modal" data-target="#searchModal">
+                          {{ 'Find your job'|t }}
+                        </button>
+                        <a href="{{ path('view.liste_candidatures_candidat.page_1') }}" type="button"
+                           class="white-text font-weight-bolder d-flex justify-content-center align-items-center button-application">
+                          {{ 'Manage applications'|t }}
                         </a>
                       </div>
-                    </div>
+                    {% else %}
+                      {% if user_id %}
+                        <div class="action-button d-flex flex-column align-items-center justify-content-center">
+                          <a id="editProfile"
+                             class="white-text font-weight-bolder d-flex justify-content-center align-items-center button-stop edit-profile"
+                             href="{{ path('entity.user.edit_form', {'user': user_id}) }}">
+                            {{ 'Complete your profile to use the site !'|t }}
+                          </a>
+                        </div>
+                      {% endif %}
+                    {% endif %}
 
                     <div class="modal fade" id="cvModal" tabindex="-1" role="dialog"
                          aria-labelledby="cvModalLabel">
@@ -289,21 +265,33 @@
                       </div>
                     </div>
 
-
+                    <div class="big-title-container d-flex flex-column align-items-center px-2 mx-auto">
+                      <h2 class="h2-title display-1">{{ username }}</h2>
+                      <div class="d-flex justify-content-center flex-wrap w-100">
+                        {% if user_id %}
+                          <a class="btn button-edit-profile font-weight-bolder"
+                          href="{{ path('entity.user.edit_form', {'user': user_id}) }}">
+                            {{ 'Edit profile'|t }}
+                          </a>
+                        {% endif %}
+                        <a href="{{ path('user.logout') }}" type="button"
+                           class="btn button-logout font-weight-bolder">
+                          {{ 'Logout'|t }}
+                        </a>
+                      </div>
+                    </div>
                   </div>
 
                 {% endif %}
 
-
-                <div class="welcome-slide">
-                  <ul class="slideshow">
-                    <li><span>Slide One</span></li>
-                    <li><span>Slide Two</span></li>
-                    <li><span>Slide Three</span></li>
-                    <li><span>Slide Four</span></li>
-                    <li><span>Slide Five</span></li>
-                  </ul>
-                </div>
+                <ul class="cb-slideshow">
+                  <li><span>Image 01</span></li>
+                  <li><span>Image 02</span></li>
+                  <li><span>Image 03</span></li>
+                  <li><span>Image 04</span></li>
+                  <li><span>Image 05</span></li>
+                  <li><span>Image 06</span></li>
+                </ul>
 
               </section>
             </main>
