@@ -40,13 +40,13 @@ body[class*='page-user'] {
         width: 300px;
         border: none;
         border-radius: 2px;
-        margin: 20px;
+        margin: 10px;
         font-size: large;
         text-transform: uppercase;
-        padding: 10px;
+        padding: 15px;
         text-align: center;
 
-        &:hover {
+        &:hover, &:active {
           box-shadow: inset rgba(0,0,0,0.5) 0 150px 1px 0;
           backdrop-filter: blur(2px);
           color: #fff;
@@ -57,14 +57,14 @@ body[class*='page-user'] {
     .button-edit-profile {
       background: rgba(0,0,0,.5);
       backdrop-filter: blur(0px);
-      &:hover {
+      &:hover, &:active {
         color: #fff;
       }
     }
     .button-logout {
       background: rgba(0,0,0,.5);
       backdrop-filter: blur(0px);
-      &:hover {
+      &:hover, &:active {
         color: #fff;
       }
     }
@@ -123,12 +123,9 @@ body[class*='page-user'] {
     // MEDIA QUERY
     @media all and (max-width: 425px) {
 
-      .user-card {
-        width: 100%;
-
-        img {
-          max-width: 150px;
-          margin: 15px auto 0;
+      .action-button {
+        button, a {
+          height: 100px;
         }
       }
 
