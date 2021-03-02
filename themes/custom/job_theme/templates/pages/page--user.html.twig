@@ -172,7 +172,7 @@
                   <div class="d-flex align-items-center flex-column justify-content-between profile-container">
 
                     {% if infos %}
-                      <div class="action-button flex-wrap d-flex justify-content-center align-items-center">
+                      <div class="action-button mx-auto mt-5 flex-wrap d-flex justify-content-center align-items-center">
                         <button type="button"
                                 class="white-text font-weight-bolder button-cv"
                                 data-toggle="modal" data-target="#cvModal">
@@ -190,7 +190,7 @@
                       </div>
                     {% else %}
                       {% if user_id %}
-                        <div class="action-button d-flex flex-column align-items-center justify-content-center">
+                        <div class="action-button mx-auto mt-5 d-flex flex-column align-items-center justify-content-center">
                           <a id="editProfile"
                              class="white-text font-weight-bolder d-flex justify-content-center align-items-center button-stop edit-profile"
                              href="{{ path('entity.user.edit_form', {'user': user_id}) }}">
