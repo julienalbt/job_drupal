@@ -409,7 +409,7 @@ function job_theme_form_alter(&$form, FormStateInterface $form_state, $form_id) 
         'aut-sky-bg-2',
         'btn-block',
         'white-text',
-        'mt-5',
+        'my-5',
       ];
       break;
     case 'node_jobs_form':
