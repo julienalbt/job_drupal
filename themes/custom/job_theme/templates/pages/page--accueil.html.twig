@@ -83,51 +83,54 @@
                   <h3 class="display-3 text-center white-text"></h3>
                   <div class="welcome-action d-flex justify-content-center flex-wrap">
                     {% if user_id == 0 %}
-                      <button type="button" class="btn aut-leaves-bg-2 white-text flex-1" data-toggle="modal"
+                      <button type="button" class="btn button-login font-weight-bolder" data-toggle="modal"
                               data-target="#modalLoginForm">
                         {{ "I have an account" }}
                       </button>
-                      <button type="button" class="btn aut-leaves-bg flex-1" data-toggle="modal"
+                      <button type="button" class="btn button-register font-weight-bolder" data-toggle="modal"
                               data-target="#modalRegisterForm">
                         {{ "I am new" }}
                       </button>
                     {% else %}
-                      <a class="btn bg-c-lightest-green" href="{{ path('entity.user.canonical', {'user': user_id}) }}">
+                      <a class="btn button-go-back font-weight-bolder"
+                         href="{{ path('entity.user.canonical', {'user': user_id}) }}">
                         {{ "Go back to work" }}
                       </a>
                     {% endif %}
                   </div>
 
 
-                  <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                  <div class="modal fade actions-modal" id="modalLoginForm" tabindex="-1" role="dialog"
+                       aria-labelledby="myModalLabel"
                        aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen"
+                         role="document">
                       <div class="modal-content">
-                        <div class="modal-header text-center aut-leaves-bg-2">
-                          <h4 class="modal-title w-100 font-weight-light white-text">{{ 'Login' }}</h4>
-                          <button type="button" class="close white-text" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
+                        <div class="modal-header d-flex flex-column align-items-center mx-auto">
+                          <i class="fas fa-times fa-2x white-text text-center cursor-pointer" data-dismiss="modal"
+                             aria-label="Close"></i>
+                          <h4 class="h2 mb-4 font-weight-bolder white-text">{{ 'LOGIN' }}</h4>
                         </div>
-                        <div class="modal-body mx-3">
+                        <div class="white-text modal-body d-flex flex-column align-items-center">
                           {{ login_form }}
                         </div>
                       </div>
-                    </div>b
+                    </div>
+                    b
                   </div>
 
-                  <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog"
+                  <div class="modal fade actions-modal" id="modalRegisterForm" tabindex="-1" role="dialog"
                        aria-labelledby="myModalLabel"
                        aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen"
+                         role="document">
                       <div class="modal-content">
-                        <div class="modal-header aut-leaves-bg-2 text-center">
-                          <h4 class="modal-title w-100 font-weight-light white-text">{{ 'Signup'|t }}</h4>
-                          <button type="button" class="close white-text" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
+                        <div class="modal-header d-flex flex-column align-items-center mx-auto">
+                          <i class="fas fa-times fa-2x white-text text-center cursor-pointer" data-dismiss="modal"
+                             aria-label="Close"></i>
+                          <h4 class="h2 mb-4 font-weight-bolder white-text">{{ 'REGISTER' }}</h4>
                         </div>
-                        <div class="modal-body mx-3">
+                        <div class="white-text modal-body d-flex flex-column align-items-center">
                           {{ register_form }}
                         </div>
                       </div>
@@ -139,7 +142,7 @@
                 <ul class="cb-slideshow">
                   <li><span>Image 01</span></li>
                   <li><span>Image 02</span></li>
-                  <li><span>Image 03</span><li>
+                  <li><span>Image 03</span></li>
                   <li><span>Image 04</span></li>
                   <li><span>Image 05</span></li>
                   <li><span>Image 06</span></li>

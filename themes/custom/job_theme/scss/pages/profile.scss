@@ -19,19 +19,8 @@ body[class*='page-user'] {
 
     .action-button {
 
-      .button {
-        &-cv {
-          background: rgba(0,0,0,.3);
-        }
-        &-job {
-          background: rgba(0,0,0,.3);
-        }
-        &-application {
-          background: rgba(0,0,0,.3);
-        }
-      }
-
       button, a {
+        background: rgba(0,0,0,.3);
         color: rgba(255,255,255,0.7) !important;
         backdrop-filter: blur(4px);
         transition: .5s ease-out;
@@ -53,13 +42,7 @@ body[class*='page-user'] {
       }
     }
 
-    .button-edit-profile {
-      background: rgba(0,0,0,.5);
-      backdrop-filter: blur(0px);
-      &:hover, &:active {
-        color: #fff;
-      }
-    }
+    .button-edit-profile,
     .button-logout {
       background: rgba(0,0,0,.5);
       backdrop-filter: blur(0px);
@@ -71,8 +54,8 @@ body[class*='page-user'] {
     .cv-webform, #cvModal {
       label.webform-file-button {
         font-size: inherit;
-        border: 1px solid $c-blue;
-        padding: 5px;
+        background-color: rgba(110,118,150,0.8);
+        padding: 10px;
       }
 
       .view-content {
@@ -101,7 +84,7 @@ body[class*='page-user'] {
       .vbo-view-form {
 
         tr.selected td {
-          background-color: $c-red;
+          background-color: rgba(204,85,68,0.8);
 
           a {
             color: white;
@@ -109,12 +92,8 @@ body[class*='page-user'] {
         }
 
         button.form-submit {
-          background-color: $c-red !important;
+          background-color: rgba(204,85,68,0.8) !important;
           color: white;
-
-          &:hover {
-            box-shadow: 0 5px 11px 0 rgba(0, 0, 0, .18), 0 4px 15px 0 rgba(0, 0, 0, .15);
-          }
         }
       }
     }

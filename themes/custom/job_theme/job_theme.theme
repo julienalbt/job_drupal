@@ -406,7 +406,7 @@ function job_theme_form_alter(&$form, FormStateInterface $form_state, $form_id) 
     case 'user_login_form':
       $form['actions']['submit']['#attributes']['class'] = [
         'btn',
-        'aut-leaves-bg-2',
+        'aut-sky-bg-2',
         'btn-block',
         'white-text',
       ];

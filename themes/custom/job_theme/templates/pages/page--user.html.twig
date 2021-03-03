@@ -216,14 +216,14 @@
                       </div>
                     </div>
 
-                    <div class="modal fade" id="cvModal" tabindex="-1" role="dialog"
+                    <div class="modal fade actions-modal" id="cvModal" tabindex="-1" role="dialog"
                          aria-labelledby="cvModalLabel">
-                      <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen" role="document">
                         <div class="modal-content">
-                          <div class="modal-header text-center bg-c-dark-blue">
-                            <h4 class="w-100 font-weight-light white-text">{{ 'Gères tes CVs'|t }}</h4>
+                          <div class="modal-header text-center">
+                            <h4 class="w-100 font-weight-light white-text">{{ 'Manage CVs'|t }}</h4>
                           </div>
-                          <div class="modal-body px-1">
+                          <div class="modal-body d-flex flex-column justify-content-center px-1">
                             <div class="add-file-webform mb-4">
                               {{ drupal_entity('webform', 'add_file') }}
                             </div>
@@ -241,14 +241,14 @@
                       </div>
                     </div>
 
-                    <div class="modal fade" id="searchModal" tabindex="-1" role="dialog"
+                    <div class="modal fade actions-modal" id="searchModal" tabindex="-1" role="dialog"
                          aria-labelledby="searchModalLabel">
-                      <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen" role="document">
                         <div class="modal-content">
-                          <div class="modal-header text-center bg-c-dark-blue">
-                            <h4 class="w-100 font-weight-light white-text">{{ 'Trouve ton job'|t }}</h4>
+                          <div class="modal-header text-center">
+                            <h4 class="w-100 font-weight-light white-text">{{ 'Find your job'|t }}</h4>
                           </div>
-                          <div class="modal-body">
+                          <div class="modal-body d-flex flex-column justify-content-center px-1">
                             <div class="skills p-3 d-flex justify-content-center flex-wrap">
                               {% if skills %}
                                 {% for key, skill in skills %}
@@ -257,12 +257,12 @@
                                      role="button">{{ skill }}</a>
                                 {% endfor %}
                               {% else %}
-                                <p>{{ "Vous n'avez renseigné aucun skills dans votre profil" }}</p>
+                                <p>{{ "Edit your profile with some skills in order to display search shortcut" }}</p>
                                 {% if user_id %}
                                   <small>
                                     <a href="{{ path('entity.user.edit_form', {'user': user_id}) }}#edit-field-skills"
                                        class="white-text">
-                                      {{ 'Cliquez ici pour en ajouter'|t }}
+                                      {{ 'Clic here to add some skills'|t }}
                                     </a>
                                   </small>
                                 {% endif %}
