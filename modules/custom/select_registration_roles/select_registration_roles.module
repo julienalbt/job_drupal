@@ -46,7 +46,7 @@ function select_registration_roles_form_alter(&$form, FormStateInterface $form_s
 
           $form['select_roles'] = [
             '#type' => 'radios',
-            '#title' => t('Candidat ou Recruteur ?'),
+            '#title' => t('Candidate or recruiter ?'),
             '#required' => TRUE,
             '#options' => $roles,
             '#cache' => [
