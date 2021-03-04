@@ -99,10 +99,11 @@
   .button-register,
   .button-go-back {
     flex: 1;
-    min-width: 160px;
+    min-width: max-content;
     color: rgba(255,255,255,0.7) !important;
     background: rgba(0,0,0,.5);
     backdrop-filter: blur(0px);
+    height: 60px;
     &:hover, &:active {
       color: #fff;
     }

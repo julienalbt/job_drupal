@@ -78,18 +78,18 @@
               <section class="section">
                 <a id="main-content" tabindex="-1"></a>
 
-                <div class="welcome-container d-flex flex-column justify-content-center align-items-center">
+                <div class="container welcome-container d-flex flex-column justify-content-center align-items-center">
                   <h2 class="display-3 text-center white-text px-1">Relax & Get your job</h2>
                   <h3 class="display-3 text-center white-text"></h3>
                   <div class="welcome-action d-flex justify-content-center flex-wrap">
                     {% if user_id == 0 %}
                       <button type="button" class="btn button-login font-weight-bolder" data-toggle="modal"
                               data-target="#modalLoginForm">
-                        {{ "I have an account" }}
+                        {{ "I HAVE AN ACCOUNT" }}
                       </button>
                       <button type="button" class="btn button-register font-weight-bolder" data-toggle="modal"
                               data-target="#modalRegisterForm">
-                        {{ "I am new" }}
+                        {{ "I WANT AN ACCOUNT" }}
                       </button>
                     {% else %}
                       <a class="btn button-go-back font-weight-bolder"
