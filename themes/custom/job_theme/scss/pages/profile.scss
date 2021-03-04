@@ -37,7 +37,7 @@ body[class*='page-user'] {
         &:hover, &:active {
           box-shadow: inset rgba(0,0,0,0.5) 0 150px 1px 0;
           backdrop-filter: blur(2px);
-          color: #fff;
+          color: #fff !important;
         }
       }
     }
@@ -51,11 +51,27 @@ body[class*='page-user'] {
       }
     }
 
+    .no-skill {
+      color: rgba(255,255,255,0.7);
+    }
+
     .cv-webform, #cvModal {
       label.webform-file-button {
         font-size: inherit;
-        background-color: rgba(110,118,150,0.8);
+        border: 1px dashed $autumn-sky-2;
         padding: 10px;
+        margin-bottom: 15px;
+        color: rgba(255,255,255,0.7);
+        transition: 0.3s ease-in;
+
+        &:hover {
+          color: white;
+          border: 1px dashed $autumn-sky;
+        }
+      }
+
+      .webform-button--submit {
+        background-color: $autumn-sky-2 !important;
       }
 
       .view-content {
@@ -82,6 +98,12 @@ body[class*='page-user'] {
       }
 
       .vbo-view-form {
+        td {
+          transition: 0.3s ease-in;
+          a {
+            color: rgba(255,255,255,0.7);
+          }
+        }
 
         tr.selected td {
           background-color: rgba(204,85,68,0.8);
@@ -94,6 +116,11 @@ body[class*='page-user'] {
         button.form-submit {
           background-color: rgba(204,85,68,0.8) !important;
           color: white;
+          transition: 0.3s ease-in;
+
+          &:hover {
+            background-color: rgba(217,68,48,0.8) !important;
+          }
         }
       }
     }

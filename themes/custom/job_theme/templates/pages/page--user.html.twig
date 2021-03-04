@@ -176,16 +176,16 @@
                         <button type="button"
                                 class="white-text font-weight-bolder button-cv"
                                 data-toggle="modal" data-target="#cvModal">
-                          {{ 'Manage CVs'|t }}
+                          {{ 'MANAGE CV'|t }}
                         </button>
                         <button type="button"
                                 class="white-text font-weight-bolder button-job"
                                 data-toggle="modal" data-target="#searchModal">
-                          {{ 'Find your job'|t }}
+                          {{ 'FIND YOUR JOB'|t }}
                         </button>
                         <a href="{{ path('view.liste_candidatures_candidat.page_1') }}" type="button"
                            class="white-text font-weight-bolder d-flex justify-content-center align-items-center button-application">
-                          {{ 'Manage applications'|t }}
+                          {{ 'MANAGE APPLICATIONS'|t }}
                         </a>
                       </div>
                     {% else %}
@@ -194,7 +194,7 @@
                           <a id="editProfile"
                              class="white-text font-weight-bolder d-flex justify-content-center align-items-center button-stop edit-profile"
                              href="{{ path('entity.user.edit_form', {'user': user_id}) }}">
-                            {{ 'Complete your profile to use the site !'|t }}
+                            {{ 'COMPLETE YOUR PROFILE IN ORDER TO USE THE WEBSITE !'|t }}
                           </a>
                         </div>
                       {% endif %}
@@ -206,22 +206,23 @@
                         {% if user_id %}
                           <a class="btn button-edit-profile font-weight-bolder"
                              href="{{ path('entity.user.edit_form', {'user': user_id}) }}">
-                            {{ 'Edit profile'|t }}
+                            {{ 'EDIT PROFILE'|t }}
                           </a>
                         {% endif %}
                         <a href="{{ path('user.logout') }}" type="button"
                            class="btn button-logout font-weight-bolder">
-                          {{ 'Logout'|t }}
+                          {{ 'LOGOUT'|t }}
                         </a>
                       </div>
                     </div>
 
                     <div class="modal fade actions-modal" id="cvModal" tabindex="-1" role="dialog"
                          aria-labelledby="cvModalLabel">
-                      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen" role="document">
+                      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen"
+                           role="document">
                         <div class="modal-content">
                           <div class="modal-header text-center">
-                            <h4 class="w-100 font-weight-light white-text">{{ 'Manage CVs'|t }}</h4>
+                            <h4 class="w-100 font-weight-light white-text">{{ 'MANAGE CV'|t }}</h4>
                           </div>
                           <div class="modal-body d-flex flex-column justify-content-center px-1">
                             <div class="add-file-webform mb-4">
@@ -231,11 +232,10 @@
                               {{ drupal_view('liste_cv_candidat', 'block_1') }}
                             </div>
                           </div>
-                          <div class="modal-footer align-center">
-                            <button type="button" class="btn bg-c-dark-blue" data-dismiss="modal"
-                                    aria-label="Close">
-                              {{ 'Retour'|t }}
-                            </button>
+                          <div class="modal-footer d-flex flex-column align-items-center justify-content-center"
+                               data-dismiss="modal" aria-label="Close">
+                            <i class="fas fa-times fa-2x white-text text-center cursor-pointer"></i>
+                            <h4 class="h2 mb-4 font-weight-bolder white-text">{{ 'CLOSE' }}</h4>
                           </div>
                         </div>
                       </div>
@@ -243,12 +243,13 @@
 
                     <div class="modal fade actions-modal" id="searchModal" tabindex="-1" role="dialog"
                          aria-labelledby="searchModalLabel">
-                      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen" role="document">
+                      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen"
+                           role="document">
                         <div class="modal-content">
                           <div class="modal-header text-center">
-                            <h4 class="w-100 font-weight-light white-text">{{ 'Find your job'|t }}</h4>
+                            <h4 class="w-100 font-weight-light white-text">{{ 'FIND YOUR JOB'|t }}</h4>
                           </div>
-                          <div class="modal-body d-flex flex-column justify-content-center px-1">
+                          <div class="modal-body d-flex flex-column justify-content-center container">
                             <div class="skills p-3 d-flex justify-content-center flex-wrap">
                               {% if skills %}
                                 {% for key, skill in skills %}
@@ -257,25 +258,24 @@
                                      role="button">{{ skill }}</a>
                                 {% endfor %}
                               {% else %}
-                                <p>{{ "Edit your profile with some skills in order to display search shortcut" }}</p>
+                                <p class="text-center no-skill">{{ "Edit your profile with some skills in order to display search shortcuts" }}</p>
                                 {% if user_id %}
                                   <small>
                                     <a href="{{ path('entity.user.edit_form', {'user': user_id}) }}#edit-field-skills"
-                                       class="white-text">
-                                      {{ 'Clic here to add some skills'|t }}
+                                       class="white-text btn">
+                                      {{ 'Click here to add some skills'|t }}
                                     </a>
                                   </small>
                                 {% endif %}
                               {% endif %}
                             </div>
-                            <div class="modal-footer d-flex justify-content-center">
-                              <a class="btn bg-c-blue"
-                                 href="{{ path('view.jobs_index.page_1') }}">{{ 'Page de recherche'|t }}</a>
-                              <button type="button" class="btn bg-c-dark-blue" data-dismiss="modal"
-                                      aria-label="Close">
-                                {{ 'Retour'|t }}
-                              </button>
-                            </div>
+                            <a class="btn white-text aut-sky-bg-2"
+                               href="{{ path('view.jobs_index.page_1') }}">{{ 'SEARCH PAGE'|t }}</a>
+                          </div>
+                          <div class="modal-footer d-flex flex-column align-items-center justify-content-center"
+                               data-dismiss="modal" aria-label="Close">
+                            <i class="fas fa-times fa-2x white-text text-center cursor-pointer"></i>
+                            <h4 class="h2 mb-4 font-weight-bolder white-text">{{ 'CLOSE' }}</h4>
                           </div>
                         </div>
                       </div>
