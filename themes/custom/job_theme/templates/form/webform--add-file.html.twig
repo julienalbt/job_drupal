@@ -25,8 +25,8 @@
 <form{{ attributes }}>
   {% if view_rows == 10 %}
     <div>
-      <p>Vous avez atteint la limite des 10 CVs.</p>
-      <p>Supprimez en pour en importez de nouveau.</p>
+      <p>{{ "You reach the limite of 10 CVs."|t }}</p>
+      <p>{{ "Delete some to add new."|t }}</p>
     </div>
   {% else %}
     {{ title_prefix }}

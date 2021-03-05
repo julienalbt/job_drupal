@@ -70,6 +70,11 @@ body[class*='page-user'] {
         }
       }
 
+      button[name="add_cv_remove_button"] {
+        background-color: $autumn-tomato;
+        color: white;
+      }
+
       .webform-button--submit {
         background-color: $autumn-sky-2 !important;
       }

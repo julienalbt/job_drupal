@@ -411,6 +411,7 @@ function job_theme_form_alter(&$form, FormStateInterface $form_state, $form_id) 
         'white-text',
         'my-5',
       ];
+      $form['#attributes']['class'][] = 'container';
       break;
     case 'node_jobs_form':
     case 'user_form':

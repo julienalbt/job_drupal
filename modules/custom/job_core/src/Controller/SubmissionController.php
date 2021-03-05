@@ -32,7 +32,7 @@ class SubmissionController extends ControllerBase {
       $submission->delete();
     }
 
-    return new RedirectResponse(Url::fromRoute('view.liste_candidatures_candidat.page_1')->toString(), 301);
+    return new RedirectResponse(Url::fromRoute('view.candidate_application_list.page_1')->toString(), 301);
   }
 
 }

@@ -12,48 +12,46 @@
 #}
 {{ attach_library('bootstrap_barrio/form') }}
 <form{{ attributes }}>
-  <div class="container">
-    <div class="d-flex flex-wrap">
-      <div class="mr-2">
-        {{ form.field_image }}
-      </div>
-      <div>
-        {{ form.field_prenom }}
-        {{ form.field_nom }}
-        {{ form.field_societe }}
-      </div>
+  <div class="d-flex flex-wrap">
+    <div class="mr-2">
+      {{ form.field_image }}
     </div>
-    {{ form.field_secteur_activite }}
-    {{ form.field_description }}
     <div>
-      {{ form.field_adresse }}
+      {{ form.field_prenom }}
+      {{ form.field_nom }}
+      {{ form.field_societe }}
     </div>
-    {{ form.field_skills }}
+  </div>
+  {{ form.field_secteur_activite }}
+  {{ form.field_description }}
+  <div>
+    {{ form.field_adresse }}
+  </div>
+  {{ form.field_skills }}
 
 
-    {% if form_id == 'user_form' %}
-      <div class="accordion mb-5" id="userAccount">
-        <div class="card">
-          <div class="card-header mail-wrapper" id="headingOne">
-            <h2 class="mb-0">
-              <button class="btn btn-link btn-block text-left btn-user-acc text-light" type="button"
-                      data-toggle="collapse" data-target="#account" aria-expanded="true" aria-controls="account">
-                {{ 'Email et mot de passe'|t }}
-              </button>
-            </h2>
-          </div>
+  {% if form_id == 'user_form' %}
+    <div class="accordion mb-5" id="userAccount">
+      <div class="card">
+        <div class="card-header mail-wrapper" id="headingOne">
+          <h2 class="mb-0">
+            <button class="btn btn-link btn-block text-left btn-user-acc text-light" type="button"
+                    data-toggle="collapse" data-target="#account" aria-expanded="true" aria-controls="account">
+              {{ 'Email et mot de passe'|t }}
+            </button>
+          </h2>
+        </div>
 
-          <div id="account" class="collapse" aria-labelledby="headingOne" data-parent="#userAccount">
-            <div class="card-body">
-              {{ form.account }}
-            </div>
+        <div id="account" class="collapse" aria-labelledby="headingOne" data-parent="#userAccount">
+          <div class="card-body">
+            {{ form.account }}
           </div>
         </div>
       </div>
-    {% else %}
-      {{ form.account }}
-    {% endif %}
-    {{ form|without('account', 'field_societe', 'field_secteur_activite', 'field_adresse', 'field_image',
-      'field_description', 'field_prenom', 'field_nom', 'field_skills') }}
-  </div>
+    </div>
+  {% else %}
+    {{ form.account }}
+  {% endif %}
+  {{ form|without('account', 'field_societe', 'field_secteur_activite', 'field_adresse', 'field_image',
+    'field_description', 'field_prenom', 'field_nom', 'field_skills') }}
 </form>

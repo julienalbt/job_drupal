@@ -1,18 +1,19 @@
-uuid: e387408e-169f-4121-bff3-6c0bd6f4ce20
-langcode: fr
+uuid: 2739886c-53e5-409c-a59d-3389a124f24d
+langcode: en
 status: true
 dependencies:
   config:
     - system.menu.main
-    - user.role.candidat
+    - user.role.recruteur
     - webform.webform.candidature
   module:
+    - node
     - user
     - views_infinite_scroll
     - webform
     - webform_views
-id: liste_candidatures_candidat
-label: 'Liste candidatures candidat'
+id: recruiter_application_list
+label: 'Recruiter application list'
 module: views
 description: ''
 tag: ''
@@ -29,7 +30,7 @@ display:
         type: role
         options:
           role:
-            candidat: candidat
+            recruteur: recruteur
       cache:
         type: tag
         options: {  }
@@ -52,12 +53,15 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       pager:
-        type: mini
+        type: infinite_scroll
         options:
           items_per_page: 10
           offset: 0
           id: 0
           total_pages: null
+          tags:
+            previous: ‹‹
+            next: ››
           expose:
             items_per_page: false
             items_per_page_label: 'Items per page'
@@ -66,9 +70,9 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
-          tags:
-            previous: ‹‹
-            next: ››
+          views_infinite_scroll:
+            button_text: 'Load More'
+            automatically_load_content: false
       style:
         type: default
         options:
@@ -83,7 +87,7 @@ display:
       fields:
         webform_submission_value:
           id: webform_submission_value
-          table: webform_submission_field_candidature_candidature
+          table: webform_submission_field_application_candidature
           field: webform_submission_value
           relationship: none
           group_type: group
@@ -197,24 +201,19 @@ display:
           expose:
             operator_limit_selection: false
             operator_list: {  }
-      sorts:
-        created:
-          id: created
-          table: webform_submission
-          field: created
+      sorts: {  }
+      title: 'Application list'
+      header:
+        result:
+          id: result
+          table: views
+          field: result
           relationship: none
           group_type: group
           admin_label: ''
-          order: DESC
-          exposed: false
-          expose:
-            label: ''
-          granularity: second
-          entity_type: webform_submission
-          entity_field: created
-          plugin_id: date
-      title: 'Liste des candidatures'
-      header: {  }
+          empty: false
+          content: 'Displaying @start - @end of @total'
+          plugin_id: result
       footer: {  }
       empty:
         area:
@@ -227,16 +226,27 @@ display:
           empty: true
           tokenize: false
           content:
-            value: 'Vous n''avez postulé à aucune offre d''emploi ces 3 derniers mois.'
+            value: 'There are currently no application for your job offers.'
             format: basic_html
           plugin_id: text
-      relationships: {  }
+      relationships:
+        entity_id:
+          id: entity_id
+          table: webform_submission
+          field: entity_id
+          relationship: none
+          group_type: group
+          admin_label: 'Submitted to: Content'
+          required: false
+          entity_type: webform_submission
+          entity_field: entity_id
+          plugin_id: standard
       arguments:
         uid:
           id: uid
-          table: webform_submission
+          table: node_field_data
           field: uid
-          relationship: none
+          relationship: entity_id
           group_type: group
           admin_label: ''
           default_action: default
@@ -265,7 +275,7 @@ display:
           validate_options: {  }
           break_phrase: false
           not: false
-          entity_type: webform_submission
+          entity_type: node
           entity_field: uid
           plugin_id: numeric
       display_extenders: {  }
@@ -279,28 +289,6 @@ display:
         - user
         - user.roles
       tags: {  }
-  block_1:
-    display_plugin: block
-    id: block_1
-    display_title: Bloc
-    position: 2
-    display_options:
-      display_extenders: {  }
-      pager:
-        type: some
-        options:
-          items_per_page: 4
-          offset: 0
-      defaults:
-        pager: false
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_interface'
-        - url
-        - user
-        - user.roles
-      tags: {  }
   page_1:
     display_plugin: page
     id: page_1
@@ -308,101 +296,17 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: vos-candidatures
+      path: liste-candidatures
       menu:
         type: normal
         title: Candidatures
         description: ''
         expanded: false
         parent: ''
-        weight: -46
+        weight: -47
         context: '0'
         menu_name: main
         enabled: true
-      sorts:
-        completed:
-          id: completed
-          table: webform_submission
-          field: completed
-          relationship: none
-          group_type: group
-          admin_label: ''
-          order: DESC
-          exposed: false
-          expose:
-            label: ''
-          granularity: second
-          entity_type: webform_submission
-          entity_field: completed
-          plugin_id: date
-      defaults:
-        sorts: false
-        filters: false
-        filter_groups: false
-        style: false
-        row: false
-        header: false
-        pager: false
-      filters:
-        webform_id:
-          id: webform_id
-          table: webform_submission
-          field: webform_id
-          value:
-            candidature: candidature
-          entity_type: webform_submission
-          entity_field: webform_id
-          plugin_id: bundle
-          expose:
-            operator_limit_selection: false
-            operator_list: {  }
-      filter_groups:
-        operator: AND
-        groups:
-          1: AND
-      style:
-        type: default
-        options:
-          row_class: ''
-          default_row_class: true
-          uses_fields: false
-      row:
-        type: 'entity:webform_submission'
-        options:
-          relationship: none
-          view_mode: default
-      header:
-        result:
-          id: result
-          table: views
-          field: result
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: false
-          content: 'Displaying @start - @end of @total'
-          plugin_id: result
-      pager:
-        type: infinite_scroll
-        options:
-          items_per_page: 10
-          offset: 0
-          id: 0
-          total_pages: null
-          tags:
-            previous: ‹‹
-            next: ››
-          expose:
-            items_per_page: false
-            items_per_page_label: 'Items per page'
-            items_per_page_options: '5, 10, 25, 50'
-            items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
-            offset: false
-            offset_label: Offset
-          views_infinite_scroll:
-            button_text: 'Load More'
-            automatically_load_content: false
     cache_metadata:
       max-age: -1
       contexts:

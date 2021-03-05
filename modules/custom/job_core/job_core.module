@@ -29,11 +29,11 @@ function job_core_form_alter(&$form, FormStateInterface $form_state, $form_id) {
       $lat = $user->get('field_adresse')->getValue()[0]['lat'];
       $lon = $user->get('field_adresse')->getValue()[0]['lon'];
 
-      if (empty($form['field_adresse']['widget'][0]['value']['#default_value']['lat'])) {
-        $form['field_adresse']['widget'][0]['value']['#default_value']['lat'] = $lat;
+      if (empty($form['field_address']['widget'][0]['value']['#default_value']['lat'])) {
+        $form['field_address']['widget'][0]['value']['#default_value']['lat'] = $lat;
       }
-      if (empty($form['field_adresse']['widget'][0]['value']['#default_value']['lon'])) {
-        $form['field_adresse']['widget'][0]['value']['#default_value']['lon'] = $lon;
+      if (empty($form['field_address']['widget'][0]['value']['#default_value']['lon'])) {
+        $form['field_address']['widget'][0]['value']['#default_value']['lon'] = $lon;
       }
     }
 

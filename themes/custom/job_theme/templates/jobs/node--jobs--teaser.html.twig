@@ -90,11 +90,11 @@
         <div class="card-body jobs-card">
           <small class="job-date d-flex justify-content-center mb-4" rel="bookmark">
             {% if node_date < 1 %}
-              {{ "Créée il y a moins d'un jour"|t }}
+              {{ "Created less than a day ago"|t }}
             {% elseif node_date == 1 %}
-              {{ "Créée il y a 1 jour"|t }}
+              {{ "Created a day ago"|t }}
             {% else %}
-              {% set string = 'créée il y a'|t ~ node_date ~ 'jours'|t %}
+              {% set string = 'Created '|t ~ node_date ~ ' days ago'|t %}
               {{ string }}
             {% endif %}
           </small>
@@ -117,11 +117,11 @@
         </div>
         <div class="card-footer">
           <div class="d-flex justify-content-end">
-            {% if node.field_teletravail.value %}
-              <div class="i-container mr-2"><i title="télétravail" class="fas fa-home fa-2x"></i></div>
+            {% if node.field_teleworking.value %}
+              <div class="i-container mr-2"><i title="teleworking" class="fas fa-home fa-2x"></i></div>
             {% endif %}
             {% if node.field_junior.value %}
-              <div class="i-container mr-2"><i title="junior accepté" class="fas fa-user-graduate fa-2x"></i></div>
+              <div class="i-container mr-2"><i title="junior accepted" class="fas fa-user-graduate fa-2x"></i></div>
             {% endif %}
           </div>
         </div>
