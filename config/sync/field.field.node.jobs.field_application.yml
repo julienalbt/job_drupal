@@ -1,20 +1,20 @@
-uuid: 60080f4b-329f-485d-89a7-b20f7e500aad
-langcode: fr
+uuid: f4d143a1-7d50-4d36-8a5c-7ad596e3c17f
+langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_candidature
+    - field.storage.node.field_application
     - node.type.jobs
     - webform.webform.candidature
   module:
     - webform
-id: node.jobs.field_candidature
-field_name: field_candidature
+id: node.jobs.field_application
+field_name: field_application
 entity_type: node
 bundle: jobs
-label: candidature
+label: Application
 description: ''
-required: true
+required: false
 translatable: false
 default_value:
   -

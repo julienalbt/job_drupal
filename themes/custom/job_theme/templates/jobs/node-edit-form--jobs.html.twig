@@ -15,79 +15,77 @@
  * @see seven_form_node_form_alter()
  */
 #}
-<div class="content clearfix job-form mt-5">
-  <div class="col-md-12 layout-region layout-region-node-main">
-    <div class="container">
-      {{ form.title }}
-      {{ form.field_junior }}
-      {{ form.field_teletravail }}
-      {{ form.field_adresse }}
+<div class="content clearfix">
+  <div class="layout-region layout-region-node-main">
+    {{ form.title }}
+    {{ form.field_junior }}
+    {{ form.field_teleworking }}
+    {{ form.field_address }}
 
-      <div class="accordion" id="descAcc">
-        <div class="card">
-          <div class="card-header bg-c-blue" id="headingOne">
-            <h2 class="mb-0">
-              <button class="btn btn-link btn-block text-left btn-job-acc text-light" type="button"
-                      data-toggle="collapse" data-target="#desc" aria-expanded="true" aria-controls="desc">
-                {{ 'Description et profil'|t }}
-              </button>
-            </h2>
-          </div>
+    <div class="accordion" id="description">
+      <div class="card">
+        <div class="card-header aut-sky-bg-2" id="headingOne">
+          <h2 class="mb-0">
+            <button class="btn btn-link btn-block text-left btn-job-acc text-light" type="button"
+                    data-toggle="collapse" data-target="#desc" aria-expanded="true" aria-controls="desc">
+              {{ 'Description and profile'|t }}
+            </button>
+          </h2>
+        </div>
 
-          <div id="desc" class="collapse" aria-labelledby="headingOne" data-parent="#descAcc">
-            <div class="card-body">
-              {{ form.field_description_job }}
-              {{ form.field_profil_recherche }}
-            </div>
+        <div id="desc" class="collapse" aria-labelledby="headingOne" data-parent="#description">
+          <div class="card-body">
+            {{ form.field_description_job }}
+            {{ form.field_required_profile }}
           </div>
         </div>
       </div>
-
-      <div class="accordion my-4" id="typeContrat">
-        <div class="card">
-          <div class="card-header bg-c-blue" id="headingTwo">
-            <h2 class="mb-0">
-              <button class="btn btn-link btn-block text-left btn-job-acc text-light" type="button"
-                      data-toggle="collapse" data-target="#type" aria-expanded="true" aria-controls="type">
-                {{ 'Type de contrat et expériences'|t }}
-              </button>
-            </h2>
-          </div>
-
-          <div id="type" class="collapse" aria-labelledby="headingTwo" data-parent="#typeContrat">
-            <div class="card-body">
-              {{ form.field_type_de_contrat }}
-              {{ form.field_experience }}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="accordion" id="salaireAvantages">
-        <div class="card">
-          <div class="card-header bg-c-blue" id="headingThree">
-            <h2 class="mb-0">
-              <button class="btn btn-link btn-block text-left btn-job-acc text-light" type="button"
-                      data-toggle="collapse" data-target="#salaire" aria-expanded="true" aria-controls="salaire">
-                {{ 'Salaire et avantages'|t }}
-              </button>
-            </h2>
-          </div>
-
-          <div id="salaire" class="collapse" aria-labelledby="headingThree" data-parent="#salaireAvantages">
-            <div class="card-body">
-              {{ form.field_salaire }}
-              {{ form.field_avantages }}
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      {{ form|without('advanced', 'field_junior', 'field_teletravail', 'field_skills', 'field_description_job',
-        'field_categories', 'field_profil_recherche', 'title', 'field_type_de_contrat',
-        'field_experience', 'field_avantages', 'field_salaire', 'field_adresse') }}
-
     </div>
+
+    <div class="accordion my-4" id="contractType">
+      <div class="card">
+        <div class="card-header aut-sky-bg-2" id="headingTwo">
+          <h2 class="mb-0">
+            <button class="btn btn-link btn-block text-left btn-job-acc text-light" type="button"
+                    data-toggle="collapse" data-target="#type" aria-expanded="true" aria-controls="type">
+              {{ 'Contract type and experiences'|t }}
+            </button>
+          </h2>
+        </div>
+
+        <div id="type" class="collapse" aria-labelledby="headingTwo" data-parent="#contractType">
+          <div class="card-body">
+            {{ form.field_contract_type }}
+            {{ form.field_experience }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion" id="salary">
+      <div class="card">
+        <div class="card-header aut-sky-bg-2" id="headingThree">
+          <h2 class="mb-0">
+            <button class="btn btn-link btn-block text-left btn-job-acc text-light" type="button"
+                    data-toggle="collapse" data-target="#sal" aria-expanded="true" aria-controls="sal">
+              {{ 'Salary and advantages'|t }}
+            </button>
+          </h2>
+        </div>
+
+        <div id="sal" class="collapse" aria-labelledby="headingThree" data-parent="#salary">
+          <div class="card-body">
+            {{ form.field_salary }}
+            {{ form.field_advantages }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    {{ form|without('advanced', 'field_junior', 'field_teleworking', 'field_skills', 'field_description_job',
+      'field_categories', 'field_required_profile', 'title', 'field_contract_type',
+      'field_experience', 'field_advantages', 'field_salary', 'field_address') }}
+
   </div>
 </div>

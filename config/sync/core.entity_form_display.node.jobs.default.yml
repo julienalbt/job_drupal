@@ -3,16 +3,16 @@ langcode: fr
 status: true
 dependencies:
   config:
-    - field.field.node.jobs.field_adresse
-    - field.field.node.jobs.field_avantages
-    - field.field.node.jobs.field_candidature
+    - field.field.node.jobs.field_address
+    - field.field.node.jobs.field_advantages
+    - field.field.node.jobs.field_application
+    - field.field.node.jobs.field_contract_type
     - field.field.node.jobs.field_description_job
     - field.field.node.jobs.field_experience
     - field.field.node.jobs.field_junior
-    - field.field.node.jobs.field_profil_recherche
-    - field.field.node.jobs.field_salaire
-    - field.field.node.jobs.field_teletravail
-    - field.field.node.jobs.field_type_de_contrat
+    - field.field.node.jobs.field_required_profile
+    - field.field.node.jobs.field_salary
+    - field.field.node.jobs.field_teleworking
     - node.type.jobs
   module:
     - geofield_map
@@ -26,19 +26,19 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 15
+    weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_adresse:
-    weight: 26
+  field_address:
+    weight: 17
     settings:
       map_geocoder:
         settings:
           providers:
             googlemaps:
-              checked: true
               weight: 0
+              checked: false
           min_terms: 4
           delay: 800
           options: ''
@@ -48,7 +48,8 @@ content:
         places_additional_options: ''
       map_library: gmap
       map_type_google: roadmap
-      map_type_leaflet: Esri_WorldStreetMap
+      map_type_leaflet: OpenStreetMap_Mapnik
+      map_type_selector: true
       map_dimensions:
         width: 100%
         height: 350px
@@ -65,7 +66,6 @@ content:
       default_value:
         lat: !!float 0
         lon: !!float 0
-      map_type_selector: false
       click_to_find_marker: false
       click_to_place_marker: false
       html5_geolocation: false
@@ -74,22 +74,28 @@ content:
     third_party_settings: {  }
     type: geofield_map
     region: content
-  field_avantages:
-    weight: 12
+  field_advantages:
+    weight: 8
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
     region: content
-  field_candidature:
-    weight: 27
+  field_application:
+    weight: 18
     settings:
       webforms:
         - candidature
       default_data: false
     third_party_settings: {  }
     type: webform_entity_reference_select
+    region: content
+  field_contract_type:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
     region: content
   field_description_job:
     weight: 3
@@ -114,7 +120,7 @@ content:
     third_party_settings: {  }
     type: boolean_checkbox
     region: content
-  field_profil_recherche:
+  field_required_profile:
     weight: 4
     settings:
       rows: 5
@@ -122,56 +128,50 @@ content:
     third_party_settings: {  }
     type: text_textarea
     region: content
-  field_salaire:
-    weight: 10
+  field_salary:
+    weight: 7
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
     region: content
-  field_teletravail:
+  field_teleworking:
     weight: 2
     settings:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
     region: content
-  field_type_de_contrat:
-    weight: 5
-    settings: {  }
-    third_party_settings: {  }
-    type: options_buttons
-    region: content
   langcode:
     type: language_select
-    weight: 13
+    weight: 9
     region: content
     settings:
       include_locked: true
     third_party_settings: {  }
   path:
     type: path
-    weight: 18
+    weight: 14
     region: content
     settings: {  }
     third_party_settings: {  }
   promote:
     type: options_buttons
     settings: {  }
-    weight: 16
+    weight: 12
     region: content
     third_party_settings: {  }
   status:
     type: options_buttons
     settings: {  }
-    weight: 19
+    weight: 15
     region: content
     third_party_settings: {  }
   sticky:
     type: options_buttons
     settings: {  }
-    weight: 17
+    weight: 13
     region: content
     third_party_settings: {  }
   title:
@@ -184,7 +184,7 @@ content:
     third_party_settings: {  }
   uid:
     type: options_select
-    weight: 14
+    weight: 10
     settings: {  }
     region: content
     third_party_settings: {  }

@@ -1,5 +1,5 @@
-uuid: 6d1d2735-88c8-40b4-a027-d71aef4cfced
-langcode: fr
+uuid: 5cd77d2b-495d-4e16-9e76-46e2f7c65201
+langcode: en
 status: true
 dependencies:
   module:
@@ -9,8 +9,8 @@ dependencies:
 third_party_settings:
   field_permissions:
     permission_type: public
-id: node.field_avantages
-field_name: field_avantages
+id: node.field_advantages
+field_name: field_advantages
 entity_type: node
 type: text_long
 settings: {  }

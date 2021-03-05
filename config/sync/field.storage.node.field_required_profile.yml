@@ -1,12 +1,16 @@
-uuid: 433742b7-37a2-41fe-a9c8-7c7348ceb3aa
-langcode: fr
+uuid: ba34bfa8-c047-4c90-8ceb-77926eb95fdb
+langcode: en
 status: true
 dependencies:
   module:
+    - field_permissions
     - node
     - text
-id: node.field_profil_recherche
-field_name: field_profil_recherche
+third_party_settings:
+  field_permissions:
+    permission_type: public
+id: node.field_required_profile
+field_name: field_required_profile
 entity_type: node
 type: text_long
 settings: {  }

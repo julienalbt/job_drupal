@@ -1,8 +1,0 @@
-uuid: 2a440109-51d8-4db3-8ec6-089a27130b5e
-langcode: fr
-status: true
-dependencies: {  }
-name: 'Type de contrat'
-vid: type_de_contrat
-description: ''
-weight: 0

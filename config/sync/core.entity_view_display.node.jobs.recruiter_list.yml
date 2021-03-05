@@ -4,16 +4,16 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.recruiter_list
-    - field.field.node.jobs.field_adresse
-    - field.field.node.jobs.field_avantages
-    - field.field.node.jobs.field_candidature
+    - field.field.node.jobs.field_address
+    - field.field.node.jobs.field_advantages
+    - field.field.node.jobs.field_application
+    - field.field.node.jobs.field_contract_type
     - field.field.node.jobs.field_description_job
     - field.field.node.jobs.field_experience
     - field.field.node.jobs.field_junior
-    - field.field.node.jobs.field_profil_recherche
-    - field.field.node.jobs.field_salaire
-    - field.field.node.jobs.field_teletravail
-    - field.field.node.jobs.field_type_de_contrat
+    - field.field.node.jobs.field_required_profile
+    - field.field.node.jobs.field_salary
+    - field.field.node.jobs.field_teleworking
     - node.type.jobs
   module:
     - user
@@ -28,15 +28,15 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
-  field_adresse: true
-  field_avantages: true
-  field_candidature: true
+  field_address: true
+  field_advantages: true
+  field_application: true
+  field_contract_type: true
   field_description_job: true
   field_experience: true
   field_junior: true
-  field_profil_recherche: true
-  field_salaire: true
-  field_teletravail: true
-  field_type_de_contrat: true
+  field_required_profile: true
+  field_salary: true
+  field_teleworking: true
   langcode: true
   search_api_excerpt: true

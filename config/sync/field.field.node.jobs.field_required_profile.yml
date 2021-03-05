@@ -1,17 +1,17 @@
-uuid: c6fb7385-d5e9-4546-ac11-23f4d45450f0
-langcode: fr
+uuid: c36cad30-d4cb-445b-ae6a-980bdee3863b
+langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_profil_recherche
+    - field.storage.node.field_required_profile
     - node.type.jobs
   module:
     - text
-id: node.jobs.field_profil_recherche
-field_name: field_profil_recherche
+id: node.jobs.field_required_profile
+field_name: field_required_profile
 entity_type: node
 bundle: jobs
-label: 'Profil recherché'
+label: 'Required profile'
 description: ''
 required: false
 translatable: false

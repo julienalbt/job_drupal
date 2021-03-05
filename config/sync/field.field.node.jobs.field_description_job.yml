@@ -11,7 +11,7 @@ id: node.jobs.field_description_job
 field_name: field_description_job
 entity_type: node
 bundle: jobs
-label: 'Description du poste'
+label: 'Job description'
 description: ''
 required: true
 translatable: false

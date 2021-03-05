@@ -1,17 +1,17 @@
-uuid: fb5cc4ac-dbc3-46dc-be4f-da8ef1c612d2
-langcode: fr
+uuid: 75e37edd-c08c-4e07-a2dc-bf93c2ba68c6
+langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_type_de_contrat
+    - field.storage.node.field_contract_type
     - node.type.jobs
-    - taxonomy.vocabulary.type_de_contrat
-id: node.jobs.field_type_de_contrat
-field_name: field_type_de_contrat
+    - taxonomy.vocabulary.contract_type
+id: node.jobs.field_contract_type
+field_name: field_contract_type
 entity_type: node
 bundle: jobs
-label: 'Type de contrat'
-description: 'Sélectionner le ou les types de contrat proposé(s).'
+label: 'Contract type'
+description: ''
 required: true
 translatable: false
 default_value: {  }
@@ -20,7 +20,7 @@ settings:
   handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
-      type_de_contrat: type_de_contrat
+      contract_type: contract_type
     sort:
       field: name
       direction: asc

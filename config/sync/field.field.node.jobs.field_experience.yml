@@ -5,13 +5,13 @@ dependencies:
   config:
     - field.storage.node.field_experience
     - node.type.jobs
-    - taxonomy.vocabulary.experience
+    - taxonomy.vocabulary.experiences
 id: node.jobs.field_experience
 field_name: field_experience
 entity_type: node
 bundle: jobs
-label: Expérience
-description: 'Sélectionner le ou les niveaux d''expérience accepté(s).'
+label: Experience
+description: 'Select the accepted experience level(s).'
 required: true
 translatable: false
 default_value: {  }
@@ -20,10 +20,10 @@ settings:
   handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
-      experience: experience
+      experiences: experiences
     sort:
       field: name
       direction: asc
     auto_create: false
-    auto_create_bundle: ''
+    auto_create_bundle: experiences
 field_type: entity_reference

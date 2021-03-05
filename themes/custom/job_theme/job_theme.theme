@@ -414,24 +414,27 @@ function job_theme_form_alter(&$form, FormStateInterface $form_state, $form_id) 
       break;
     case 'node_jobs_form':
     case 'user_form':
-      $form['actions']['submit']['#attributes'] = [
-        'class' => ["bg-c-dark-blue"],
+      $form['actions']['submit']['#attributes']['class'] = [
+        'aut-sky-bg-2',
+        'white-text',
       ];
       break;
     case 'node_jobs_edit_form':
       $form['actions']['delete']['#attributes'] = [
         'class' => ["btn btn-light"],
       ];
-      $form['actions']['submit']['#attributes'] = [
-        'class' => ["bg-c-dark-blue"],
+      $form['actions']['submit']['#attributes']['class'] = [
+        'aut-sky-bg-2',
+        'white-text',
       ];
       break;
     case 'node_jobs_delete_form':
       $form['actions']['cancel']['#attributes'] = [
         'class' => ["btn btn-light"],
       ];
-      $form['actions']['submit']['#attributes'] = [
-        'class' => ["bg-c-red"],
+      $form['actions']['submit']['#attributes']['class'] = [
+        'aut-tomato-bg',
+        'white-text',
       ];
       break;
   }

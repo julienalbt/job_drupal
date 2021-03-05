@@ -1,17 +1,17 @@
-uuid: c7ca18d5-4ced-41f9-ad10-611435e999cf
-langcode: fr
+uuid: 0d50aabf-dbd7-466a-80a8-8e2433dfeff4
+langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_adresse
+    - field.storage.node.field_address
     - node.type.jobs
   module:
     - geofield
-id: node.jobs.field_adresse
-field_name: field_adresse
+id: node.jobs.field_address
+field_name: field_address
 entity_type: node
 bundle: jobs
-label: Adresse
+label: Address
 description: ''
 required: true
 translatable: false

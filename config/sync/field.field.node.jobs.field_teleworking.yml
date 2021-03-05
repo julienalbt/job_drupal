@@ -1,0 +1,23 @@
+uuid: 6b1f06a8-c06c-40b6-b7c7-7e1660d15012
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_teleworking
+    - node.type.jobs
+id: node.jobs.field_teleworking
+field_name: field_teleworking
+entity_type: node
+bundle: jobs
+label: 'Possibility of teleworking'
+description: 'Check whether teleworking is possible, partially or not.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

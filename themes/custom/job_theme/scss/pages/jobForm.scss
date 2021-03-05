@@ -17,9 +17,10 @@ form#node-jobs-form, form#node-jobs-edit-form {
       border: none;
       line-height: 35px;
       transition: 0.3s ease-in;
+      box-shadow: unset;
 
       &:hover {
-        box-shadow: inset $c-dark-red 0 62px 1px 0;
+        box-shadow: inset $autumn-tomato 0 62px 1px 0;
         color: white;
       }
     }
@@ -28,12 +29,7 @@ form#node-jobs-form, form#node-jobs-edit-form {
   .btn-job-acc {
     text-decoration: none;
 
-    &:hover {
-      text-decoration: none;
-    }
-
-    &:focus {
-      box-shadow: none;
+    &:hover, &:focus {
       text-decoration: none;
     }
   }
@@ -54,15 +50,15 @@ form#node-jobs-form, form#node-jobs-edit-form {
     }
   }
 
-  #edit-field-adresse-0-value-map-actions {
+  #edit-field-address-0-value-map-actions {
     display: none;
   }
 
-  fieldset[id*="adresse"] legend {
+  fieldset[id*="address"] legend {
     margin-bottom: 4px;
   }
 
-  label[for*="adresse"] {
+  label[for*="address"] {
     display: none;
   }
 
@@ -103,9 +99,11 @@ form#node-jobs-form, form#node-jobs-edit-form {
       height: 62px;
       width: 250px;
       border: none;
+      box-shadow: unset;
+      transition: 0.3s ease-in;
 
       &:hover {
-        background-color: $c-light-red;
+        box-shadow: inset $autumn-tomato-2 0 62px 1px 0;
       }
     }
 

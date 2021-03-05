@@ -3,16 +3,16 @@ langcode: fr
 status: true
 dependencies:
   config:
-    - field.field.node.jobs.field_adresse
-    - field.field.node.jobs.field_avantages
-    - field.field.node.jobs.field_candidature
+    - field.field.node.jobs.field_address
+    - field.field.node.jobs.field_advantages
+    - field.field.node.jobs.field_application
+    - field.field.node.jobs.field_contract_type
     - field.field.node.jobs.field_description_job
     - field.field.node.jobs.field_experience
     - field.field.node.jobs.field_junior
-    - field.field.node.jobs.field_profil_recherche
-    - field.field.node.jobs.field_salaire
-    - field.field.node.jobs.field_teletravail
-    - field.field.node.jobs.field_type_de_contrat
+    - field.field.node.jobs.field_required_profile
+    - field.field.node.jobs.field_salary
+    - field.field.node.jobs.field_teleworking
     - node.type.jobs
   module:
     - geofield_map
@@ -24,16 +24,16 @@ targetEntityType: node
 bundle: jobs
 mode: default
 content:
-  field_adresse:
-    weight: 14
+  field_address:
+    weight: 10
     label: hidden
     settings:
       map_dimensions:
         width: 100%
         height: 350px
       map_empty:
-        empty_behaviour: '1'
-        empty_message: 'L''entreprise n''a pas renseigner d''adresse.'
+        empty_behaviour: '0'
+        empty_message: 'No Geofield Value entered for this field'
       map_center:
         lat: '42'
         lon: '12.5'
@@ -69,8 +69,8 @@ content:
         icon_file_wrapper:
           icon_file:
             fids: ''
-            upload_button: Transférer
-            remove_button: Retirer
+            upload_button: Upload
+            remove_button: Remove
             upload: ''
             is_svg: false
           image_style: geofield_map_default_icon_style
@@ -118,20 +118,28 @@ content:
     third_party_settings: {  }
     type: geofield_google_map
     region: content
-  field_avantages:
-    weight: 10
+  field_advantages:
+    weight: 6
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
-  field_candidature:
-    weight: 15
+  field_application:
+    weight: 11
     label: hidden
     settings:
       source_entity: true
     third_party_settings: {  }
     type: webform_entity_reference_entity_view
+    region: content
+  field_contract_type:
+    weight: 4
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
     region: content
   field_description_job:
     weight: 2
@@ -141,7 +149,7 @@ content:
     type: text_default
     region: content
   field_experience:
-    weight: 13
+    weight: 8
     label: hidden
     settings:
       link: true
@@ -158,23 +166,23 @@ content:
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-  field_profil_recherche:
-    weight: 5
+  field_required_profile:
+    weight: 3
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
-  field_salaire:
-    weight: 11
+  field_salary:
+    weight: 7
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
     region: content
-  field_teletravail:
-    weight: 8
+  field_teleworking:
+    weight: 5
     label: hidden
     settings:
       format: default
@@ -182,14 +190,6 @@ content:
       format_custom_true: ''
     third_party_settings: {  }
     type: boolean
-    region: content
-  field_type_de_contrat:
-    weight: 7
-    label: hidden
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
     region: content
   links:
     weight: 0

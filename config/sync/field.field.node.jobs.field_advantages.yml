@@ -1,17 +1,17 @@
-uuid: 469004fc-1d8d-4837-8af0-890ea7caf30e
-langcode: fr
+uuid: a72ed810-22bf-47fc-af76-1258126780ec
+langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_avantages
+    - field.storage.node.field_advantages
     - node.type.jobs
   module:
     - text
-id: node.jobs.field_avantages
-field_name: field_avantages
+id: node.jobs.field_advantages
+field_name: field_advantages
 entity_type: node
 bundle: jobs
-label: Avantages
+label: Advantages
 description: ''
 required: false
 translatable: false
