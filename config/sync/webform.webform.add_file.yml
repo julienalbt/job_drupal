@@ -12,7 +12,37 @@ id: add_file
 title: 'Add file'
 description: ''
 category: ''
-elements: "add_cv:\n  '#type': managed_file\n  '#title': 'Ajouter un CV'\n  '#label_attributes':\n    class:\n      - d-none\n  '#access_create_roles':\n    - candidat\n    - administrator\n  '#access_update_roles':\n    - administrator\n  '#access_view_roles':\n    - administrator\n  '#uri_scheme': public\n  '#file_preview': file\n  '#max_filesize': '2'\n  '#file_extensions': pdf\n  '#sanitize': true\n  '#button': true\n  '#button__title': 'Choisir un fichier'\n  '#button__attributes':\n    class:\n      - btn\nactions:\n  '#type': webform_actions\n  '#title': 'Submit button(s)'\n  '#submit__label': Envoyer\n  '#submit__attributes':\n    class:\n      - 'btn btn-primary'"
+elements: |-
+  add_cv:
+    '#type': managed_file
+    '#title': 'Ajouter un CV'
+    '#label_attributes':
+      class:
+        - d-none
+    '#access_create_roles':
+      - candidat
+      - administrator
+    '#access_update_roles':
+      - administrator
+    '#access_view_roles':
+      - administrator
+    '#uri_scheme': public
+    '#file_preview': file
+    '#max_filesize': '2'
+    '#file_extensions': pdf
+    '#sanitize': true
+    '#button': true
+    '#button__title': 'Choisir un fichier'
+    '#button__attributes':
+      class:
+        - btn
+  actions:
+    '#type': webform_actions
+    '#title': 'Submit button(s)'
+    '#submit__label': Envoyer
+    '#submit__attributes':
+      class:
+        - 'btn btn-primary'
 css: ''
 javascript: ''
 settings:

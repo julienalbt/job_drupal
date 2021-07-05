@@ -12,7 +12,90 @@ id: candidature
 title: Candidature
 description: ''
 category: ''
-elements: "candidature:\n  '#type': item\n  '#title': Candidature\n  '#access_create_roles':\n    - candidat\n    - administrator\n  '#access_update_roles':\n    - administrator\n  '#access_view_roles':\n    - authenticated\ncontainer:\n  '#type': container\n  message_container:\n    '#type': fieldset\n    '#title': 'Message (facultatif)'\n    '#access_create_roles':\n      - candidat\n      - administrator\n    '#access_update_roles':\n      - administrator\n    '#access_view_roles':\n      - authenticated\n    message:\n      '#type': text_format\n      '#title': 'Message (facultatif)'\n      '#flex': 0\n      '#label_attributes':\n        class:\n          - d-none\n      '#access_create_roles':\n        - candidat\n        - administrator\n      '#access_update_roles':\n        - administrator\n      '#access_view_roles':\n        - authenticated\n      '#allowed_formats':\n        basic_html: basic_html\n      '#hide_help': true\n      '#class': col-md-6\n  cv:\n    '#type': webform_entity_radios\n    '#title': 'Choisir un CV'\n    '#required': true\n    '#access_create_roles':\n      - candidat\n      - administrator\n    '#access_update_roles':\n      - administrator\n    '#access_view_roles':\n      - authenticated\n    '#target_type': file\n    '#selection_handler': views\n    '#selection_settings':\n      view:\n        view_name: cv_candidat\n        display_name: entity_reference_1\n        arguments: {  }\nemail:\n  '#type': hidden\n  '#title': Email\n  '#default_value': '[current-user:mail]'\n  '#access_create_roles':\n    - candidat\n    - administrator\n  '#access_update_roles':\n    - administrator\n  '#access_view_roles':\n    - authenticated\nactions:\n  '#type': webform_actions\n  '#title': 'Submit button(s)'\n  '#access_create_roles':\n    - candidat\n    - administrator\n  '#access_update_roles':\n    - administrator\n  '#access_view_roles':\n    - authenticated\n  '#submit__label': Envoyer\n  '#submit__attributes':\n    class:\n      - 'btn-lg btn-primary'"
+elements: |-
+  candidature:
+    '#type': item
+    '#title': Candidature
+    '#access_create_roles':
+      - candidat
+      - administrator
+    '#access_update_roles':
+      - administrator
+    '#access_view_roles':
+      - authenticated
+  container:
+    '#type': container
+    message_container:
+      '#type': fieldset
+      '#title': 'Message (facultatif)'
+      '#access_create_roles':
+        - candidat
+        - administrator
+      '#access_update_roles':
+        - administrator
+      '#access_view_roles':
+        - authenticated
+      message:
+        '#type': text_format
+        '#title': 'Message (facultatif)'
+        '#flex': 0
+        '#label_attributes':
+          class:
+            - d-none
+        '#access_create_roles':
+          - candidat
+          - administrator
+        '#access_update_roles':
+          - administrator
+        '#access_view_roles':
+          - authenticated
+        '#allowed_formats':
+          basic_html: basic_html
+        '#hide_help': true
+        '#class': col-md-6
+    cv:
+      '#type': webform_entity_radios
+      '#title': 'Choisir un CV'
+      '#required': true
+      '#access_create_roles':
+        - candidat
+        - administrator
+      '#access_update_roles':
+        - administrator
+      '#access_view_roles':
+        - authenticated
+      '#target_type': file
+      '#selection_handler': views
+      '#selection_settings':
+        view:
+          view_name: cv_candidat
+          display_name: entity_reference_1
+          arguments: {  }
+  email:
+    '#type': hidden
+    '#title': Email
+    '#default_value': '[current-user:mail]'
+    '#access_create_roles':
+      - candidat
+      - administrator
+    '#access_update_roles':
+      - administrator
+    '#access_view_roles':
+      - authenticated
+  actions:
+    '#type': webform_actions
+    '#title': 'Submit button(s)'
+    '#access_create_roles':
+      - candidat
+      - administrator
+    '#access_update_roles':
+      - administrator
+    '#access_view_roles':
+      - authenticated
+    '#submit__label': Envoyer
+    '#submit__attributes':
+      class:
+        - 'btn-lg btn-primary'
 css: ''
 javascript: ''
 settings:
